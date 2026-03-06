@@ -7,7 +7,11 @@ Aplicação em Python que:
 3. Faz parse do atributo `onclick` para extrair os parâmetros enviados à função `autenticar(...)`.
 4. Clica no botão.
 5. Aguarda o campo de OTP (`#otp`) na próxima tela.
-6. Solicita o código OTP ao usuário e preenche o campo, pausando em seguida para novas instruções.
+6. Solicita o código OTP ao usuário e preenche o campo.
+
+7. Após autenticar com OTP, abre a tela de consulta: `https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam`.
+8. Divide o processo `1000237-96.2026.4.01.3700` nos campos correspondentes e dispara a consulta.
+9. Captura a resposta AJAX da consulta e salva em `ajax_response_dump.txt`.
 
 ## Requisitos
 
