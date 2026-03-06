@@ -2,7 +2,7 @@
 
 Aplicação em Python que:
 
-1. Acessa a URL de autenticação do PJe.
+1. Acessa a URL de autenticação completa do PJe (com `redirect_uri`, `state`, `login` e `scope`) para direcionamento correto.
 2. Localiza o botão **CERTIFICADO DIGITAL** (`#kc-pje-office`).
 3. Faz parse do atributo `onclick` para extrair os parâmetros enviados à função `autenticar(...)`.
 4. Clica no botão.
