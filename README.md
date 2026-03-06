@@ -67,3 +67,30 @@ ou no Windows:
 ```powershell
 py -m playwright install firefox
 ```
+
+
+## Reuso de sessão por cookies (opcional)
+
+Ao iniciar, o script verifica se os cookies de sessão já existem em variáveis de ambiente e tenta reutilizar a autenticação para pular OTP.
+
+Cookies suportados:
+- `AUTH_SESSION_ID_LEGACY`
+- `AUTH_SESSION_ID`
+- `AWSALBCORS`
+- `AWSALB`
+- `KC_RESTART`
+- `KEYCLOAK_IDENTITY_LEGACY`
+- `KEYCLOAK_IDENTITY`
+- `KEYCLOAK_SESSION_LEGACY`
+- `KEYCLOAK_SESSION`
+
+Exemplo (PowerShell):
+
+```powershell
+$env:AUTH_SESSION_ID="..."
+$env:KEYCLOAK_IDENTITY="..."
+py app.py
+```
+
+Se os cookies forem válidos, o script abre diretamente a tela de consulta e pula login/OTP.
+

@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 from pathlib import Path
@@ -18,6 +19,18 @@ AUTH_URL = (
 CONSULTA_URL = "https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 PROCESSO_NUMERO = "1000237-96.2026.4.01.3700"
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
+
+COOKIE_NAMES = [
+    "AUTH_SESSION_ID_LEGACY",
+    "AUTH_SESSION_ID",
+    "AWSALBCORS",
+    "AWSALB",
+    "KC_RESTART",
+    "KEYCLOAK_IDENTITY_LEGACY",
+    "KEYCLOAK_IDENTITY",
+    "KEYCLOAK_SESSION_LEGACY",
+    "KEYCLOAK_SESSION",
+]
 
 
 def extract_autenticar_args(onclick: str) -> tuple[str, str] | None:
@@ -41,6 +54,91 @@ def show_missing_browser_help() -> None:
     print("Execute um dos comandos abaixo e tente novamente:\n")
     print("  python -m playwright install firefox")
     print("  playwright install firefox")
+
+
+def load_env_cookies() -> list[dict]:
+    cookies = []
+
+    for name in COOKIE_NAMES:
+        value = os.getenv(name)
+        if not value or value == "Array":
+            continue
+
+        cookies.append(
+            {
+                "name": name,
+                "value": value,
+                "domain": "sso.cloud.pje.jus.br",
+                "path": "/",
+                "httpOnly": False,
+                "secure": True,
+                "sameSite": "Lax",
+            }
+        )
+        cookies.append(
+            {
+                "name": name,
+                "value": value,
+                "domain": "pje1g.trf1.jus.br",
+                "path": "/",
+                "httpOnly": False,
+                "secure": True,
+                "sameSite": "Lax",
+            }
+        )
+
+    return cookies
+
+
+def apply_cookies_if_available(context) -> None:
+    cookies = load_env_cookies()
+    if not cookies:
+        print("Nenhum cookie de sessão encontrado em variáveis de ambiente.")
+        return
+
+    context.add_cookies(cookies)
+    print(f"Cookies de sessão carregados do ambiente: {len(cookies)} entradas.")
+
+
+def is_logged_in(page) -> bool:
+    page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+
+    if "ConsultaProcesso/listView.seam" not in page.url:
+        return False
+
+    consulta_input = page.locator("#fPP\\:numeroProcesso\\:numeroSequencial")
+    return consulta_input.count() > 0
+
+
+def perform_login_flow(page) -> None:
+    page.goto(AUTH_URL, wait_until="networkidle", timeout=60000)
+
+    cert_button = page.locator("#kc-pje-office")
+    cert_button.wait_for(state="visible", timeout=60000)
+
+    onclick = cert_button.get_attribute("onclick") or ""
+    parsed = extract_autenticar_args(onclick)
+
+    if parsed:
+        token, random_value = parsed
+        print("Parâmetros encontrados no onclick de autenticar:")
+        print(f"  token: {token[:20]}...{token[-20:]}")
+        print(f"  random: {random_value}")
+    else:
+        print("Não foi possível parsear os parâmetros de autenticar no atributo onclick.")
+
+    print("Clicando em 'CERTIFICADO DIGITAL'...")
+    cert_button.click()
+
+    otp_input = page.locator("#otp")
+    otp_input.wait_for(state="visible", timeout=60000)
+
+    otp_code = input("Digite o código OTP para continuar: ").strip()
+    while not otp_code:
+        otp_code = input("Código vazio. Digite o OTP: ").strip()
+
+    otp_input.fill(otp_code)
+    print("OTP preenchido com sucesso.")
 
 
 def fill_numero_processo_fields(page, numero: str) -> None:
@@ -90,7 +188,7 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
 
 
 def main() -> int:
-    print(f"Abrindo URL: {AUTH_URL}")
+    print(f"Iniciando automação. URL de autenticação: {AUTH_URL}")
 
     with sync_playwright() as p:
         browser = None
@@ -99,40 +197,17 @@ def main() -> int:
         try:
             browser = p.firefox.launch(headless=False)
             context = browser.new_context()
+            apply_cookies_if_available(context)
+
             page = context.new_page()
 
-            page.goto(AUTH_URL, wait_until="networkidle", timeout=60000)
-
-            cert_button = page.locator("#kc-pje-office")
-            cert_button.wait_for(state="visible", timeout=60000)
-
-            onclick = cert_button.get_attribute("onclick") or ""
-            parsed = extract_autenticar_args(onclick)
-
-            if parsed:
-                token, random_value = parsed
-                print("Parâmetros encontrados no onclick de autenticar:")
-                print(f"  token: {token[:20]}...{token[-20:]}")
-                print(f"  random: {random_value}")
+            if is_logged_in(page):
+                print("Sessão válida detectada por cookies. Pulando etapa de login/OTP.")
             else:
-                print(
-                    "Não foi possível parsear os parâmetros de autenticar no atributo onclick."
-                )
+                print("Sessão não autenticada. Executando login e OTP...")
+                perform_login_flow(page)
+                page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
 
-            print("Clicando em 'CERTIFICADO DIGITAL'...")
-            cert_button.click()
-
-            otp_input = page.locator("#otp")
-            otp_input.wait_for(state="visible", timeout=60000)
-
-            otp_code = input("Digite o código OTP para continuar: ").strip()
-            while not otp_code:
-                otp_code = input("Código vazio. Digite o OTP: ").strip()
-
-            otp_input.fill(otp_code)
-            print("OTP preenchido. Avançando para tela de consulta de processo...")
-
-            page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
             fill_numero_processo_fields(page, PROCESSO_NUMERO)
             trigger_search_and_capture_ajax(page, PROCESSO_NUMERO)
 
