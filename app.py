@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 from playwright.sync_api import Error as PlaywrightError
@@ -20,6 +21,8 @@ CONSULTA_URL = "https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView
 PROCESSO_NUMERO = "1000237-96.2026.4.01.3700"
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
 DOWNLOAD_DIR = Path("processos_baixados")
+DEBUG_PROFILE_DIR = Path(".playwright-firefox-profile")
+DEBUG_STORAGE_STATE_FILE = Path(".playwright-debug-storage-state.json")
 
 SEL_NUMERO_SEQUENCIAL = "[id='fPP:numeroProcesso:numeroSequencial']"
 SEL_NUMERO_DV = "[id='fPP:numeroProcesso:numeroDigitoVerificador']"
@@ -42,6 +45,34 @@ COOKIE_NAMES = [
     "KEYCLOAK_SESSION_LEGACY",
     "KEYCLOAK_SESSION",
 ]
+
+
+@dataclass(frozen=True)
+class AppConfig:
+    debug: bool
+
+
+def parse_bool(raw_value: str) -> bool:
+    return raw_value.strip().lower() in {"1", "true", "yes", "y", "on"}
+
+
+def parse_app_config(argv: list[str]) -> AppConfig:
+    debug = False
+
+    for arg in argv:
+        normalized = arg.strip().lower()
+        if normalized == "--debug":
+            debug = True
+            continue
+
+        if normalized.startswith("--debug="):
+            debug = parse_bool(normalized.split("=", 1)[1])
+            continue
+
+        if normalized.startswith("debug="):
+            debug = parse_bool(normalized.split("=", 1)[1])
+
+    return AppConfig(debug=debug)
 
 
 def extract_autenticar_args(onclick: str) -> tuple[str, str] | None:
@@ -69,12 +100,6 @@ def show_missing_browser_help() -> None:
 
 def load_env_cookies() -> list[dict]:
     cookies = []
-
-    for name in COOKIE_NAMES:
-        value = os.getenv(name)
-        if not value or value == "Array":
-            continue
-
         cookies.append(
             {
                 "name": name,
@@ -99,7 +124,7 @@ def load_env_cookies() -> list[dict]:
         )
 
     return cookies
-    
+
 def apply_cookies_if_available(context) -> None:
     cookies = load_env_cookies()
     if not cookies:
@@ -110,6 +135,65 @@ def apply_cookies_if_available(context) -> None:
     print(f"Cookies de sessão carregados do ambiente: {len(cookies)} entradas.")
 
 
+
+
+def get_debug_storage_state() -> str | None:
+    if not DEBUG_STORAGE_STATE_FILE.exists():
+        return None
+
+    print(f"Estado de sessão debug detectado em: {DEBUG_STORAGE_STATE_FILE}")
+    return str(DEBUG_STORAGE_STATE_FILE)
+
+
+def save_debug_storage_state(context) -> None:
+    DEBUG_STORAGE_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    context.storage_state(path=str(DEBUG_STORAGE_STATE_FILE))
+    print(f"Estado de sessão debug salvo em: {DEBUG_STORAGE_STATE_FILE}")
+
+
+def is_firefox_profile_in_use(profile_dir: Path) -> bool:
+    lock_files = ["parent.lock", "lock", ".parentlock"]
+    return any((profile_dir / name).exists() for name in lock_files)
+
+
+def create_context(playwright, config: AppConfig):
+    browser = None
+
+    if config.debug:
+        DEBUG_PROFILE_DIR.mkdir(parents=True, exist_ok=True)
+        profile_in_use = is_firefox_profile_in_use(DEBUG_PROFILE_DIR)
+        if profile_in_use:
+            print(
+                "Perfil do Firefox de debug aparenta estar em uso. "
+                "Tentando aproveitar o estado salvo de sessão."
+            )
+
+        try:
+            context = playwright.firefox.launch_persistent_context(
+                user_data_dir=str(DEBUG_PROFILE_DIR),
+                headless=False,
+                accept_downloads=True,
+            )
+            print(f"Modo debug ativo. Perfil persistente: {DEBUG_PROFILE_DIR}")
+            return browser, context
+        except PlaywrightError as exc:
+            if not profile_in_use:
+                raise
+
+            print(
+                "Não foi possível abrir novo contexto persistente porque o perfil está em uso. "
+                "Reutilizando storage_state salvo no modo debug."
+            )
+            browser = playwright.firefox.launch(headless=False)
+            context = browser.new_context(
+                accept_downloads=True,
+                storage_state=get_debug_storage_state(),
+            )
+            return browser, context
+
+    browser = playwright.firefox.launch(headless=False)
+    context = browser.new_context(accept_downloads=True)
+    return browser, context
 def attach_dialog_auto_accept(page) -> None:
     def _handler(dialog):
         print(f"Dialog detectado: {dialog.message[:120]}...")
@@ -135,177 +219,7 @@ def perform_login_flow(page) -> None:
     cert_button.wait_for(state="visible", timeout=60000)
 
     onclick = cert_button.get_attribute("onclick") or ""
-    parsed = extract_autenticar_args(onclick)
-
-    if parsed:
-        token, random_value = parsed
-        print("Parâmetros encontrados no onclick de autenticar:")
-        print(f"  token: {token[:20]}...{token[-20:]}")
-        print(f"  random: {random_value}")
-    else:
-        print("Não foi possível parsear os parâmetros de autenticar no atributo onclick.")
-
-    print("Clicando em 'CERTIFICADO DIGITAL'...")
-    cert_button.click()
-
-    otp_input = page.locator("#otp")
-    otp_input.wait_for(state="visible", timeout=60000)
-
-    otp_code = input("Digite o código OTP para continuar: ").strip()
-    while not otp_code:
-        otp_code = input("Código vazio. Digite o OTP: ").strip()
-
-    otp_input.fill(otp_code)
-
-    # Em alguns fluxos o OTP só é processado após ENTER ou submit explícito.
-    otp_input.press("Enter")
-    page.wait_for_load_state("networkidle", timeout=60000)
-    print(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
-
-
-
-def ensure_consulta_page_ready(page) -> None:
-    close_certificado_alert_popup_if_present(page)
-
-    numero_seq_input = page.locator(SEL_NUMERO_SEQUENCIAL)
-
-    if numero_seq_input.count() == 0:
-        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
-
-    numero_seq_input = page.locator(SEL_NUMERO_SEQUENCIAL)
-    try:
-        numero_seq_input.wait_for(state="visible", timeout=60000)
-    except PlaywrightTimeoutError as exc:
-        raise ValueError(
-            "Tela de consulta não ficou disponível após login. "
-            f"URL atual: {page.url}. Verifique se o OTP foi aceito e se a sessão está autenticada."
-        ) from exc
-
-
-def close_certificado_alert_popup_if_present(page) -> bool:
-    popup = page.locator(SEL_ALERTA_CERTIFICADO_POPUP)
-    if popup.count() == 0:
-        return False
-
-    close_button = popup.locator("span.btn-fechar")
-    if close_button.count() == 0:
-        print(
-            "Popup de alerta de certificado foi detectado, "
-            "mas o botão de fechar não foi encontrado."
-        )
-        return False
-
-    print("Popup de certificado próximo de expirar detectado. Fechando alerta...")
-    close_button.first.click()
-
-    try:
-        popup.wait_for(state="hidden", timeout=5000)
-    except PlaywrightTimeoutError:
-        print("Popup de certificado não ocultou no tempo esperado; seguindo fluxo.")
-
-    return True
-
-
-
-def go_to_consulta_via_processo_link(page) -> None:
-    close_certificado_alert_popup_if_present(page)
-
-    processo_link = page.locator("a[href='/pje/Processo/ConsultaProcesso/listView.seam']")
-
-    try:
-        processo_link.first.wait_for(state="visible", timeout=30000)
-        print("Link 'Processo' encontrado. Acessando tela de consulta via menu...")
-        processo_link.first.click()
-        page.wait_for_load_state("networkidle", timeout=60000)
-    except PlaywrightTimeoutError:
-        print(
-            "Link 'Processo' não apareceu no tempo esperado. "
-            "Usando fallback para URL direta da consulta..."
-        )
-        page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
-
-    close_certificado_alert_popup_if_present(page)
-
-def fill_numero_processo_fields(page, numero: str) -> None:
-    sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
-
-    print("Preenchendo campos do número do processo:")
-    print(
-        f"  sequencial={sequencial}, dv={dv}, ano={ano}, ramo={ramo}, tribunal={tribunal}, orgao={orgao}"
-    )
-
-    page.locator(SEL_NUMERO_SEQUENCIAL).wait_for(state="visible", timeout=60000)
-    page.fill(SEL_NUMERO_SEQUENCIAL, sequencial)
-    page.fill(SEL_NUMERO_DV, dv)
-    page.fill(SEL_NUMERO_ANO, ano)
-    page.fill(SEL_RAMO, ramo)
-    page.fill(SEL_TRIBUNAL, tribunal)
-    page.fill(SEL_ORGAO, orgao)
-
-
-def trigger_search_and_capture_ajax(page, numero: str) -> None:
-    sequencial, _, _, _, _, _ = parse_numero_processo(numero)
-
-    search_button = page.locator(SEL_SEARCH_PROCESSOS)
-    search_button.wait_for(state="visible", timeout=60000)
-
-    def is_target_response(response) -> bool:
-        request = response.request
-        post_data = request.post_data or ""
-        return (
-            request.method == "POST"
-            and "ConsultaProcesso/listView.seam" in response.url
-            and "fPP%3AnumeroProcesso%3AnumeroSequencial=" in post_data
-            and f"fPP%3AnumeroProcesso%3AnumeroSequencial={sequencial}" in post_data
-            and "fPP%3AsearchProcessos=" in post_data
-        )
-
-    print("Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...")
-    with page.expect_response(is_target_response, timeout=60000) as response_info:
-        search_button.click()
-
-    response = response_info.value
-    body_text = response.text()
-
-    Path(RESPONSE_DUMP_FILE).write_text(body_text, encoding="utf-8")
-    print(f"Resposta AJAX capturada com status HTTP: {response.status}")
-    print(f"Resposta salva em: {RESPONSE_DUMP_FILE}")
-    print("Trecho da resposta (primeiros 500 caracteres):")
-    print(body_text[:500])
-
-
-def open_process_result(page, numero_processo: str):
-    result_link = page.locator(
-        f"a[id^='fPP:processosTable:'][id$=':j_id509'][title='{numero_processo}']"
-    )
-
-    if result_link.count() == 0:
-        print(
-            "Link exato do processo não encontrado pelo title; "
-            "usando primeiro resultado da tabela como fallback."
-        )
-        result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
-
-    result_link.wait_for(state="visible", timeout=60000)
-
-    titulo = result_link.get_attribute("title") or "(sem título)"
-    print(f"Abrindo processo encontrado: {titulo}")
-
-    try:
-        with page.expect_popup(timeout=20000) as popup_info:
-            result_link.click()
-        popup_page = popup_info.value
-        popup_page.wait_for_load_state("networkidle", timeout=60000)
-        return popup_page
-    except PlaywrightTimeoutError:
-        page.wait_for_load_state("networkidle", timeout=60000)
-        return page
-
-
-def download_processo_pdf(detail_page) -> Path:
-    attach_dialog_auto_accept(detail_page)
-
-    DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
+@@ -309,79 +399,104 @@ def download_processo_pdf(detail_page) -> Path:
 
     menu_download = detail_page.locator("a.btn-menu-abas.dropdown-toggle[title='Download autos do processo']")
     menu_download.wait_for(state="visible", timeout=60000)
@@ -331,22 +245,30 @@ def download_processo_pdf(detail_page) -> Path:
 
 
 def main() -> int:
+    config = parse_app_config(sys.argv[1:])
     print(f"Iniciando automação. URL de autenticação: {AUTH_URL}")
+    print(f"Modo debug: {'ativo' if config.debug else 'inativo'}")
 
     with sync_playwright() as p:
         browser = None
         context = None
 
         try:
-            browser = p.firefox.launch(headless=False)
-            context = browser.new_context(accept_downloads=True)
-            apply_cookies_if_available(context)
+            browser, context = create_context(p, config)
+
+            if not config.debug:
+                apply_cookies_if_available(context)
+            else:
+                if context.cookies():
+                    print("Cookies já presentes no contexto debug persistente.")
+                else:
+                    apply_cookies_if_available(context)
 
             page = context.new_page()
             attach_dialog_auto_accept(page)
 
             if is_logged_in(page):
-                print("Sessão válida detectada por cookies. Pulando etapa de login/OTP.")
+                print("Sessão válida detectada por cookies/perfil. Pulando etapa de login/OTP.")
             else:
                 print("Sessão não autenticada. Executando login e OTP...")
                 perform_login_flow(page)
@@ -361,9 +283,23 @@ def main() -> int:
             download_file = download_processo_pdf(detail_page)
             print(f"Arquivo final salvo em: {download_file}")
 
+            if config.debug:
+                save_debug_storage_state(context)
+                print(
+                    "Modo debug ativo: a janela Firefox será mantida aberta ao finalizar o script. "
+                    "Use Ctrl+C para encerrar o processo quando quiser."
+                )
+                while True:
+                    page.wait_for_timeout(60_000)
+
             print("Fluxo concluído. Aguardando próximas instruções.")
             input("Pressione ENTER para encerrar a aplicação...")
 
+        except KeyboardInterrupt:
+            if config.debug and context:
+                save_debug_storage_state(context)
+            print("Execução interrompida pelo usuário.")
+            return 0
         except (PlaywrightTimeoutError, ValueError) as exc:
             print(f"Erro de tempo/validação: {exc}")
             return 1
@@ -375,10 +311,13 @@ def main() -> int:
                 print(f"Erro do Playwright: {exc}")
             return 1
         finally:
-            if context:
-                context.close()
-            if browser:
-                browser.close()
+            if config.debug:
+                print("Modo debug ativo: pulando fechamento automático do navegador/contexto.")
+            else:
+                if context:
+                    context.close()
+                if browser:
+                    browser.close()
 
     return 0
 
