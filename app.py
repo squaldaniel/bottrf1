@@ -156,7 +156,10 @@ def perform_login_flow(page) -> None:
 
 
 def ensure_consulta_page_ready(page) -> None:
-    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+    numero_seq_input = page.locator("#fPP\:numeroProcesso\:numeroSequencial")
+
+    if numero_seq_input.count() == 0:
+        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
 
     numero_seq_input = page.locator("#fPP\:numeroProcesso\:numeroSequencial")
     try:
@@ -166,6 +169,23 @@ def ensure_consulta_page_ready(page) -> None:
             "Tela de consulta não ficou disponível após login. "
             f"URL atual: {page.url}. Verifique se o OTP foi aceito e se a sessão está autenticada."
         ) from exc
+
+
+
+def go_to_consulta_via_processo_link(page) -> None:
+    processo_link = page.locator("a[href='/pje/Processo/ConsultaProcesso/listView.seam']")
+
+    try:
+        processo_link.first.wait_for(state="visible", timeout=30000)
+        print("Link 'Processo' encontrado. Acessando tela de consulta via menu...")
+        processo_link.first.click()
+        page.wait_for_load_state("networkidle", timeout=60000)
+    except PlaywrightTimeoutError:
+        print(
+            "Link 'Processo' não apareceu no tempo esperado. "
+            "Usando fallback para URL direta da consulta..."
+        )
+        page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
 
 def fill_numero_processo_fields(page, numero: str) -> None:
     sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
@@ -215,8 +235,18 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
     print(body_text[:500])
 
 
-def open_first_process_result(page):
-    result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+def open_process_result(page, numero_processo: str):
+    result_link = page.locator(
+        f"a[id^='fPP:processosTable:'][id$=':j_id509'][title='{numero_processo}']"
+    )
+
+    if result_link.count() == 0:
+        print(
+            "Link exato do processo não encontrado pelo title; "
+            "usando primeiro resultado da tabela como fallback."
+        )
+        result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+
     result_link.wait_for(state="visible", timeout=60000)
 
     titulo = result_link.get_attribute("title") or "(sem título)"
@@ -229,7 +259,6 @@ def open_first_process_result(page):
         popup_page.wait_for_load_state("networkidle", timeout=60000)
         return popup_page
     except PlaywrightTimeoutError:
-        # fallback: alguns cenários podem abrir na mesma aba
         page.wait_for_load_state("networkidle", timeout=60000)
         return page
 
@@ -282,13 +311,14 @@ def main() -> int:
             else:
                 print("Sessão não autenticada. Executando login e OTP...")
                 perform_login_flow(page)
+                go_to_consulta_via_processo_link(page)
 
             ensure_consulta_page_ready(page)
 
             fill_numero_processo_fields(page, PROCESSO_NUMERO)
             trigger_search_and_capture_ajax(page, PROCESSO_NUMERO)
 
-            detail_page = open_first_process_result(page)
+            detail_page = open_process_result(page, PROCESSO_NUMERO)
             download_file = download_processo_pdf(detail_page)
             print(f"Arquivo final salvo em: {download_file}")
 
