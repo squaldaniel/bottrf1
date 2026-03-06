@@ -232,6 +232,18 @@ def save_debug_storage_state(context) -> None:
     print(f"Estado de sessão debug salvo em: {DEBUG_STORAGE_STATE_FILE}")
 
 
+def try_save_debug_storage_state(context) -> None:
+    if not context:
+        return
+
+    try:
+        save_debug_storage_state(context)
+    except KeyboardInterrupt:
+        log_message("Salvamento do estado debug interrompido pelo usuário (KeyboardInterrupt).")
+    except PlaywrightError as exc:
+        log_message(f"Não foi possível salvar estado debug: {exc}")
+
+
 def is_firefox_profile_in_use(profile_dir: Path) -> bool:
     lock_files = ["parent.lock", "lock", ".parentlock"]
     return any((profile_dir / name).exists() for name in lock_files)
@@ -557,7 +569,6 @@ def main() -> int:
             else:
                 log_message("Sessão não autenticada. Executando login e OTP...")
                 perform_login_flow(page)
-                go_to_consulta_via_processo_link(page)
 
             ensure_consulta_page_ready(page)
 
@@ -569,20 +580,20 @@ def main() -> int:
             log_message(f"Arquivo final salvo em: {download_file}")
 
             if config.debug:
-                save_debug_storage_state(context)
-                print(
-                    "Modo debug ativo: a janela Firefox será mantida aberta ao finalizar o script. "
-                    "Use Ctrl+C para encerrar o processo quando quiser."
+                try_save_debug_storage_state(context)
+                log_message(
+                    "Modo debug ativo: execução concluída. "
+                    "Pressione ENTER para encerrar sem stack trace de KeyboardInterrupt."
                 )
-                while True:
-                    page.wait_for_timeout(60_000)
+                input("Pressione ENTER para encerrar a aplicação... ")
+                return 0
 
             log_message("Fluxo concluído. Aguardando próximas instruções.")
             input("Pressione ENTER para encerrar a aplicação...")
 
         except KeyboardInterrupt:
-            if config.debug and context:
-                save_debug_storage_state(context)
+            if config.debug:
+                try_save_debug_storage_state(context)
             log_message("Execução interrompida pelo usuário.")
             return 0
         except (PlaywrightTimeoutError, ValueError) as exc:
