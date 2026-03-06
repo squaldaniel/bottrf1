@@ -29,6 +29,7 @@ SEL_TRIBUNAL = "[id='fPP:numeroProcesso:respectivoTribunal']"
 SEL_ORGAO = "[id='fPP:numeroProcesso:NumeroOrgaoJustica']"
 SEL_SEARCH_PROCESSOS = "[id='fPP:searchProcessos']"
 SEL_DOWNLOAD_PROCESSO = "[id='navbar:downloadProcesso']"
+SEL_ALERTA_CERTIFICADO_POPUP = "#popupAlertaCertificadoProximoDeExpirarContentDiv"
 
 COOKIE_NAMES = [
     "AUTH_SESSION_ID_LEGACY",
@@ -165,6 +166,8 @@ def perform_login_flow(page) -> None:
 
 
 def ensure_consulta_page_ready(page) -> None:
+    close_certificado_alert_popup_if_present(page)
+
     numero_seq_input = page.locator(SEL_NUMERO_SEQUENCIAL)
 
     if numero_seq_input.count() == 0:
@@ -180,8 +183,34 @@ def ensure_consulta_page_ready(page) -> None:
         ) from exc
 
 
+def close_certificado_alert_popup_if_present(page) -> bool:
+    popup = page.locator(SEL_ALERTA_CERTIFICADO_POPUP)
+    if popup.count() == 0:
+        return False
+
+    close_button = popup.locator("span.btn-fechar")
+    if close_button.count() == 0:
+        print(
+            "Popup de alerta de certificado foi detectado, "
+            "mas o botão de fechar não foi encontrado."
+        )
+        return False
+
+    print("Popup de certificado próximo de expirar detectado. Fechando alerta...")
+    close_button.first.click()
+
+    try:
+        popup.wait_for(state="hidden", timeout=5000)
+    except PlaywrightTimeoutError:
+        print("Popup de certificado não ocultou no tempo esperado; seguindo fluxo.")
+
+    return True
+
+
 
 def go_to_consulta_via_processo_link(page) -> None:
+    close_certificado_alert_popup_if_present(page)
+
     processo_link = page.locator("a[href='/pje/Processo/ConsultaProcesso/listView.seam']")
 
     try:
@@ -195,6 +224,8 @@ def go_to_consulta_via_processo_link(page) -> None:
             "Usando fallback para URL direta da consulta..."
         )
         page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+
+    close_certificado_alert_popup_if_present(page)
 
 def fill_numero_processo_fields(page, numero: str) -> None:
     sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
