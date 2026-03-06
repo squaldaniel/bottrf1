@@ -147,8 +147,25 @@ def perform_login_flow(page) -> None:
         otp_code = input("Código vazio. Digite o OTP: ").strip()
 
     otp_input.fill(otp_code)
-    print("OTP preenchido com sucesso.")
 
+    # Em alguns fluxos o OTP só é processado após ENTER ou submit explícito.
+    otp_input.press("Enter")
+    page.wait_for_load_state("networkidle", timeout=60000)
+    print(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
+
+
+
+def ensure_consulta_page_ready(page) -> None:
+    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+
+    numero_seq_input = page.locator("#fPP\:numeroProcesso\:numeroSequencial")
+    try:
+        numero_seq_input.wait_for(state="visible", timeout=60000)
+    except PlaywrightTimeoutError as exc:
+        raise ValueError(
+            "Tela de consulta não ficou disponível após login. "
+            f"URL atual: {page.url}. Verifique se o OTP foi aceito e se a sessão está autenticada."
+        ) from exc
 
 def fill_numero_processo_fields(page, numero: str) -> None:
     sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
@@ -158,6 +175,7 @@ def fill_numero_processo_fields(page, numero: str) -> None:
         f"  sequencial={sequencial}, dv={dv}, ano={ano}, ramo={ramo}, tribunal={tribunal}, orgao={orgao}"
     )
 
+    page.locator("#fPP\\:numeroProcesso\\:numeroSequencial").wait_for(state="visible", timeout=60000)
     page.fill("#fPP\\:numeroProcesso\\:numeroSequencial", sequencial)
     page.fill("#fPP\\:numeroProcesso\\:numeroDigitoVerificador", dv)
     page.fill("#fPP\\:numeroProcesso\\:Ano", ano)
@@ -264,7 +282,8 @@ def main() -> int:
             else:
                 print("Sessão não autenticada. Executando login e OTP...")
                 perform_login_flow(page)
-                page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+
+            ensure_consulta_page_ready(page)
 
             fill_numero_processo_fields(page, PROCESSO_NUMERO)
             trigger_search_and_capture_ajax(page, PROCESSO_NUMERO)
