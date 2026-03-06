@@ -22,7 +22,7 @@ Aplicação em Python que:
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python -m playwright install chromium
+python -m playwright install firefox
 ```
 
 ### Windows (PowerShell)
@@ -31,7 +31,7 @@ python -m playwright install chromium
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-py -m playwright install chromium
+py -m playwright install firefox
 ```
 
 ## Execução
@@ -55,11 +55,11 @@ Se aparecer erro semelhante a:
 Significa que o Playwright está instalado, mas o navegador não foi baixado ainda. Rode:
 
 ```bash
-python -m playwright install chromium
+python -m playwright install firefox
 ```
 
 ou no Windows:
 
 ```powershell
-py -m playwright install chromium
+py -m playwright install firefox
 ```

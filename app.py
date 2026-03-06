@@ -30,10 +30,10 @@ def extract_autenticar_args(onclick: str) -> tuple[str, str] | None:
 
 
 def show_missing_browser_help() -> None:
-    print("\nPlaywright está instalado, mas o navegador Chromium não foi baixado.")
+    print("\nPlaywright está instalado, mas o navegador Firefox não foi baixado.")
     print("Execute um dos comandos abaixo e tente novamente:\n")
-    print("  python -m playwright install chromium")
-    print("  playwright install chromium")
+    print("  python -m playwright install firefox")
+    print("  playwright install firefox")
 
 
 def main() -> int:
@@ -45,7 +45,7 @@ def main() -> int:
         context = None
 
         try:
-            browser = p.chromium.launch(headless=False)
+            browser = p.firefox.launch(headless=False)
             context = browser.new_context()
             page = context.new_page()
 
