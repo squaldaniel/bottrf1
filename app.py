@@ -101,7 +101,10 @@ def show_missing_browser_help() -> None:
 def load_env_cookies() -> list[dict]:
     cookies = []
 
-def load_env_cookies() -> list[dict]:
+    for name in COOKIE_NAMES:
+        value = os.getenv(name)
+        if not value or value == "Array":
+            continue
 
         cookies.append(
             {
@@ -126,7 +129,7 @@ def load_env_cookies() -> list[dict]:
             }
         )
 
-        return cookies
+    return cookies
 
 def apply_cookies_if_available(context) -> None:
     cookies = load_env_cookies()
@@ -222,7 +225,177 @@ def perform_login_flow(page) -> None:
     cert_button.wait_for(state="visible", timeout=60000)
 
     onclick = cert_button.get_attribute("onclick") or ""
+    parsed = extract_autenticar_args(onclick)
+
+    if parsed:
+        token, random_value = parsed
+        print("Parâmetros encontrados no onclick de autenticar:")
+        print(f"  token: {token[:20]}...{token[-20:]}")
+        print(f"  random: {random_value}")
+    else:
+        print("Não foi possível parsear os parâmetros de autenticar no atributo onclick.")
+
+    print("Clicando em 'CERTIFICADO DIGITAL'...")
+    cert_button.click()
+
+    otp_input = page.locator("#otp")
+    otp_input.wait_for(state="visible", timeout=60000)
+
+    otp_code = input("Digite o código OTP para continuar: ").strip()
+    while not otp_code:
+        otp_code = input("Código vazio. Digite o OTP: ").strip()
+
+    otp_input.fill(otp_code)
+
+    # Em alguns fluxos o OTP só é processado após ENTER ou submit explícito.
+    otp_input.press("Enter")
+    page.wait_for_load_state("networkidle", timeout=60000)
+    print(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
+
+
+
+def ensure_consulta_page_ready(page) -> None:
+    close_certificado_alert_popup_if_present(page)
+
+    numero_seq_input = page.locator(SEL_NUMERO_SEQUENCIAL)
+
+    if numero_seq_input.count() == 0:
+        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+
+    numero_seq_input = page.locator(SEL_NUMERO_SEQUENCIAL)
+    try:
+        numero_seq_input.wait_for(state="visible", timeout=60000)
+    except PlaywrightTimeoutError as exc:
+        raise ValueError(
+            "Tela de consulta não ficou disponível após login. "
+            f"URL atual: {page.url}. Verifique se o OTP foi aceito e se a sessão está autenticada."
+        ) from exc
+
+
+def close_certificado_alert_popup_if_present(page) -> bool:
+    popup = page.locator(SEL_ALERTA_CERTIFICADO_POPUP)
+    if popup.count() == 0:
+        return False
+
+    close_button = popup.locator("span.btn-fechar")
+    if close_button.count() == 0:
+        print(
+            "Popup de alerta de certificado foi detectado, "
+            "mas o botão de fechar não foi encontrado."
+        )
+        return False
+
+    print("Popup de certificado próximo de expirar detectado. Fechando alerta...")
+    close_button.first.click()
+
+    try:
+        popup.wait_for(state="hidden", timeout=5000)
+    except PlaywrightTimeoutError:
+        print("Popup de certificado não ocultou no tempo esperado; seguindo fluxo.")
+
+    return True
+
+
+
+def go_to_consulta_via_processo_link(page) -> None:
+    close_certificado_alert_popup_if_present(page)
+
+    processo_link = page.locator("a[href='/pje/Processo/ConsultaProcesso/listView.seam']")
+
+    try:
+        processo_link.first.wait_for(state="visible", timeout=30000)
+        print("Link 'Processo' encontrado. Acessando tela de consulta via menu...")
+        processo_link.first.click()
+        page.wait_for_load_state("networkidle", timeout=60000)
+    except PlaywrightTimeoutError:
+        print(
+            "Link 'Processo' não apareceu no tempo esperado. "
+            "Usando fallback para URL direta da consulta..."
+        )
+        page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+
+    close_certificado_alert_popup_if_present(page)
+
+def fill_numero_processo_fields(page, numero: str) -> None:
+    sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
+
+    print("Preenchendo campos do número do processo:")
+    print(
+        f"  sequencial={sequencial}, dv={dv}, ano={ano}, ramo={ramo}, tribunal={tribunal}, orgao={orgao}"
+    )
+
+    page.locator(SEL_NUMERO_SEQUENCIAL).wait_for(state="visible", timeout=60000)
+    page.fill(SEL_NUMERO_SEQUENCIAL, sequencial)
+    page.fill(SEL_NUMERO_DV, dv)
+    page.fill(SEL_NUMERO_ANO, ano)
+    page.fill(SEL_RAMO, ramo)
+    page.fill(SEL_TRIBUNAL, tribunal)
+    page.fill(SEL_ORGAO, orgao)
+
+
+def trigger_search_and_capture_ajax(page, numero: str) -> None:
+    sequencial, _, _, _, _, _ = parse_numero_processo(numero)
+
+    search_button = page.locator(SEL_SEARCH_PROCESSOS)
+    search_button.wait_for(state="visible", timeout=60000)
+
+    def is_target_response(response) -> bool:
+        request = response.request
+        post_data = request.post_data or ""
+        return (
+            request.method == "POST"
+            and "ConsultaProcesso/listView.seam" in response.url
+            and "fPP%3AnumeroProcesso%3AnumeroSequencial=" in post_data
+            and f"fPP%3AnumeroProcesso%3AnumeroSequencial={sequencial}" in post_data
+            and "fPP%3AsearchProcessos=" in post_data
+        )
+
+    print("Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...")
+    with page.expect_response(is_target_response, timeout=60000) as response_info:
+        search_button.click()
+
+    response = response_info.value
+    body_text = response.text()
+
+    Path(RESPONSE_DUMP_FILE).write_text(body_text, encoding="utf-8")
+    print(f"Resposta AJAX capturada com status HTTP: {response.status}")
+    print(f"Resposta salva em: {RESPONSE_DUMP_FILE}")
+    print("Trecho da resposta (primeiros 500 caracteres):")
+    print(body_text[:500])
+
+
+def open_process_result(page, numero_processo: str):
+    result_link = page.locator(
+        f"a[id^='fPP:processosTable:'][id$=':j_id509'][title='{numero_processo}']"
+    )
+
+    if result_link.count() == 0:
+        print(
+            "Link exato do processo não encontrado pelo title; "
+            "usando primeiro resultado da tabela como fallback."
+        )
+        result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+
+    result_link.wait_for(state="visible", timeout=60000)
+
+    titulo = result_link.get_attribute("title") or "(sem título)"
+    print(f"Abrindo processo encontrado: {titulo}")
+
+    try:
+        with page.expect_popup(timeout=20000) as popup_info:
+            result_link.click()
+        popup_page = popup_info.value
+        popup_page.wait_for_load_state("networkidle", timeout=60000)
+        return popup_page
+    except PlaywrightTimeoutError:
+        page.wait_for_load_state("networkidle", timeout=60000)
+        return page
+
+
 def download_processo_pdf(detail_page) -> Path:
+    attach_dialog_auto_accept(detail_page)
+
+    DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
     menu_download = detail_page.locator("a.btn-menu-abas.dropdown-toggle[title='Download autos do processo']")
     menu_download.wait_for(state="visible", timeout=60000)
