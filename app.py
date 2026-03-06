@@ -94,6 +94,15 @@ def navigate_to_consulta_page(page, attempts: int = 3) -> None:
         except PlaywrightTimeoutError:
             log_message(f"Campo de consulta não visível após tentativa {attempt}. URL atual: {page.url}")
 
+            if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" in page.url:
+                cert_button = page.locator("#kc-pje-office")
+                if cert_button.count() > 0:
+                    log_message("Detectada volta para SSO; tentando acionar 'CERTIFICADO DIGITAL' automaticamente.")
+                    try:
+                        click_certificado_digital_and_wait_otp(page)
+                    except ValueError:
+                        log_message("Não foi possível acionar automaticamente o certificado nesta etapa.")
+
             if is_bad_request_page(page):
                 raise ValueError(
                     "Portal retornou 'Bad Request' ao tentar abrir a consulta após OTP. "
@@ -305,9 +314,7 @@ def is_logged_in(page) -> bool:
     return consulta_input.count() > 0
 
 
-def perform_login_flow(page) -> None:
-    page.goto(AUTH_URL, wait_until="networkidle", timeout=60000)
-
+def click_certificado_digital_and_wait_otp(page) -> None:
     cert_button = page.locator("#kc-pje-office")
     cert_button.wait_for(state="visible", timeout=60000)
 
@@ -323,7 +330,37 @@ def perform_login_flow(page) -> None:
         print("Não foi possível parsear os parâmetros de autenticar no atributo onclick.")
 
     log_message("Chamando 'CERTIFICADO DIGITAL'...")
-    cert_button.click()
+
+    last_error = None
+    for attempt in range(1, 4):
+        try:
+            cert_button.click(timeout=15000)
+            page.locator("#otp").wait_for(state="visible", timeout=15000)
+            log_message(f"Botão de certificado acionado com sucesso na tentativa {attempt}.")
+            return
+        except PlaywrightTimeoutError as exc:
+            last_error = exc
+            log_message(f"Tentativa {attempt} de abrir OTP falhou; aplicando fallback de clique.")
+            try:
+                cert_button.click(force=True, timeout=5000)
+                page.locator("#otp").wait_for(state="visible", timeout=10000)
+                return
+            except PlaywrightTimeoutError:
+                pass
+
+            try:
+                cert_button.evaluate("el => el.click()")
+                page.locator("#otp").wait_for(state="visible", timeout=10000)
+                return
+            except PlaywrightTimeoutError:
+                continue
+
+    raise ValueError("Não foi possível avançar ao campo OTP ao clicar em 'CERTIFICADO DIGITAL'.") from last_error
+
+
+def perform_login_flow(page) -> None:
+    page.goto(AUTH_URL, wait_until="networkidle", timeout=60000)
+    click_certificado_digital_and_wait_otp(page)
 
     otp_input = page.locator("#otp")
     otp_input.wait_for(state="visible", timeout=60000)
@@ -516,17 +553,29 @@ def download_processo_pdf(detail_page) -> Path:
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
     menu_download = detail_page.locator("a.btn-menu-abas.dropdown-toggle[title='Download autos do processo']")
-    menu_download.wait_for(state="visible", timeout=60000)
-    menu_download.click()
-
     download_button = detail_page.locator(SEL_DOWNLOAD_PROCESSO)
-    download_button.wait_for(state="visible", timeout=60000)
 
-    print("Solicitando download do PDF dos autos...")
-    with detail_page.expect_download(timeout=120000) as download_info:
-        download_button.click()
+    last_exc = None
+    for attempt in range(1, 4):
+        try:
+            menu_download.wait_for(state="visible", timeout=60000)
+            menu_download.click(timeout=10000)
+            download_button.wait_for(state="visible", timeout=20000)
 
-    download = download_info.value
+            print(f"Solicitando download do PDF dos autos (tentativa {attempt})...")
+            with detail_page.expect_download(timeout=120000) as download_info:
+                download_button.click(timeout=10000)
+            download = download_info.value
+            break
+        except (PlaywrightTimeoutError, PlaywrightError) as exc:
+            last_exc = exc
+            log_message(f"Tentativa {attempt} de download falhou: {exc}")
+            try:
+                menu_download.click(force=True, timeout=5000)
+            except PlaywrightError:
+                pass
+    else:
+        raise ValueError("Não foi possível iniciar o download do PDF dos autos.") from last_exc
     suggested_name = download.suggested_filename
     if not suggested_name.lower().endswith(".pdf"):
         suggested_name = f"{suggested_name}.pdf"
@@ -582,10 +631,14 @@ def main() -> int:
             if config.debug:
                 try_save_debug_storage_state(context)
                 log_message(
-                    "Modo debug ativo: execução concluída. "
-                    "Pressione ENTER para encerrar sem stack trace de KeyboardInterrupt."
+                    "Modo debug ativo: mantendo Firefox aberto para preservar sessão. "
+                    "Use Ctrl+C para encerrar sem stack trace."
                 )
-                input("Pressione ENTER para encerrar a aplicação... ")
+                try:
+                    while True:
+                        page.wait_for_timeout(60_000)
+                except KeyboardInterrupt:
+                    log_message("Encerrando modo debug por solicitação do usuário.")
                 return 0
 
             log_message("Fluxo concluído. Aguardando próximas instruções.")
