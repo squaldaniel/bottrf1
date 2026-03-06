@@ -99,8 +99,7 @@ def load_env_cookies() -> list[dict]:
         )
 
     return cookies
-
-
+    
 def apply_cookies_if_available(context) -> None:
     cookies = load_env_cookies()
     if not cookies:
