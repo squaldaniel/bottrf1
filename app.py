@@ -21,6 +21,15 @@ PROCESSO_NUMERO = "1000237-96.2026.4.01.3700"
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
 DOWNLOAD_DIR = Path("processos_baixados")
 
+SEL_NUMERO_SEQUENCIAL = "[id='fPP:numeroProcesso:numeroSequencial']"
+SEL_NUMERO_DV = "[id='fPP:numeroProcesso:numeroDigitoVerificador']"
+SEL_NUMERO_ANO = "[id='fPP:numeroProcesso:Ano']"
+SEL_RAMO = "[id='fPP:numeroProcesso:ramoJustica']"
+SEL_TRIBUNAL = "[id='fPP:numeroProcesso:respectivoTribunal']"
+SEL_ORGAO = "[id='fPP:numeroProcesso:NumeroOrgaoJustica']"
+SEL_SEARCH_PROCESSOS = "[id='fPP:searchProcessos']"
+SEL_DOWNLOAD_PROCESSO = "[id='navbar:downloadProcesso']"
+
 COOKIE_NAMES = [
     "AUTH_SESSION_ID_LEGACY",
     "AUTH_SESSION_ID",
@@ -115,7 +124,7 @@ def is_logged_in(page) -> bool:
     if "ConsultaProcesso/listView.seam" not in page.url:
         return False
 
-    consulta_input = page.locator("#fPP\\:numeroProcesso\\:numeroSequencial")
+    consulta_input = page.locator(SEL_NUMERO_SEQUENCIAL)
     return consulta_input.count() > 0
 
 
@@ -156,9 +165,12 @@ def perform_login_flow(page) -> None:
 
 
 def ensure_consulta_page_ready(page) -> None:
-    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+    numero_seq_input = page.locator(SEL_NUMERO_SEQUENCIAL)
 
-    numero_seq_input = page.locator("#fPP\:numeroProcesso\:numeroSequencial")
+    if numero_seq_input.count() == 0:
+        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+
+    numero_seq_input = page.locator(SEL_NUMERO_SEQUENCIAL)
     try:
         numero_seq_input.wait_for(state="visible", timeout=60000)
     except PlaywrightTimeoutError as exc:
@@ -166,6 +178,23 @@ def ensure_consulta_page_ready(page) -> None:
             "Tela de consulta não ficou disponível após login. "
             f"URL atual: {page.url}. Verifique se o OTP foi aceito e se a sessão está autenticada."
         ) from exc
+
+
+
+def go_to_consulta_via_processo_link(page) -> None:
+    processo_link = page.locator("a[href='/pje/Processo/ConsultaProcesso/listView.seam']")
+
+    try:
+        processo_link.first.wait_for(state="visible", timeout=30000)
+        print("Link 'Processo' encontrado. Acessando tela de consulta via menu...")
+        processo_link.first.click()
+        page.wait_for_load_state("networkidle", timeout=60000)
+    except PlaywrightTimeoutError:
+        print(
+            "Link 'Processo' não apareceu no tempo esperado. "
+            "Usando fallback para URL direta da consulta..."
+        )
+        page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
 
 def fill_numero_processo_fields(page, numero: str) -> None:
     sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
@@ -175,19 +204,19 @@ def fill_numero_processo_fields(page, numero: str) -> None:
         f"  sequencial={sequencial}, dv={dv}, ano={ano}, ramo={ramo}, tribunal={tribunal}, orgao={orgao}"
     )
 
-    page.locator("#fPP\\:numeroProcesso\\:numeroSequencial").wait_for(state="visible", timeout=60000)
-    page.fill("#fPP\\:numeroProcesso\\:numeroSequencial", sequencial)
-    page.fill("#fPP\\:numeroProcesso\\:numeroDigitoVerificador", dv)
-    page.fill("#fPP\\:numeroProcesso\\:Ano", ano)
-    page.fill("#fPP\\:numeroProcesso\\:ramoJustica", ramo)
-    page.fill("#fPP\\:numeroProcesso\\:respectivoTribunal", tribunal)
-    page.fill("#fPP\\:numeroProcesso\\:NumeroOrgaoJustica", orgao)
+    page.locator(SEL_NUMERO_SEQUENCIAL).wait_for(state="visible", timeout=60000)
+    page.fill(SEL_NUMERO_SEQUENCIAL, sequencial)
+    page.fill(SEL_NUMERO_DV, dv)
+    page.fill(SEL_NUMERO_ANO, ano)
+    page.fill(SEL_RAMO, ramo)
+    page.fill(SEL_TRIBUNAL, tribunal)
+    page.fill(SEL_ORGAO, orgao)
 
 
 def trigger_search_and_capture_ajax(page, numero: str) -> None:
     sequencial, _, _, _, _, _ = parse_numero_processo(numero)
 
-    search_button = page.locator("#fPP\\:searchProcessos")
+    search_button = page.locator(SEL_SEARCH_PROCESSOS)
     search_button.wait_for(state="visible", timeout=60000)
 
     def is_target_response(response) -> bool:
@@ -215,8 +244,18 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
     print(body_text[:500])
 
 
-def open_first_process_result(page):
-    result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+def open_process_result(page, numero_processo: str):
+    result_link = page.locator(
+        f"a[id^='fPP:processosTable:'][id$=':j_id509'][title='{numero_processo}']"
+    )
+
+    if result_link.count() == 0:
+        print(
+            "Link exato do processo não encontrado pelo title; "
+            "usando primeiro resultado da tabela como fallback."
+        )
+        result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+
     result_link.wait_for(state="visible", timeout=60000)
 
     titulo = result_link.get_attribute("title") or "(sem título)"
@@ -229,7 +268,6 @@ def open_first_process_result(page):
         popup_page.wait_for_load_state("networkidle", timeout=60000)
         return popup_page
     except PlaywrightTimeoutError:
-        # fallback: alguns cenários podem abrir na mesma aba
         page.wait_for_load_state("networkidle", timeout=60000)
         return page
 
@@ -243,7 +281,7 @@ def download_processo_pdf(detail_page) -> Path:
     menu_download.wait_for(state="visible", timeout=60000)
     menu_download.click()
 
-    download_button = detail_page.locator("#navbar\\:downloadProcesso")
+    download_button = detail_page.locator(SEL_DOWNLOAD_PROCESSO)
     download_button.wait_for(state="visible", timeout=60000)
 
     print("Solicitando download do PDF dos autos...")
@@ -282,13 +320,14 @@ def main() -> int:
             else:
                 print("Sessão não autenticada. Executando login e OTP...")
                 perform_login_flow(page)
+                go_to_consulta_via_processo_link(page)
 
             ensure_consulta_page_ready(page)
 
             fill_numero_processo_fields(page, PROCESSO_NUMERO)
             trigger_search_and_capture_ajax(page, PROCESSO_NUMERO)
 
-            detail_page = open_first_process_result(page)
+            detail_page = open_process_result(page, PROCESSO_NUMERO)
             download_file = download_processo_pdf(detail_page)
             print(f"Arquivo final salvo em: {download_file}")
 
