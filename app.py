@@ -100,6 +100,9 @@ def show_missing_browser_help() -> None:
 
 def load_env_cookies() -> list[dict]:
     cookies = []
+
+def load_env_cookies() -> list[dict]:
+
         cookies.append(
             {
                 "name": name,
