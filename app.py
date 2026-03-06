@@ -235,7 +235,7 @@ def perform_login_flow(page) -> None:
     else:
         print("Não foi possível parsear os parâmetros de autenticar no atributo onclick.")
 
-    print("Clicando em 'CERTIFICADO DIGITAL'...")
+    print("Chamando 'CERTIFICADO DIGITAL'...")
     cert_button.click()
 
     otp_input = page.locator("#otp")
