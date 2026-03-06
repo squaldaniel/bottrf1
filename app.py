@@ -333,18 +333,6 @@ def fill_numero_processo_fields(page, numero: str) -> None:
     page.fill(SEL_ORGAO, orgao)
 
 
-def is_bad_request_page(page) -> bool:
-    try:
-        title = (page.title() or "").strip().lower()
-    except PlaywrightError:
-        title = ""
-
-    if "bad request" in title:
-        return True
-
-    return page.get_by_text("Bad Request", exact=False).first.count() > 0
-
-
 def trigger_search_and_capture_ajax(page, numero: str) -> None:
     sequencial, _, _, _, _, _ = parse_numero_processo(numero)
 
@@ -354,52 +342,23 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
     def is_target_response(response) -> bool:
         request = response.request
         post_data = request.post_data or ""
-        has_seq_key = (
-            "fPP%3AnumeroProcesso%3AnumeroSequencial=" in post_data
-            or "fPP:numeroProcesso:numeroSequencial=" in post_data
-        )
-        has_seq_value = (
-            f"fPP%3AnumeroProcesso%3AnumeroSequencial={sequencial}" in post_data
-            or f"fPP:numeroProcesso:numeroSequencial={sequencial}" in post_data
-        )
-        has_search_flag = "fPP%3AsearchProcessos=" in post_data or "fPP:searchProcessos=" in post_data
         return (
             request.method == "POST"
             and "ConsultaProcesso/listView.seam" in response.url
-            and has_seq_key
-            and has_seq_value
-            and has_search_flag
+            and "fPP%3AnumeroProcesso%3AnumeroSequencial=" in post_data
+            and f"fPP%3AnumeroProcesso%3AnumeroSequencial={sequencial}" in post_data
+            and "fPP%3AsearchProcessos=" in post_data
         )
 
     print("Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...")
-    status_info = "desconhecido"
-    try:
-        with page.expect_response(is_target_response, timeout=60000) as response_info:
-            search_button.click()
-        response = response_info.value
-        body_text = response.text()
-        status_info = str(response.status)
-    except PlaywrightTimeoutError:
-        print(
-            "Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. "
-            "Continuando com fallback baseado no DOM atual."
-        )
-        try:
-            page.wait_for_load_state("networkidle", timeout=15000)
-        except PlaywrightTimeoutError:
-            pass
+    with page.expect_response(is_target_response, timeout=60000) as response_info:
+        search_button.click()
 
-        if is_bad_request_page(page):
-            raise ValueError(
-                "Portal retornou 'Bad Request' após a autenticação/consulta. "
-                "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
-            )
-
-        body_text = page.content()
-        status_info = "fallback-dom"
+    response = response_info.value
+    body_text = response.text()
 
     Path(RESPONSE_DUMP_FILE).write_text(body_text, encoding="utf-8")
-    print(f"Resposta de consulta capturada com status: {status_info}")
+    print(f"Resposta AJAX capturada com status HTTP: {response.status}")
     print(f"Resposta salva em: {RESPONSE_DUMP_FILE}")
     print("Trecho da resposta (primeiros 500 caracteres):")
     print(body_text[:500])
