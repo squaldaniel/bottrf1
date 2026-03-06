@@ -126,7 +126,7 @@ def load_env_cookies() -> list[dict]:
             }
         )
 
-    return cookies
+        return cookies
 
 def apply_cookies_if_available(context) -> None:
     cookies = load_env_cookies()
@@ -222,7 +222,7 @@ def perform_login_flow(page) -> None:
     cert_button.wait_for(state="visible", timeout=60000)
 
     onclick = cert_button.get_attribute("onclick") or ""
-@@ -309,79 +399,104 @@ def download_processo_pdf(detail_page) -> Path:
+def download_processo_pdf(detail_page) -> Path:
 
     menu_download = detail_page.locator("a.btn-menu-abas.dropdown-toggle[title='Download autos do processo']")
     menu_download.wait_for(state="visible", timeout=60000)
