@@ -98,11 +98,11 @@ def navigate_to_consulta_page(page, attempts: int = 3) -> None:
             if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" in page.url:
                 cert_button = page.locator("#kc-pje-office")
                 if cert_button.count() > 0:
-                    log_message("Detectada volta para SSO; tentando acionar 'CERTIFICADO DIGITAL' automaticamente.")
-                    try:
-                        click_certificado_digital_and_wait_otp(page)
-                    except ValueError:
-                        log_message("Não foi possível acionar automaticamente o certificado nesta etapa.")
+                    log_message(
+                        "Detectada volta para SSO durante navegação; acionando certificado sem aguardar OTP."
+                    )
+                    trigger_certificado_digital_click(page)
+                    page.wait_for_timeout(2000)
 
             if is_bad_request_page(page):
                 raise ValueError(
@@ -315,7 +315,7 @@ def is_logged_in(page) -> bool:
     return consulta_input.count() > 0
 
 
-def click_certificado_digital_and_wait_otp(page) -> None:
+def trigger_certificado_digital_click(page) -> None:
     cert_button = page.locator("#kc-pje-office")
     cert_button.wait_for(state="visible", timeout=60000)
 
@@ -331,17 +331,21 @@ def click_certificado_digital_and_wait_otp(page) -> None:
         print("Não foi possível parsear os parâmetros de autenticar no atributo onclick.")
 
     log_message("Chamando 'CERTIFICADO DIGITAL'...")
+    cert_button.click(timeout=15000)
 
+
+def click_certificado_digital_and_wait_otp(page) -> None:
     last_error = None
     for attempt in range(1, 4):
         try:
-            cert_button.click(timeout=15000)
+            trigger_certificado_digital_click(page)
             page.locator("#otp").wait_for(state="visible", timeout=15000)
             log_message(f"Botão de certificado acionado com sucesso na tentativa {attempt}.")
             return
         except PlaywrightTimeoutError as exc:
             last_error = exc
             log_message(f"Tentativa {attempt} de abrir OTP falhou; aplicando fallback de clique.")
+            cert_button = page.locator("#kc-pje-office")
             try:
                 cert_button.click(force=True, timeout=5000)
                 page.locator("#otp").wait_for(state="visible", timeout=10000)
@@ -360,7 +364,11 @@ def click_certificado_digital_and_wait_otp(page) -> None:
 
 
 def perform_login_flow(page) -> None:
-    page.goto(AUTH_URL, wait_until="networkidle", timeout=60000)
+    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+
+    if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
+        page.goto(AUTH_URL, wait_until="domcontentloaded", timeout=60000)
+
     click_certificado_digital_and_wait_otp(page)
 
     otp_input = page.locator("#otp")
