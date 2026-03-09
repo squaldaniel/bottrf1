@@ -37,6 +37,7 @@ SEL_ORGAO = "[id='fPP:numeroProcesso:NumeroOrgaoJustica']"
 SEL_SEARCH_PROCESSOS = "[id='fPP:searchProcessos']"
 SEL_DOWNLOAD_PROCESSO = "[id='navbar:downloadProcesso']"
 SEL_ALERTA_CERTIFICADO_POPUP = "#popupAlertaCertificadoProximoDeExpirarContentDiv"
+CERTIFICADO_ALERTA_TEXT = "certificado próximo de expirar"
 
 ORIGINAL_PRINT = builtins.print
 
@@ -375,21 +376,28 @@ def perform_login_flow(page) -> None:
     otp_input.press("Enter")
     page.wait_for_load_state("networkidle", timeout=60000)
     log_message(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
+    dismiss_blocking_certificado_popup_if_present(page)
     navigate_to_consulta_page(page)
 
 
 
 def ensure_consulta_page_ready(page) -> None:
-    close_certificado_alert_popup_if_present(page)
+    dismiss_blocking_certificado_popup_if_present(page)
     navigate_to_consulta_page(page)
 
 
 def close_certificado_alert_popup_if_present(page) -> bool:
     popup = page.locator(SEL_ALERTA_CERTIFICADO_POPUP)
     if popup.count() == 0:
+        popup = page.locator(".modal-dialog, .ui-dialog")
+
+    if popup.count() == 0:
         return False
 
-    close_button = popup.locator("span.btn-fechar")
+    if CERTIFICADO_ALERTA_TEXT not in popup.first.inner_text().strip().lower():
+        return False
+
+    close_button = popup.locator("span.btn-fechar, .ui-dialog-titlebar-close, button[aria-label='Close']")
     if close_button.count() == 0:
         print(
             "Popup de alerta de certificado foi detectado, "
@@ -401,16 +409,24 @@ def close_certificado_alert_popup_if_present(page) -> bool:
     close_button.first.click()
 
     try:
-        popup.wait_for(state="hidden", timeout=5000)
+        popup.first.wait_for(state="hidden", timeout=5000)
     except PlaywrightTimeoutError:
         print("Popup de certificado não ocultou no tempo esperado; seguindo fluxo.")
 
     return True
 
 
+def dismiss_blocking_certificado_popup_if_present(page, attempts: int = 3) -> None:
+    for attempt in range(1, attempts + 1):
+        if not close_certificado_alert_popup_if_present(page):
+            return
+        log_message(f"Popup de certificado fechado (tentativa {attempt}).")
+        page.wait_for_timeout(500)
+
+
 
 def go_to_consulta_via_processo_link(page) -> None:
-    close_certificado_alert_popup_if_present(page)
+    dismiss_blocking_certificado_popup_if_present(page)
 
     processo_link = page.locator("a[href='/pje/Processo/ConsultaProcesso/listView.seam']")
 
@@ -420,7 +436,7 @@ def go_to_consulta_via_processo_link(page) -> None:
             log_message("Link 'Processo' encontrado. Acessando tela de consulta via menu...")
             processo_link.first.click()
             page.wait_for_load_state("networkidle", timeout=60000)
-            close_certificado_alert_popup_if_present(page)
+            dismiss_blocking_certificado_popup_if_present(page)
             navigate_to_consulta_page(page)
             return
         except PlaywrightTimeoutError:
@@ -428,10 +444,11 @@ def go_to_consulta_via_processo_link(page) -> None:
 
     log_message("Link 'Processo' não apareceu no tempo esperado. Usando fallback para URL direta da consulta...")
     navigate_to_consulta_page(page)
-    close_certificado_alert_popup_if_present(page)
+    dismiss_blocking_certificado_popup_if_present(page)
 
 def fill_numero_processo_fields(page, numero: str) -> None:
     sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
+    dismiss_blocking_certificado_popup_if_present(page)
 
     print("Preenchendo campos do número do processo:")
     print(
