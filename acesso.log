@@ -90,3 +90,5 @@ playwright._impl._errors.TargetClosedError: Target page, context or browser has 
 [2026-03-09 15:34:46] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
 [2026-03-09 15:36:26] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
 [2026-03-09 15:36:26] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:37:56] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:37:56] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
