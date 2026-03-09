@@ -10,15 +10,30 @@ Aplicação em Python que:
 6. Solicita o código OTP ao usuário e preenche o campo.
 
 7. Após autenticar com OTP (ou reaproveitar sessão por cookies), procura e clica no link `<a href="/pje/Processo/ConsultaProcesso/listView.seam"> Processo </a>` para abrir a consulta (com fallback para URL direta).
-8. Divide o processo `1000237-96.2026.4.01.3700` nos campos correspondentes e dispara a consulta no botão **Pesquisar** (`#fPP:searchProcessos`).
-9. Captura a resposta AJAX da consulta e salva em `ajax_response_dump.txt`.
-10. Clica no resultado do processo (priorizando o `title` igual a `PROCESSO_NUMERO`) e aceita automaticamente os popups de confirmação.
-11. Abre o menu **Download autos do processo**, clica em **Download** (`#navbar:downloadProcesso`) e salva o PDF em `processos_baixados/`.
+8. Lê o arquivo `processos.txt` (um número de processo por linha) e processa cada item da lista.
+9. Para cada processo, preenche os campos e dispara a consulta no botão **Pesquisar** (`#fPP:searchProcessos`).
+10. Captura a resposta AJAX da consulta e salva em `ajax_response_dump.txt`.
+11. Clica no resultado do processo (priorizando o `title` igual ao número pesquisado) e aceita automaticamente os popups de confirmação.
+12. Abre o menu **Download autos do processo**, clica em **Download** (`#navbar:downloadProcesso`) e salva o PDF em `processos_baixados/`.
 
 ## Requisitos
 
 - Python 3.10+ (compatível com Python 3.13.1)
 - Dependências do `requirements.txt`
+
+## Lista de dependências (`requirements.txt`)
+
+Arquivo atual:
+
+```text
+playwright>=1.52.0
+```
+
+Instale com:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Instalação
 
@@ -42,14 +57,41 @@ py -m playwright install firefox
 
 ## Execução
 
+### 1) Preparar `processos.txt`
+
+Antes de executar, edite `processos.txt` com um número de processo por linha (linhas em branco e iniciadas com `#` são ignoradas):
+
+```text
+1000237-96.2026.4.01.3700
+0000000-00.2024.4.01.0000
+```
+
+### 2) Executar
+
+Linux/macOS:
+
 ```bash
 python app.py
 ```
 
-No Windows, você também pode usar:
+Windows (PowerShell):
 
 ```powershell
 py app.py
+```
+
+### 3) Executar em modo debug (mantém sessão/janela)
+
+Linux/macOS:
+
+```bash
+python app.py --debug=true
+```
+
+Windows (PowerShell):
+
+```powershell
+py app.py --debug=true
 ```
 
 ## Erro comum

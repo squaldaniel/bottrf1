@@ -20,7 +20,7 @@ AUTH_URL = (
     "&scope=openid"
 )
 CONSULTA_URL = "https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
-PROCESSO_NUMERO = "1000237-96.2026.4.01.3700"
+PROCESSOS_FILE = Path("processos.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
 LOG_FILE = Path("acesso.log")
@@ -37,6 +37,7 @@ SEL_ORGAO = "[id='fPP:numeroProcesso:NumeroOrgaoJustica']"
 SEL_SEARCH_PROCESSOS = "[id='fPP:searchProcessos']"
 SEL_DOWNLOAD_PROCESSO = "[id='navbar:downloadProcesso']"
 SEL_ALERTA_CERTIFICADO_POPUP = "#popupAlertaCertificadoProximoDeExpirarContentDiv"
+CERTIFICADO_ALERTA_TEXT = "certificado próximo de expirar"
 
 ORIGINAL_PRINT = builtins.print
 
@@ -97,11 +98,11 @@ def navigate_to_consulta_page(page, attempts: int = 3) -> None:
             if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" in page.url:
                 cert_button = page.locator("#kc-pje-office")
                 if cert_button.count() > 0:
-                    log_message("Detectada volta para SSO; tentando acionar 'CERTIFICADO DIGITAL' automaticamente.")
-                    try:
-                        click_certificado_digital_and_wait_otp(page)
-                    except ValueError:
-                        log_message("Não foi possível acionar automaticamente o certificado nesta etapa.")
+                    log_message(
+                        "Detectada volta para SSO durante navegação; acionando certificado sem aguardar OTP."
+                    )
+                    trigger_certificado_digital_click(page)
+                    page.wait_for_timeout(2000)
 
             if is_bad_request_page(page):
                 raise ValueError(
@@ -173,6 +174,46 @@ def parse_numero_processo(numero: str) -> tuple[str, str, str, str, str, str]:
             "Número de processo inválido. Formato esperado: NNNNNNN-DD.AAAA.J.TR.OOOO"
         )
     return match.groups()
+
+
+
+
+def load_processos_from_file(file_path: Path) -> list[str]:
+    if not file_path.exists():
+        raise ValueError(
+            f"Arquivo de processos não encontrado: {file_path}. "
+            "Crie o arquivo com um número por linha."
+        )
+
+    processos: list[str] = []
+    invalid_lines: list[tuple[int, str]] = []
+
+    for line_number, raw_line in enumerate(file_path.read_text(encoding="utf-8").splitlines(), start=1):
+        numero = raw_line.strip()
+        if not numero or numero.startswith("#"):
+            continue
+
+        try:
+            parse_numero_processo(numero)
+        except ValueError:
+            invalid_lines.append((line_number, numero))
+            continue
+
+        processos.append(numero)
+
+    if invalid_lines:
+        invalid_text = ", ".join(f"linha {line}: '{value}'" for line, value in invalid_lines[:5])
+        raise ValueError(
+            "Arquivo de processos possui linhas inválidas no formato NNNNNNN-DD.AAAA.J.TR.OOOO: "
+            f"{invalid_text}"
+        )
+
+    if not processos:
+        raise ValueError(
+            f"Arquivo {file_path} está vazio. Informe ao menos um número de processo por linha."
+        )
+
+    return processos
 
 
 def show_missing_browser_help() -> None:
@@ -267,7 +308,7 @@ def create_context(playwright, config: AppConfig):
         if profile_in_use:
             print(
                 "Perfil do Firefox de debug aparenta estar em uso. "
-                "Tentando aproveitar o estado salvo de sessão."
+                "Tentando reaproveitar sessão existente via perfil/storage_state."
             )
 
         try:
@@ -314,7 +355,7 @@ def is_logged_in(page) -> bool:
     return consulta_input.count() > 0
 
 
-def click_certificado_digital_and_wait_otp(page) -> None:
+def trigger_certificado_digital_click(page) -> None:
     cert_button = page.locator("#kc-pje-office")
     cert_button.wait_for(state="visible", timeout=60000)
 
@@ -330,17 +371,21 @@ def click_certificado_digital_and_wait_otp(page) -> None:
         print("Não foi possível parsear os parâmetros de autenticar no atributo onclick.")
 
     log_message("Chamando 'CERTIFICADO DIGITAL'...")
+    cert_button.click(timeout=15000)
 
+
+def click_certificado_digital_and_wait_otp(page) -> None:
     last_error = None
     for attempt in range(1, 4):
         try:
-            cert_button.click(timeout=15000)
+            trigger_certificado_digital_click(page)
             page.locator("#otp").wait_for(state="visible", timeout=15000)
             log_message(f"Botão de certificado acionado com sucesso na tentativa {attempt}.")
             return
         except PlaywrightTimeoutError as exc:
             last_error = exc
             log_message(f"Tentativa {attempt} de abrir OTP falhou; aplicando fallback de clique.")
+            cert_button = page.locator("#kc-pje-office")
             try:
                 cert_button.click(force=True, timeout=5000)
                 page.locator("#otp").wait_for(state="visible", timeout=10000)
@@ -359,7 +404,11 @@ def click_certificado_digital_and_wait_otp(page) -> None:
 
 
 def perform_login_flow(page) -> None:
-    page.goto(AUTH_URL, wait_until="networkidle", timeout=60000)
+    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+
+    if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
+        page.goto(AUTH_URL, wait_until="domcontentloaded", timeout=60000)
+
     click_certificado_digital_and_wait_otp(page)
 
     otp_input = page.locator("#otp")
@@ -375,42 +424,61 @@ def perform_login_flow(page) -> None:
     otp_input.press("Enter")
     page.wait_for_load_state("networkidle", timeout=60000)
     log_message(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
+    dismiss_blocking_certificado_popup_if_present(page)
     navigate_to_consulta_page(page)
 
 
 
 def ensure_consulta_page_ready(page) -> None:
-    close_certificado_alert_popup_if_present(page)
+    dismiss_blocking_certificado_popup_if_present(page)
     navigate_to_consulta_page(page)
 
 
 def close_certificado_alert_popup_if_present(page) -> bool:
     popup = page.locator(SEL_ALERTA_CERTIFICADO_POPUP)
     if popup.count() == 0:
+        popup = page.locator(".modal-dialog, .ui-dialog")
+
+    if popup.count() == 0:
         return False
 
-    close_button = popup.locator("span.btn-fechar")
-    if close_button.count() == 0:
-        print(
-            "Popup de alerta de certificado foi detectado, "
-            "mas o botão de fechar não foi encontrado."
-        )
+    try:
+        popup.first.wait_for(state="visible", timeout=1200)
+    except PlaywrightTimeoutError:
+        return False
+
+    if CERTIFICADO_ALERTA_TEXT not in popup.first.inner_text().strip().lower():
+        return False
+
+    close_button = popup.locator("span.btn-fechar, .ui-dialog-titlebar-close, button[aria-label='Close']").first
+    if close_button.count() == 0 or not close_button.is_visible():
         return False
 
     print("Popup de certificado próximo de expirar detectado. Fechando alerta...")
-    close_button.first.click()
+    try:
+        close_button.click(timeout=1500)
+    except PlaywrightTimeoutError:
+        return False
 
     try:
-        popup.wait_for(state="hidden", timeout=5000)
+        popup.first.wait_for(state="hidden", timeout=2000)
     except PlaywrightTimeoutError:
-        print("Popup de certificado não ocultou no tempo esperado; seguindo fluxo.")
+        pass
 
     return True
 
 
+def dismiss_blocking_certificado_popup_if_present(page, attempts: int = 2) -> None:
+    for attempt in range(1, attempts + 1):
+        if not close_certificado_alert_popup_if_present(page):
+            return
+        log_message(f"Popup de certificado fechado (tentativa {attempt}).")
+        page.wait_for_timeout(250)
+
+
 
 def go_to_consulta_via_processo_link(page) -> None:
-    close_certificado_alert_popup_if_present(page)
+    dismiss_blocking_certificado_popup_if_present(page)
 
     processo_link = page.locator("a[href='/pje/Processo/ConsultaProcesso/listView.seam']")
 
@@ -420,7 +488,7 @@ def go_to_consulta_via_processo_link(page) -> None:
             log_message("Link 'Processo' encontrado. Acessando tela de consulta via menu...")
             processo_link.first.click()
             page.wait_for_load_state("networkidle", timeout=60000)
-            close_certificado_alert_popup_if_present(page)
+            dismiss_blocking_certificado_popup_if_present(page)
             navigate_to_consulta_page(page)
             return
         except PlaywrightTimeoutError:
@@ -428,10 +496,11 @@ def go_to_consulta_via_processo_link(page) -> None:
 
     log_message("Link 'Processo' não apareceu no tempo esperado. Usando fallback para URL direta da consulta...")
     navigate_to_consulta_page(page)
-    close_certificado_alert_popup_if_present(page)
+    dismiss_blocking_certificado_popup_if_present(page)
 
 def fill_numero_processo_fields(page, numero: str) -> None:
     sequencial, dv, ano, ramo, tribunal, orgao = parse_numero_processo(numero)
+    dismiss_blocking_certificado_popup_if_present(page)
 
     print("Preenchendo campos do número do processo:")
     print(
@@ -487,30 +556,39 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
 
     print("Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...")
     status_info = "desconhecido"
-    try:
-        with page.expect_response(is_target_response, timeout=60000) as response_info:
-            search_button.click()
-        response = response_info.value
-        body_text = response.text()
-        status_info = str(response.status)
-    except PlaywrightTimeoutError:
-        print(
-            "Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. "
-            "Continuando com fallback baseado no DOM atual."
-        )
+
+    body_text = ""
+    for attempt in range(1, 3):
+        dismiss_blocking_certificado_popup_if_present(page)
         try:
-            page.wait_for_load_state("networkidle", timeout=15000)
+            with page.expect_response(is_target_response, timeout=20000) as response_info:
+                search_button.click(timeout=5000)
+            response = response_info.value
+            body_text = response.text()
+            status_info = str(response.status)
+            break
         except PlaywrightTimeoutError:
-            pass
+            log_message(f"Tentativa {attempt} de disparar pesquisa sem resposta AJAX esperada.")
+            if attempt == 2:
+                print(
+                    "Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. "
+                    "Continuando com fallback baseado no DOM atual."
+                )
+                try:
+                    page.wait_for_load_state("networkidle", timeout=7000)
+                except PlaywrightTimeoutError:
+                    pass
 
-        if is_bad_request_page(page):
-            raise ValueError(
-                "Portal retornou 'Bad Request' após a autenticação/consulta. "
-                "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
-            )
+                if is_bad_request_page(page):
+                    raise ValueError(
+                        "Portal retornou 'Bad Request' após a autenticação/consulta. "
+                        "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
+                    )
 
-        body_text = page.content()
-        status_info = "fallback-dom"
+                body_text = page.content()
+                status_info = "fallback-dom"
+            else:
+                page.wait_for_timeout(500)
 
     Path(RESPONSE_DUMP_FILE).write_text(body_text, encoding="utf-8")
     print(f"Resposta de consulta capturada com status: {status_info}")
@@ -591,8 +669,10 @@ def main() -> int:
     LOG_FILE.write_text("", encoding="utf-8")
     install_print_logger()
     config = parse_app_config(sys.argv[1:])
+    processos = load_processos_from_file(PROCESSOS_FILE)
     log_message(f"Iniciando automação. URL de autenticação: {AUTH_URL}")
     log_message(f"Modo debug: {'ativo' if config.debug else 'inativo'}")
+    log_message(f"Total de processos para consulta/download: {len(processos)}")
 
     with sync_playwright() as p:
         browser = None
@@ -621,25 +701,56 @@ def main() -> int:
 
             ensure_consulta_page_ready(page)
 
-            fill_numero_processo_fields(page, PROCESSO_NUMERO)
-            trigger_search_and_capture_ajax(page, PROCESSO_NUMERO)
+            downloaded_files: list[Path] = []
+            failed_processes: list[tuple[str, str]] = []
 
-            detail_page = open_process_result(page, PROCESSO_NUMERO)
-            download_file = download_processo_pdf(detail_page)
-            log_message(f"Arquivo final salvo em: {download_file}")
+            for index, numero_processo in enumerate(processos, start=1):
+                log_message(f"[{index}/{len(processos)}] Iniciando processamento: {numero_processo}")
+                detail_page = None
+                try:
+                    ensure_consulta_page_ready(page)
+                    fill_numero_processo_fields(page, numero_processo)
+                    trigger_search_and_capture_ajax(page, numero_processo)
+
+                    detail_page = open_process_result(page, numero_processo)
+                    download_file = download_processo_pdf(detail_page)
+                    downloaded_files.append(download_file)
+                    log_message(f"[{index}/{len(processos)}] Download concluído: {download_file}")
+                except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+                    failed_processes.append((numero_processo, str(exc)))
+                    log_message(
+                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {exc}"
+                    )
+                finally:
+                    if detail_page:
+                        try:
+                            detail_page.close()
+                        except PlaywrightError:
+                            pass
+
+            log_message(
+                f"Processamento finalizado. Sucessos: {len(downloaded_files)}; "
+                f"Falhas: {len(failed_processes)}"
+            )
+            for numero_processo, error_text in failed_processes:
+                log_message(f"Falha registrada em {numero_processo}: {error_text}")
 
             if config.debug:
                 try_save_debug_storage_state(context)
                 log_message(
                     "Modo debug ativo: mantendo Firefox aberto para preservar sessão. "
-                    "Use Ctrl+C para encerrar sem stack trace."
+                    "Digite 'sair' para encerrar o script; Ctrl+C será ignorado para não fechar a janela."
                 )
-                try:
-                    while True:
-                        page.wait_for_timeout(60_000)
-                except KeyboardInterrupt:
-                    log_message("Encerrando modo debug por solicitação do usuário.")
-                return 0
+                while True:
+                    try:
+                        command = input("[debug] Navegador mantido aberto. Digite 'sair' para encerrar: ").strip().lower()
+                    except KeyboardInterrupt:
+                        log_message("Ctrl+C ignorado em modo debug para manter o Firefox aberto.")
+                        continue
+
+                    if command in {"sair", "exit", "quit"}:
+                        log_message("Encerrando modo debug por solicitação do usuário.")
+                        return 0
 
             log_message("Fluxo concluído. Aguardando próximas instruções.")
             input("Pressione ENTER para encerrar a aplicação...")
@@ -647,6 +758,18 @@ def main() -> int:
         except KeyboardInterrupt:
             if config.debug:
                 try_save_debug_storage_state(context)
+                log_message(
+                    "Interrupção por Ctrl+C detectada em modo debug. "
+                    "Mantendo execução para preservar a janela do Firefox."
+                )
+                while True:
+                    try:
+                        command = input("[debug] Digite 'sair' para encerrar o script: ").strip().lower()
+                    except KeyboardInterrupt:
+                        continue
+                    if command in {"sair", "exit", "quit"}:
+                        log_message("Encerrando modo debug por solicitação do usuário.")
+                        return 0
             log_message("Execução interrompida pelo usuário.")
             return 0
         except (PlaywrightTimeoutError, ValueError) as exc:

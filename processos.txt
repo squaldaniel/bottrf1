@@ -1,0 +1,2 @@
+# Informe um número de processo por linha no formato NNNNNNN-DD.AAAA.J.TR.OOOO
+1000237-96.2026.4.01.3700
