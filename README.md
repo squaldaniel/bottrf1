@@ -21,6 +21,20 @@ Aplicação em Python que:
 - Python 3.10+ (compatível com Python 3.13.1)
 - Dependências do `requirements.txt`
 
+## Lista de dependências (`requirements.txt`)
+
+Arquivo atual:
+
+```text
+playwright>=1.52.0
+```
+
+Instale com:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Instalação
 
 ### Linux/macOS
@@ -43,22 +57,41 @@ py -m playwright install firefox
 
 ## Execução
 
-```bash
-python app.py
-```
-
-No Windows, você também pode usar:
-
-```powershell
-py app.py
-```
-
+### 1) Preparar `processos.txt`
 
 Antes de executar, edite `processos.txt` com um número de processo por linha (linhas em branco e iniciadas com `#` são ignoradas):
 
 ```text
 1000237-96.2026.4.01.3700
 0000000-00.2024.4.01.0000
+```
+
+### 2) Executar
+
+Linux/macOS:
+
+```bash
+python app.py
+```
+
+Windows (PowerShell):
+
+```powershell
+py app.py
+```
+
+### 3) Executar em modo debug (mantém sessão/janela)
+
+Linux/macOS:
+
+```bash
+python app.py --debug=true
+```
+
+Windows (PowerShell):
+
+```powershell
+py app.py --debug=true
 ```
 
 ## Erro comum
