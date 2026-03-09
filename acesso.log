@@ -1,45 +1,60 @@
-[2026-03-09 15:17:13] Iniciando automação. URL de autenticação: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam&state=54cf8d8f-d065-47ad-8646-fc66deeacaab&login=true&scope=openid
-[2026-03-09 15:17:13] Modo debug: ativo
+[2026-03-09 15:38:34] Iniciando automação. URL de autenticação: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam&state=54cf8d8f-d065-47ad-8646-fc66deeacaab&login=true&scope=openid
+[2026-03-09 15:38:34] Modo debug: ativo
+[2026-03-09 15:38:34] Total de processos para consulta/download: 7
 Perfil do Firefox de debug aparenta estar em uso. Tentando reaproveitar sessão existente via perfil/storage_state.
 Não foi possível abrir novo contexto persistente porque o perfil está em uso. Reutilizando storage_state salvo no modo debug.
 Estado de sessão debug detectado em: .playwright-debug-storage-state.json
 Cookies já presentes no contexto debug persistente.
-[2026-03-09 15:17:15] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:16] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:16] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:17] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:17] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:17] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:17] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:17] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:17] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:17] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:17] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:17] Sessão válida detectada por cookies/perfil. Pulando etapa de login/OTP.
-[2026-03-09 15:17:18] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:18] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:20] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:20] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:20] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:20] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:20] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:20] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:20] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:20] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:20] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
-[2026-03-09 15:17:20] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:20] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:36] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:38] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:38] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:38] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:38] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:38] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:38] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:38] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:38] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:38] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:38] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:39] Sessão válida detectada por cookies/perfil. Pulando etapa de login/OTP.
+[2026-03-09 15:38:40] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:40] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:41] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:41] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:41] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:41] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:41] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:41] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:41] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:41] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:41] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:41] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:41] [1/7] Iniciando processamento: 1000237-96.2026.4.01.3700
+[2026-03-09 15:38:41] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:42] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:42] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:44] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:44] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:44] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:44] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:44] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:44] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:44] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:44] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:44] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:38:44] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:44] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
 Preenchendo campos do número do processo:
   sequencial=1000237, dv=96, ano=2026, ramo=4, tribunal=01, orgao=3700
 Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...
-[2026-03-09 15:17:23] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:23] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:43] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
-[2026-03-09 15:17:45] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:45] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:55] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:17:55] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:18:05] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:38:46] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:38:47] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:39:06] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:39:08] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:39:09] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:39:26] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:39:27] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:39:28] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
 Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. Continuando com fallback baseado no DOM atual.
 Resposta de consulta capturada com status: fallback-dom
 Resposta salva em: ajax_response_dump.txt
@@ -51,44 +66,285 @@ Trecho da resposta (primeiros 500 caracteres):
 	
 	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" h
 Abrindo processo encontrado: 1000237-96.2026.4.01.3700
-[2026-03-09 15:18:05] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:18:05] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:39:28] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:39:30] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
 Dialog detectado: Conforme a Resolução CNJ n.º 121 e o PCA 0000547-84.2011.2.00.0000, o acesso aos autos de processo de que o advogado/pro...
 Solicitando download do PDF dos autos (tentativa 1)...
 Dialog detectado: Confirma o download dos autos do processo? Essa operação pode demorar alguns minutos....
 Download concluído: processos_baixados\1000237-96.2026.4.01.3700.pdf
-[2026-03-09 15:18:17] Arquivo final salvo em: processos_baixados\1000237-96.2026.4.01.3700.pdf
-Estado de sessão debug salvo em: .playwright-debug-storage-state.json
-[2026-03-09 15:18:17] Modo debug ativo: mantendo Firefox aberto para preservar sessão. Use Ctrl+C para encerrar sem stack trace.
-[2026-03-09 15:18:50] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:18:50] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:19:25] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:19:25] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:03] [1/7] Download concluído: processos_baixados\1000237-96.2026.4.01.3700.pdf
+[2026-03-09 15:40:03] [2/7] Iniciando processamento: 1012354-34.2021.4.01.3300
+[2026-03-09 15:40:05] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:05] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:06] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:06] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:06] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:40:06] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:40:06] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:40:06] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:40:06] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:06] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:40:06] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:40:06] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:06] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Preenchendo campos do número do processo:
+  sequencial=1012354, dv=34, ano=2021, ramo=4, tribunal=01, orgao=3300
+Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...
+[2026-03-09 15:40:09] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:09] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:29] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:40:30] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:34] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:50] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
+Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. Continuando com fallback baseado no DOM atual.
+Resposta de consulta capturada com status: fallback-dom
+Resposta salva em: ajax_response_dump.txt
+Trecho da resposta (primeiros 500 caracteres):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js csstransforms3d"><head>
+	
+	<title>Consulta processos · Justiça Federal da 1ª Região</title>
+	
+	
+	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" h
+Abrindo processo encontrado: 1012354-34.2021.4.01.3300
+[2026-03-09 15:40:51] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:51] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Dialog detectado: Conforme a Resolução CNJ n.º 121 e o PCA 0000547-84.2011.2.00.0000, o acesso aos autos de processo de que o advogado/pro...
+Solicitando download do PDF dos autos (tentativa 1)...
 Dialog detectado: Confirma o download dos autos do processo? Essa operação pode demorar alguns minutos....
-[2026-03-09 15:20:18] Encerrando modo debug por solicitação do usuário.
-[2026-03-09 15:20:18] Modo debug ativo: pulando fechamento automático do navegador/contexto.
-playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
-[2026-03-09 15:20:55] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:20:55] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:22:25] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:22:26] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:23:56] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:23:56] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:25:35] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:25:35] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:27:05] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:27:05] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:28:35] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:28:35] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:30:15] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:30:15] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:31:45] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:31:46] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:33:16] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:33:16] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:34:46] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:34:46] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:36:26] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:36:26] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:37:56] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-09 15:37:56] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:58] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:40:58] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:41:36] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:41:36] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Download concluído: processos_baixados\1012354-34.2021.4.01.3300.pdf
+[2026-03-09 15:42:17] [2/7] Download concluído: processos_baixados\1012354-34.2021.4.01.3300.pdf
+[2026-03-09 15:42:17] [3/7] Iniciando processamento: 0001716-23.2016.4.01.3400
+[2026-03-09 15:42:18] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:18] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:20] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:20] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:20] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:42:20] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:42:20] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:42:20] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:42:20] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:20] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:42:20] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:42:20] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:20] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Preenchendo campos do número do processo:
+  sequencial=0001716, dv=23, ano=2016, ramo=4, tribunal=01, orgao=3400
+Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...
+[2026-03-09 15:42:23] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:24] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:28] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:29] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:43] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:42:44] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:42:46] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:04] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
+Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. Continuando com fallback baseado no DOM atual.
+Resposta de consulta capturada com status: fallback-dom
+Resposta salva em: ajax_response_dump.txt
+Trecho da resposta (primeiros 500 caracteres):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js csstransforms3d"><head>
+	
+	<title>Consulta processos · Justiça Federal da 1ª Região</title>
+	
+	
+	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" h
+Abrindo processo encontrado: 0001716-23.2016.4.01.3400
+[2026-03-09 15:43:04] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:04] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Dialog detectado: Conforme a Resolução CNJ n.º 121 e o PCA 0000547-84.2011.2.00.0000, o acesso aos autos de processo de que o advogado/pro...
+Solicitando download do PDF dos autos (tentativa 1)...
+Dialog detectado: Confirma o download dos autos do processo? Essa operação pode demorar alguns minutos....
+Download concluído: processos_baixados\0001716-23.2016.4.01.3400.pdf
+[2026-03-09 15:43:36] [3/7] Download concluído: processos_baixados\0001716-23.2016.4.01.3400.pdf
+[2026-03-09 15:43:36] [4/7] Iniciando processamento: 1012354-34.2021.4.01.3300
+[2026-03-09 15:43:37] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:37] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:39] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:39] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:39] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:43:39] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:43:39] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:43:39] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:43:39] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:39] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:43:39] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:43:39] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:39] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Preenchendo campos do número do processo:
+  sequencial=1012354, dv=34, ano=2021, ramo=4, tribunal=01, orgao=3300
+Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...
+[2026-03-09 15:43:41] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:42] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:59] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:43:59] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:44:01] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:44:03] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:44:05] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:44:23] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
+Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. Continuando com fallback baseado no DOM atual.
+Resposta de consulta capturada com status: fallback-dom
+Resposta salva em: ajax_response_dump.txt
+Trecho da resposta (primeiros 500 caracteres):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js csstransforms3d"><head>
+	
+	<title>Consulta processos · Justiça Federal da 1ª Região</title>
+	
+	
+	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" h
+Abrindo processo encontrado: 1012354-34.2021.4.01.3300
+[2026-03-09 15:44:23] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:44:24] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Dialog detectado: Conforme a Resolução CNJ n.º 121 e o PCA 0000547-84.2011.2.00.0000, o acesso aos autos de processo de que o advogado/pro...
+Solicitando download do PDF dos autos (tentativa 1)...
+Dialog detectado: Confirma o download dos autos do processo? Essa operação pode demorar alguns minutos....
+[2026-03-09 15:45:09] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:11] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:29] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:29] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Download concluído: processos_baixados\1012354-34.2021.4.01.3300.pdf
+[2026-03-09 15:45:30] [4/7] Download concluído: processos_baixados\1012354-34.2021.4.01.3300.pdf
+[2026-03-09 15:45:30] [5/7] Iniciando processamento: 1030200-16.2025.4.01.3400
+[2026-03-09 15:45:32] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:32] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:33] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:33] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:33] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:45:33] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:45:33] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:45:33] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:45:33] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:33] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:45:33] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:45:33] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:34] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Preenchendo campos do número do processo:
+  sequencial=1030200, dv=16, ano=2025, ramo=4, tribunal=01, orgao=3400
+Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...
+[2026-03-09 15:45:36] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:37] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:45:56] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:45:58] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:01] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:18] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
+Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. Continuando com fallback baseado no DOM atual.
+Resposta de consulta capturada com status: fallback-dom
+Resposta salva em: ajax_response_dump.txt
+Trecho da resposta (primeiros 500 caracteres):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js csstransforms3d"><head>
+	
+	<title>Consulta processos · Justiça Federal da 1ª Região</title>
+	
+	
+	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" h
+Abrindo processo encontrado: 1030200-16.2025.4.01.3400
+[2026-03-09 15:46:18] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:18] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Dialog detectado: Conforme a Resolução CNJ n.º 121 e o PCA 0000547-84.2011.2.00.0000, o acesso aos autos de processo de que o advogado/pro...
+Solicitando download do PDF dos autos (tentativa 1)...
+Dialog detectado: Confirma o download dos autos do processo? Essa operação pode demorar alguns minutos....
+Download concluído: processos_baixados\1030200-16.2025.4.01.3400.pdf
+[2026-03-09 15:46:56] [5/7] Download concluído: processos_baixados\1030200-16.2025.4.01.3400.pdf
+[2026-03-09 15:46:56] [6/7] Iniciando processamento: 1063870-25.2023.4.01.3300
+[2026-03-09 15:46:57] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:57] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:59] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:59] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:59] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:46:59] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:46:59] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:46:59] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:46:59] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:59] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:46:59] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:46:59] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:59] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:59] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:46:59] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Preenchendo campos do número do processo:
+  sequencial=1063870, dv=25, ano=2023, ramo=4, tribunal=01, orgao=3300
+Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...
+[2026-03-09 15:47:02] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:47:02] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:47:21] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:47:23] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:47:24] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:47:43] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
+Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. Continuando com fallback baseado no DOM atual.
+Resposta de consulta capturada com status: fallback-dom
+Resposta salva em: ajax_response_dump.txt
+Trecho da resposta (primeiros 500 caracteres):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js csstransforms3d"><head>
+	
+	<title>Consulta processos · Justiça Federal da 1ª Região</title>
+	
+	
+	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" h
+Abrindo processo encontrado: 1063870-25.2023.4.01.3300
+[2026-03-09 15:47:43] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:47:44] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Dialog detectado: Conforme a Resolução CNJ n.º 121 e o PCA 0000547-84.2011.2.00.0000, o acesso aos autos de processo de que o advogado/pro...
+Solicitando download do PDF dos autos (tentativa 1)...
+Dialog detectado: Confirma o download dos autos do processo? Essa operação pode demorar alguns minutos....
+Download concluído: processos_baixados\1063870-25.2023.4.01.3300.pdf
+[2026-03-09 15:48:09] [6/7] Download concluído: processos_baixados\1063870-25.2023.4.01.3300.pdf
+[2026-03-09 15:48:09] [7/7] Iniciando processamento: 1028212-91.2024.4.01.3400
+[2026-03-09 15:48:10] Tentativa 1/3 de ir para tela de consulta: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:10] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:12] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:12] NAVIGATED: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:12] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:48:12] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:48:12] REQUEST GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:48:12] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:48:12] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:12] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:48:12] NAVIGATED: https://pje1g.trf1.jus.br/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif
+[2026-03-09 15:48:12] Tela de consulta pronta. URL final: https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:12] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Preenchendo campos do número do processo:
+  sequencial=1028212, dv=91, ano=2024, ramo=4, tribunal=01, orgao=3400
+Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...
+[2026-03-09 15:48:14] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:15] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:29] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:30] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:34] Tentativa 1 de disparar pesquisa sem resposta AJAX esperada.
+[2026-03-09 15:48:36] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:37] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:56] Tentativa 2 de disparar pesquisa sem resposta AJAX esperada.
+Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. Continuando com fallback baseado no DOM atual.
+Resposta de consulta capturada com status: fallback-dom
+Resposta salva em: ajax_response_dump.txt
+Trecho da resposta (primeiros 500 caracteres):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js csstransforms3d"><head>
+	
+	<title>Consulta processos · Justiça Federal da 1ª Região</title>
+	
+	
+	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" h
+Abrindo processo encontrado: 1028212-91.2024.4.01.3400
+[2026-03-09 15:48:56] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:48:57] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+Dialog detectado: Conforme a Resolução CNJ n.º 121 e o PCA 0000547-84.2011.2.00.0000, o acesso aos autos de processo de que o advogado/pro...
+Solicitando download do PDF dos autos (tentativa 1)...
+Dialog detectado: Confirma o download dos autos do processo? Essa operação pode demorar alguns minutos....
+Download concluído: processos_baixados\1028212-91.2024.4.01.3400.pdf
+[2026-03-09 15:49:17] [7/7] Download concluído: processos_baixados\1028212-91.2024.4.01.3400.pdf
+[2026-03-09 15:49:17] Processamento finalizado. Sucessos: 7; Falhas: 0
+Estado de sessão debug salvo em: .playwright-debug-storage-state.json
+[2026-03-09 15:49:17] Modo debug ativo: mantendo Firefox aberto para preservar sessão. Digite 'sair' para encerrar o script; Ctrl+C será ignorado para não fechar a janela.
+[2026-03-09 15:50:00] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:50:00] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:51:30] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:51:30] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:53:00] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:53:00] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:54:30] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:54:30] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:56:00] REQUEST POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-09 15:56:00] RESPONSE 200 POST https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
