@@ -1,0 +1,1525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" style="" class=" js csstransforms3d"><head>
+	
+	<title>Consulta processos · Justiça Federal da 1ª Região</title>
+	
+	
+	<script src="/pje/a4j/g/3_3_3.Final/org/ajax4jsf/framework.pack.js" type="text/javascript"></script><script src="/pje/a4j/g/3_3_3.Final/org/richfaces/ui.pack.js" type="text/javascript"></script><link class="component" href="/pje/a4j/s/3_3_3.Finalorg/richfaces/renderkit/html/css/basic_classes.xcss/DATB/eAELXT5DOhSIAQ!sA18_" rel="stylesheet" type="text/css"><link class="component" href="/pje/a4j/s/3_3_3.Finalorg/richfaces/renderkit/html/css/extended_classes.xcss/DATB/eAELXT5DOhSIAQ!sA18_" rel="stylesheet" type="text/css"><link class="component" href="/pje/a4j/s/3_3_3.Final/org/richfaces/skin.xcss/DATB/eAELXT5DOhSIAQ!sA18_" rel="stylesheet" type="text/css"><script id="org.ajax4jsf.queue_script" type="text/javascript">if (typeof A4J != 'undefined') { if (A4J.AJAX) { with (A4J.AJAX) {if (!EventQueue.getQueue('j_id156:org.richfaces.queue.global')) { EventQueue.addQueue(new EventQueue('j_id156:org.richfaces.queue.global',{'size':2,'sizeExceededBehavior':'dropNew'} ,{'ignoreDupResponses':true,'requestDelay':100} )) };if (!EventQueue.getQueue('org.richfaces.queue.global')) { EventQueue.addQueue(new EventQueue('org.richfaces.queue.global',null,null)) };}}};</script><script type="text/javascript">window.RICH_FACES_EXTENDED_SKINNING_ON=true;</script><link class="user" href="/pje/stylesheet/estilos/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"><link class="user" href="/pje/stylesheet/dropzone/dropzone.min.css" rel="stylesheet" type="text/css"><link class="user" href="/pje/stylesheet/estilos/richfaces/tema.min.css" rel="stylesheet" type="text/css"><link class="user" href="/pje/stylesheet/padrao.min.css" rel="stylesheet" type="text/css"><link class="user" href="/pje/stylesheet/autos-digitais.min.css" rel="stylesheet" type="text/css"><link class="user" href="/pje/stylesheet/estilos/select2/select2.min.css" rel="stylesheet" type="text/css"><script src="/pje/js/modernizr.custom.min.js" type="text/javascript"></script><script src="/pje/js/jquery-ui-1.8.1.min.custom.js" type="text/javascript"></script><script src="/pje/js/jquery-2.1.4.min.js" type="text/javascript"></script><script src="/pje/js/select2/select2.min.js" type="text/javascript"></script><script src="/pje/js/fuse.min.js" type="text/javascript"></script><script src="/pje/js/bootstrap/bootstrap.min.js" type="text/javascript"></script><script src="/pje/js/jquery.maskedinput.min.js" type="text/javascript"></script><script src="/pje/js/mousetrap/mousetrap.min.js" type="text/javascript"></script><script src="/pje/js/mousetrap/plugins/global-bind/mousetrap-global-bind.min.js" type="text/javascript"></script><script src="/pje/js/pje/menu.min.js" type="text/javascript"></script><script src="/pje/js/global.min.js" type="text/javascript"></script><script src="/pje/js/jquery.maskMoney.js" type="text/javascript"></script><script src="/pje/js/pje.js" type="text/javascript"></script><script src="/pje/js/pjeOffice.js" type="text/javascript"></script><script src="/pje/js/signerApplet.js" type="text/javascript"></script><link rel="apple-touch-icon" sizes="57x57" href="/pje/img/favicon/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/pje/img/favicon/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/pje/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/pje/img/favicon/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/pje/img/favicon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/pje/img/favicon/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/pje/img/favicon/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/pje/img/favicon/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/pje/img/favicon/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="/pje/img/favicon/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/pje/img/favicon/favicon-194x194.png" sizes="194x194">
+	<link rel="icon" type="image/png" href="/pje/img/favicon/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/pje/img/favicon/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="/pje/img/favicon/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="/pje/img/favicon/manifest.json">
+	<link rel="mask-icon" href="/pje/img/favicon/safari-pinned-tab.svg" color="#0078aa">
+	<link rel="stylesheet" href="/pje/stylesheet/estilos/font-awesome/v5.11.2/css/all.min.css">
+	<link rel="stylesheet" href="/pje/stylesheet/estilos/font-awesome/v5.11.2/css/v4-shims.min.css">
+	<meta name="msapplication-TileColor" content="#0078aa">
+	<meta name="msapplication-TileImage" content="/pje/img/favicon/mstile-144x144.png">
+	<meta name="theme-color" content="#0078AA">
+	
+				        
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="processo judicial, processo, audiências, sessão, peticionar, expedientes, magistrado, procurador, oficial de justiça, advogado, perito, retificar autuação, OAB">
+    <meta name="description" content="Processo Judicial Eletrônico - Acompanhe processos judiciais independentemente de tramitações">
+    <meta property="og:title" content="PJe - Processo Judicial Eletrônico">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="/pje">
+	<meta property="og:image" itemprop="image" content="/pje/img/pjeMini.png">
+	<meta property="og:site_name" content="PJe - Processo Judicial Eletrônico">
+	<meta property="og:description" content="Acompanhe processos judiciais independentemente de tramitações">
+	<meta property="og:locale" content="pt_BR">
+	
+	<meta name="Robots" content="INDEX,FOLLOW">
+    <meta name="RESOURCE-TYPE" content="DOCUMENT">
+    <meta name="DISTRIBUTION" content="GLOBAL">
+    <meta name="AUTHOR" content="CNJ">
+    <meta name="COPYRIGHT" content="Copyright (c) CNJ">
+    <meta name="language" content="pt-br">
+    <meta name="RATING" content="GENERAL">
+		<script>
+		window.pjeUtils = {
+			ipDoUsuario: "187.93.206.18",
+			cpfUsuario: "41333246846",
+			localizacaoAtualCombo: "MATHEUS SANTOS DIAS (413.332.468-46) / Advogado"
+		};
+			
+	</script> 
+   		
+	</head>
+	
+	<body>
+	
+    <script type="text/javascript">
+    	jQuery('document').ready(function(){
+			new window.Menu({"Menu":[{"itens":[{"itens":[],"popup":false,"nome":"Painel do representante processual","url":"/pje/Painel/painel_usuario/advogado.seam"},{"itens":[],"popup":false,"nome":"Quadro de avisos","url":"/pje/QuadroAviso/listViewQuadroAvisoMensagem.seam"}],"popup":false,"nome":"Painel","url":"#"},{"itens":[{"itens":[],"popup":false,"nome":"Novo processo","url":"/pje/Processo/cadastrar.seam?newInstance=true"},{"itens":[],"popup":false,"nome":"Novo processo incidental","url":"/pje/Processo/CadastroProcessoIncidente/listView.seam?newInstance=true"},{"itens":[],"popup":false,"nome":"Não protocolado","url":"/pje/Processo/ConsultaProcessoNaoProtocolado/listView.seam"},{"itens":[{"itens":[],"popup":false,"nome":"Processo","url":"/pje/Processo/ConsultaProcesso/listView.seam"},{"itens":[],"popup":false,"nome":"Informações de distribuição","url":"/pje/Processo/ConsultaLogDistribuicao/listView.seam"}],"popup":false,"nome":"Pesquisar","url":"#"},{"itens":[{"itens":[],"popup":false,"nome":"Incluir no push","url":"/pje/Push/listView.seam"},{"itens":[],"popup":false,"nome":"Peticionar","url":"/pje/Processo/CadastroPeticaoAvulsa/peticaoavulsa.seam"},{"itens":[],"popup":false,"nome":"Solicitar habilitação","url":"/pje/Processo/CadastroPeticaoAvulsa/listView.seam"}],"popup":false,"nome":"Outras ações","url":"#"}],"popup":false,"nome":"Processo","url":"#"},{"itens":[{"itens":[],"popup":false,"nome":"Pauta de audiência","url":"/pje/ProcessoAudiencia/PautaAudiencia/listView.seam"}],"popup":false,"nome":"Audiências e sessões","url":"#"},{"itens":[{"itens":[{"itens":[],"popup":false,"nome":"Alteração de dados cadastrais","url":"/pje/PessoaAdvogado/AlteracaoCadastro/listView.seam"},{"itens":[],"popup":false,"nome":"Assistente de advogado","url":"/pje/PessoaAssistenteAdvogado/listView.seam"}],"popup":false,"nome":"Pessoa","url":"#"}],"popup":false,"nome":"Configuração","url":"#"}]});
+       	});
+    </script><form id="j_id29" name="j_id29" method="post" action="/pje/Processo/ConsultaProcesso/listView.seam" target=""><script id="j_id29:j_id30" type="text/javascript">//<![CDATA[
+		refreshPage=function(){A4J.AJAX.Submit('j_id29',null,{'similarityGroupingId':'j_id29:j_id30','parameters':{'j_id29:j_id30':'j_id29:j_id30'} ,'status':'_viewRoot:status'} )};
+		//]]></script><script id="j_id29:j_id31" type="text/javascript">//<![CDATA[
+		refreshTarefaTree=function(){A4J.AJAX.Submit('j_id29',null,{'similarityGroupingId':'j_id29:j_id31','oncomplete':function(request,event,data){document.getElementById('papeisUsuarioForm').submit();},'parameters':{'j_id29:j_id31':'j_id29:j_id31','ajaxSingle':'j_id29:j_id31'} } )};
+		//]]></script><script id="j_id29:j_id32" type="text/javascript">//<![CDATA[
+		defaultTarefa=function(){A4J.AJAX.Submit('j_id29',null,{'similarityGroupingId':'j_id29:j_id32','oncomplete':function(request,event,data){true},'parameters':{'j_id29:j_id32':'j_id29:j_id32'} } )};
+		//]]></script><script id="j_id29:j_id33" type="text/javascript">//<![CDATA[
+		fecharPopupAlertaCertificadoProximoDeExpirar=function(){A4J.AJAX.Submit('j_id29',null,{'similarityGroupingId':'j_id29:j_id33','oncomplete':function(request,event,data){Richfaces.hideModalPanel('popupAlertaCertificadoProximoDeExpirar');},'parameters':{'j_id29:j_id33':'j_id29:j_id33','ajaxSingle':'j_id29:j_id33'} } )};
+		//]]></script><input type="hidden" autocomplete="off" name="j_id29" value="j_id29"><input type="hidden" autocomplete="off" name="autoScroll" value=""><script type="text/javascript">function clear_j_id29() {
+_clearJSFFormParameters('j_id29','',['j_id29:_link_hidden_','j_id29:j_idcl']);
+}
+function clearFormHiddenParams_j_id29(){clear_j_id29();}
+function clearFormHiddenParams_j_id29(){clear_j_id29();}
+clear_j_id29();</script><input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id26" autocomplete="off"></form>
+    
+    
+	<nav id="barraSuperiorPrincipal" class="navbar navbar-default navbar-static-top navtop">
+		<div class="container-fluid">
+			<div class="navbar-header">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="#" class="botao-menu" title="Abrir menu"><span>Abrir menu</span></a>
+						</li>
+					</ul>
+				
+				<div class="navbar-brand"><a href="/pje/home.seam?actionMethod=Processo%2FConsultaProcesso%2FlistView.xhtml%3AcontrolePaginaInicialUsuario.redirectToPainel%28%29&amp;cid=257025&amp;conversationPropagation=end" id="home" class="logo"><img src="/pje/img/pje2-branco.png" alt="Justiça Federal da 1ª Região"></a>
+						<span class="titulo">Consulta processos</span>					
+					
+				</div>
+			</div>
+				<div class="navbar-collapse">
+					<ul class="nav navbar-nav navbar-right mr-5 navbar-info">
+
+<li style="margin-top: 17.5px; margin-right: 20px;"><span id="serverName_header" class="hidden-xs" style="color: rgb(255, 255, 255); font-size: 0.8em; cursor: pointer;" title="Servidor">srv13</span>
+
+	<a href="/pje/logout.seam" style="display: none" title="sairNumeroServidor" class="btn btn-default botao-sair">Sair</a>
+</li>
+
+<script>
+
+/* <![CDATA[ */
+function srvRedirect() {
+ const isRedirectConfirmed = confirm('Deseja ir para outro servidor?');
+ if (isRedirectConfirmed) {
+		jQuery("a[title='sairNumeroServidor']") && jQuery("a[title='sairNumeroServidor']").get(0) && jQuery("a[title='sairNumeroServidor']").get(0).click && jQuery("a[title='sairNumeroServidor']").get(0).click();
+	} 
+}
+
+function getServerName() {
+	var regexpToGetNumberOfServer = /JSESSIONID=[^.]*[.][a-z0-9]+([0-9][0-9])/g;
+	var resultado = regexpToGetNumberOfServer.exec(document.cookie);
+	if(resultado) {
+		return "srv" + resultado[1];
+	} else {
+		return null;
+	}
+}
+
+document.addEventListener("keydown", function (event) {
+	if (event.code == "Digit0" && event.ctrlKey && event.altKey) {
+		srvRedirect();
+	}
+});
+
+jQuery(document).ready(function() {
+	const serverName = getServerName();
+	if(serverName) {
+		const elementJqueryServerNameHeader = jQuery("#serverName_header");
+		elementJqueryServerNameHeader.click(srvRedirect);
+		elementJqueryServerNameHeader.css('display','');
+		const elementJquerySrvNameHeader = jQuery("#serverName_header, #navbar\\:serverName_header");
+		elementJquerySrvNameHeader.html(serverName);
+		elementJquerySrvNameHeader.css("display", "");
+	}
+});
+/* ]]> */
+</script>
+							<li class="dropdown menu-usuario">
+								<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><span class="hidden-xs nome-sobrenome tip-bottom" title="" data-original-title="MATHEUS SANTOS DIAS (413.332.468-46) / Advogado">matheus dias</span>
+									
+									<span class="avatar tip-bottom" title="" data-original-title="Acesso via certificado - Verde"><img src="/pje/img/usuario-avatar.png"><span id="j_id72" class="tipo tipo-certificado"></span>
+									</span>
+								</a>
+								<div class="dropdown-menu">
+<form id="papeisUsuarioForm" name="papeisUsuarioForm" method="post" action="/pje/Processo/ConsultaProcesso/listView.seam" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="papeisUsuarioForm" value="papeisUsuarioForm">
+
+										<div class="form-group"><label style="font-size: 1.2em" class="nome">
+MATHEUS SANTOS DIAS</label><span class="text-muted btn-block" style="font-size: 1.2em">MATHEUS SANTOS DIAS (413.332.468-46) / Advogado</span><span class="text-danger text-center btn-block"></span>
+										</div>
+										<div class="menu-sair">
+											<ul>
+											
+												
+												<li><a class="tip" title="" data-toggle="modal" data-target=".modal-atalhos" href="#" data-original-title="Atalhos"><i class="fa fa-keyboard-o"></i></a></li>
+												<li><a class="tip" title="" data-toggle="modal" data-target=".modal-versao" href="#" data-original-title="Sobre"><i class="fa fa-question"></i></a></li>
+												<li><a class="tip botao-contato" title="" data-toggle="modal" data-target=".modal-contato" href="#" data-original-title="Fale conosco"><i class="fa fa-envelope"></i></a></li>
+												<li><span id="papeisUsuarioForm:serverName" title="Servidor de Aplicação">pje1gprdwf13</span> </li>
+												<li><span id="papeisUsuarioForm:ip" title="IP">IP 187.93.206.18</span> </li>
+											</ul><a href="/pje/logout.seam" title="sair" class="btn btn-default botao-sair">Sair</a>
+										</div><input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id26" autocomplete="off">
+</form>
+								</div><span class="ultimo-acesso">Último acesso em: 09/03/2026 - 15:03:36</span>
+				            </li>
+					</ul>
+				</div>
+		</div>
+	</nav><span id="_viewRoot:status" style="display: block;"><span id="_viewRoot:status.start" style="display: none;">
+	        <div class="ajax-loader">
+	   			<div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div"></div>
+	   			<div class="rich-mpnl-panel">
+			        <div class="rich-mp-container">
+			        	<div class="rich-mpnl-content"></div>
+			        </div>
+	   			</div>
+	   		</div></span><span id="_viewRoot:status.stop" style=""></span></span><div id="modalStatus" style="display: none;"><input autocomplete="off" id="modalStatusOpenedState" name="modalStatusOpenedState" type="hidden"><div class="rich-modalpanel ajax-loader" id="modalStatusContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="modalStatusDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="modalStatusFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="modalStatusCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="modalStatusShadowDiv" style=" opacity:0.0; filter:alpha(opacity=0);"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="modalStatusContentDiv"><table border="0" cellpadding="0" cellspacing="0" class="rich-mp-content-table" id="modalStatusContentTable" style="height: 100%; width: 100%;"><tbody><tr style="height: 99%"><td class="rich-mpnl-body" valign="top"></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="modalStatusResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="modalStatusResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="modalStatusCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="modalStatusLastHref"></button></div><script type="text/javascript">new ModalPanel('modalStatus',
+				{
+					width: -1,
+					height: -1,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div>
+	
+	<div class="modal fade modal-atalhos" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="btn-fechar pull-right" data-dismiss="modal" aria-label="Fechar"><i class="icon-fechar"></i></a>
+				<h4 class="modal-title">Atalhos do sistema</h4>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group">
+					<li class="list-group-item"><span class="badge">alt+1</span>Menu de navegação
+					</li>
+					<li class="list-group-item"><span class="badge">alt+2</span>Ir para página inicial
+					</li>
+					<li class="list-group-item"><span class="badge">alt+7</span>Auto-contraste
+					</li>
+					<li class="list-group-item"><span class="badge">alt+8</span>Fale conosco
+					</li>
+					<li class="list-group-item"><span class="badge">alt+9</span>Sair
+					</li>
+				</ul>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade modal-versao" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="btn-fechar pull-right" data-dismiss="modal" aria-label="Fechar"><i class="icon-fechar"></i></a>
+					<h4 class="modal-title">Processo Judicial Eletrônico</h4>
+				</div>
+				<div class="modal-body">
+					<div class="media">
+						<div class="media-left media-middle"><img src="/pje/img/pjeMini.png" alt="Justiça Federal da 1ª Região" class="media-object mr-10">
+						</div>
+						<div class="media-body">
+							<span class="media-heading mb-10 text-muted btn-block">
+		<span class="transform-none">Versao</span> 2.9.1.1-SNAPSHOT_TRF1 (33b6fd58) <span class="transform-none">- Atualizado em </span> 06/03/2026 - 12:06
+							</span>
+							
+							<p>O Pje é um sistema de tramitação de processos judiciais que busca atender às necessidades dos diversos segmentos do Poder Judiciário brasileiro(Justiça Militar da União e dos Estados, Tribunais Superiores, Justiça do Trabalho, Justiça Eleitoral e Justiça Comum, Federal e Estadual)<br>
+							</p>
+							<p>O PJe é desenvolvido pela comunidade dos tribunais brasileiros sob a coordenação do 
+								<a class="btn-link" href="http://www.cnj.jus.br/">Conselho Nacional de Justiça (CNJ).</a><br>
+							</p>
+							<p>Para mais ajuda sobre o sistema acesse a 
+								<a class="btn-link" href="http://www.cnj.jus.br/wiki/index.php/P%C3%A1gina_principal">Wiki do projeto.</a><br>
+							</p>
+						</div>
+					</div>
+					<div class="modal-footer text-center pb-0">
+						<small class="text-muted">Verifique sobre as versões do sistema em</small><br>
+						<a class="btn btn-default" href="http://www.cnj.jus.br/wiki/index.php/Vers%C3%B5es">Mais informações</a>
+					</div>				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade modal-contato" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="btn-fechar pull-right" data-dismiss="modal" aria-label="Fechar"><i class="icon-fechar"></i></a>
+				<h4 class="modal-title">Fale conosco</h4>
+			</div>
+			<div class="modal-body"><p style="text-align: justify;"><strong>Informações Fale Conosco</strong></p>
+<p style="text-align: justify;">Procedimentos para abrir solicitação:</p>
+<p style="text-align: justify;">1)  Usuários externos: entrar em contato pelo telefone 61-3314-1620 ou encaminhar e-mail à Central de Serviços de  Tecnologia da Informação (csti@trf1.jus.br), com sugestões, dúvidas ou  relato de problemas técnicos, nesta hipótese acompanhado de <em>PrintScreen</em> da tela de erro e descrição dos procedimentos realizados, com data e  horário da ocorrência. Informamos que o e-mail da CSTI não poderá ser  utilizado para fins de peticionamento, de forma que documentos recebidos  nesse sentido serão imediatamente descartados;</p>
+<p style="text-align: justify;">2) Usuários  internos: demandas relativas ao PJe, de qualquer natureza, devem ser  encaminhadas via e-Sosti, observando-se, nos casos de problema técnico, a  necessidade de anexar <em>PrintScreen</em> da tela de erro e descrição dos procedimentos realizados, com data e horário da ocorrência.</p>
+			</div>
+			</div>
+		</div>
+	</div><form id="j_id156" name="j_id156" method="post" action="/pje/Processo/ConsultaProcesso/listView.seam" target=""><span style="display:none;" id="j_id156:j_id158"><script type="text/javascript">
+A4J.AJAX.Poll('j_id156',{'similarityGroupingId':'j_id156:j_id158','pollId':'j_id156:j_id158','pollinterval':90000,'containerId':'j_id155','parameters':{'j_id156:j_id158':'j_id156:j_id158','ajaxSingle':'j_id156:j_id158'} } );
+</script></span><span style="display:none;" id="j_id156:j_id159"><script type="text/javascript">
+A4J.AJAX.StopPush('kvg6A3JcrDtlNCCBRc374VDWwoyxwAlFULjRTQDz/Processo/ConsultaProcesso/listView.xhtml:j_id156:j_id159');
+</script></span><input type="hidden" autocomplete="off" name="j_id156" value="j_id156"><input type="hidden" autocomplete="off" name="autoScroll" value=""><script type="text/javascript">function clear_j_id156() {
+_clearJSFFormParameters('j_id156','',['j_id156:j_idcl','j_id156:_link_hidden_']);
+}
+function clearFormHiddenParams_j_id156(){clear_j_id156();}
+function clearFormHiddenParams_j_id156(){clear_j_id156();}
+clear_j_id156();</script><input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id26" autocomplete="off"></form><div id="j_id160" class="principal">
+			
+			<div class="content">
+		
+		<nav id="menu" class="sidemenu cover">
+			
+			<div class="menu-busca">
+				<div class="input-group form-busca">
+					<span class="input-group-addon"><i class="fa fa-search"></i></span>
+					<input id="input-search-processo" type="text" class="form-control" placeholder="Acesso rápido" onkeypress="return searchProcesso(event)">
+				</div>
+				
+				<div class="resultado-busca">
+					<ul class="lista"></ul>
+				</div>
+			</div>
+			
+			<div class="nivel" data-level="1">
+				<ul><li><a href="#"><i class="fa fa-desktop icone-nav"></i> Painel <i class="fa fa-angle-right"></i></a><div class="nivel" data-level="2"><a class="btn-voltar" href="#"><i class="fa fa-caret-left"></i> <i class="fa fa-desktop icone-nav"></i> Painel</a><ul><li><a href="/pje/Painel/painel_usuario/advogado.seam"> Painel do representante processual </a></li><li><a href="/pje/QuadroAviso/listViewQuadroAvisoMensagem.seam"> Quadro de avisos </a></li></ul></div></li><li><a href="#"><i class="fa fa-folder-open-o icone-nav"></i> Processo <i class="fa fa-angle-right"></i></a><div class="nivel" data-level="2"><a class="btn-voltar" href="#"><i class="fa fa-caret-left"></i> <i class="fa fa-folder-open-o icone-nav"></i> Processo</a><ul><li><a href="/pje/Processo/cadastrar.seam?newInstance=true"> Novo processo </a></li><li><a href="/pje/Processo/CadastroProcessoIncidente/listView.seam?newInstance=true"> Novo processo incidental </a></li><li><a href="/pje/Processo/ConsultaProcessoNaoProtocolado/listView.seam"> Não protocolado </a></li><li><a href="#"> Pesquisar <i class="fa fa-angle-right"></i></a><div class="nivel" data-level="3"><a class="btn-voltar" href="#"><i class="fa fa-caret-left"></i> <i class="fa fa-folder-open-o icone-nav"></i> Pesquisar</a><ul><li><a href="/pje/Processo/ConsultaProcesso/listView.seam"> Processo </a></li><li><a href="/pje/Processo/ConsultaLogDistribuicao/listView.seam"> Informações de distribuição </a></li></ul></div></li><li><a href="#"> Outras ações <i class="fa fa-angle-right"></i></a><div class="nivel" data-level="3"><a class="btn-voltar" href="#"><i class="fa fa-caret-left"></i> <i class="fa fa-folder-open-o icone-nav"></i> Outras ações</a><ul><li><a href="/pje/Push/listView.seam"> Incluir no push </a></li><li><a href="/pje/Processo/CadastroPeticaoAvulsa/peticaoavulsa.seam"> Peticionar </a></li><li><a href="/pje/Processo/CadastroPeticaoAvulsa/listView.seam"> Solicitar habilitação </a></li></ul></div></li></ul></div></li><li><a href="#"><i class="far fa-calendar-alt icone-nav"></i> Audiências e sessões <i class="fa fa-angle-right"></i></a><div class="nivel" data-level="2"><a class="btn-voltar" href="#"><i class="fa fa-caret-left"></i> <i class="far fa-calendar-alt icone-nav"></i> Audiências e sessões</a><ul><li><a href="/pje/ProcessoAudiencia/PautaAudiencia/listView.seam"> Pauta de audiência </a></li></ul></div></li><li><a href="#"><i class="fa fa-cog icone-nav"></i> Configuração <i class="fa fa-angle-right"></i></a><div class="nivel" data-level="2"><a class="btn-voltar" href="#"><i class="fa fa-caret-left"></i> <i class="fa fa-cog icone-nav"></i> Configuração</a><ul><li><a href="#"> Pessoa <i class="fa fa-angle-right"></i></a><div class="nivel" data-level="3"><a class="btn-voltar" href="#"><i class="fa fa-caret-left"></i> <i class="fa fa-cog icone-nav"></i> Pessoa</a><ul><li><a href="/pje/PessoaAdvogado/AlteracaoCadastro/listView.seam"> Alteração de dados cadastrais </a></li><li><a href="/pje/PessoaAssistenteAdvogado/listView.seam"> Assistente de advogado </a></li></ul></div></li></ul></div></li></ul>
+			</div>
+		</nav><form id="j_id163" name="j_id163" method="post" action="/pje/Processo/ConsultaProcesso/listView.seam" target=""><script id="j_id163:j_id164" type="text/javascript">//<![CDATA[
+		pesquisaRapida=function(message){A4J.AJAX.Submit('j_id163',null,{'similarityGroupingId':'j_id163:j_id164','oncomplete':function(request,event,data){abrirPopupPesquisaRapida();},'parameters':{'j_id163:j_id164':'j_id163:j_id164','message':message} } )};
+		//]]></script><div id="j_id163:scriptAbrirPopupPesquisaRapida">
+			<script type="text/javascript">
+				function abrirPopupPesquisaRapida() {
+					var linkBuscaRapida = "https://pje1g.trf1.jus.br:443/pje" + "/Processo/ConsultaProcesso/pesquisaRapidaProcesso.seam?ca=";
+					window.open(linkBuscaRapida, "_blank");
+				}
+
+				function fecharPopupPesquisaRapida() {
+					  window.close();
+				}
+			</script></div><input type="hidden" autocomplete="off" name="j_id163" value="j_id163"><input type="hidden" autocomplete="off" name="autoScroll" value=""><script type="text/javascript">function clear_j_id163() {
+_clearJSFFormParameters('j_id163','',['j_id163:j_idcl','j_id163:_link_hidden_']);
+}
+function clearFormHiddenParams_j_id163(){clear_j_id163();}
+function clearFormHiddenParams_j_id163(){clear_j_id163();}
+clear_j_id163();</script><input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id26" autocomplete="off"></form>
+	<script type="text/javascript">
+
+		function searchProcesso(event) {
+
+			if (!event) {
+				return;
+			}
+
+			const ENTER_KEY_CODE = 13;
+
+			if (event.keyCode === ENTER_KEY_CODE) {
+
+				let inputvalue = event.target.value.trim();
+				let processoRegExp = "^([0-9]){7}-([0-9]){2}\.([0-9]){4}\.([0-9]){1}\.([0-9]){2}\.([0-9]){4}$";
+				let processoRegExpUnformatted = "^([0-9]){7}([0-9]){2}([0-9]){4}([0-9]){1}([0-9]){2}([0-9]){4}$";
+
+				if (inputvalue.match(processoRegExp) || inputvalue.match(processoRegExpUnformatted)) {
+					let req = new XMLHttpRequest();
+					req.onload = reqListener;
+					req.open("get", "/pje/seam/resource/rest/pje-legacy/processo/" + inputvalue + "/enderecoAutos");
+					req.send();
+				}
+			}
+		}
+
+		function reqListener() {
+			if (this.responseText) {
+				window.open(this.responseText, '_blank');
+			}
+		}
+	</script><div id="pageBody" class="container-fluid scroll-y">
+	<div class="conteudo"><div id="j_id169" class="faixa-superior"></div>	
+		<div class="col-xs-12 col-sm-12 pb-80">
+	<script type="text/javascript">
+		(function(){
+			reducePolyfill();
+		})();	
+	</script>
+	<script src="https://hcaptcha.com/1/api.js" async="async" defer="defer"></script><form id="fPP" name="fPP" method="post" action="/pje/Processo/ConsultaProcesso/listView.seam" target="">
+    
+  <script type="text/javascript">
+	  (function(window, $){
+	    	window.mascaraDocumento = function(){
+	    		var $obj = $(document.getElementById('fPP:dpDec:documentoParte'));
+	    		$obj.unmask().val("");
+	    		
+	    		if (document.getElementById('cpf').checked){
+	    			$obj.mask("999.999.999-99");
+	    		}else{
+		    		$obj.mask("99.999.999/9999-99");
+	    		}
+	    		
+	    		$obj.focus();
+	    	};
+	  })(window, jQuery_21);
+  	
+		function executarReCaptcha() {
+			if (false) {
+				hcaptcha.execute();
+				return false;
+			}
+			executarPesquisaReCaptcha();
+		}
+	
+		function onSubmit(token) {
+			showLoading();
+			executarPesquisaReCaptcha();
+		} 
+    </script><div class="rich-panel col-sm-3" id="fPP:consultaSearchFields"><div class="rich-panel-body " id="fPP:consultaSearchFields_body"><div id="fPP:consultaSearchForm">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id173:nomeParte">
+Nome da Parte</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id173:nomeParte" type="text" name="fPP:j_id173:nomeParte" alt="Nome da Parte" maxlength="100">
+        </div>
+    </div>
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id182:outrosNomesAlcunha">
+Outros nomes / Alcunha</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id182:outrosNomesAlcunha" type="text" name="fPP:j_id182:outrosNomesAlcunha" alt="Outros nomes / Alcunha" maxlength="100">
+        </div>
+    </div><div id="fPP:j_id191">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id191:nomeAdvogado">
+Nome do Representante</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id191:nomeAdvogado" type="text" name="fPP:j_id191:nomeAdvogado" alt="Nome do Representante" maxlength="100">
+        </div>
+    </div></div>
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:dpDec:documentoParte">
+
+					CPF <input type="radio" id="cpf" name="tipoMascaraDocumento" checked="checked" onclick="mascaraDocumento()"> 
+					CNPJ <input type="radio" id="cnpj" name="tipoMascaraDocumento" onclick="mascaraDocumento()"></label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:dpDec:documentoParte" type="text" name="fPP:dpDec:documentoParte" onblur="apenasNumeros(this)">
+
+	<script type="text/javascript">
+	//<![CDATA[
+	(function($){
+		  $(document).ready(function() {
+			var selector = 'documentoParte';
+
+			//Seleciona elemento por id
+			var $input = $("input[id$='" + selector + "']");
+			
+			if($input.length < 1){
+				//Seleciona elemento por class
+				$input = $("input" + selector);
+			}
+			
+			if ('999.999.999-99' == '') {
+				$input.unmask();
+			} else {
+				$input.mask('999.999.999-99');
+			}
+		 });
+	})(jQuery_21);
+	//]]>
+	</script>
+        </div>
+    </div>
+
+    <div class="propertyView col-sm-12 "><div id="fPP:radioDecoration:fieldradioDiv" class="name"><label for="fPP:radioDecoration:radio" class="">
+</label></div>
+        <div class="value col-sm-12 "><table id="fPP:radioDecoration:radio" class="radio">
+	<tbody><tr>
+<td>
+<input type="radio" name="fPP:radioDecoration:radio" id="fPP:radioDecoration:radio:0" value="ATIVO"><label for="fPP:radioDecoration:radio:0"> Polo Ativo</label></td>
+<td>
+<input type="radio" name="fPP:radioDecoration:radio" id="fPP:radioDecoration:radio:1" value="PASSIVO"><label for="fPP:radioDecoration:radio:1"> Polo Passivo</label></td>
+<td>
+<input type="radio" name="fPP:radioDecoration:radio" id="fPP:radioDecoration:radio:2" value="AMBOS"><label for="fPP:radioDecoration:radio:2"> Ambos</label></td>
+	</tr>
+</tbody></table>
+    </div>
+    </div><div id="fPP:numProcessoDiv">	
+
+	<div class="form-group numero-processo">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:numeroProcesso:numeroSequencial">
+Número do processo</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:numeroProcesso:numeroSequencial" type="text" name="fPP:numeroProcesso:numeroSequencial" class="col-sm-3" maxlength="7" onkeyup="avancaFoco(0)"><input id="fPP:numeroProcesso:numeroDigitoVerificador" type="text" name="fPP:numeroProcesso:numeroDigitoVerificador" class="col-sm-2" maxlength="2"><input id="fPP:numeroProcesso:Ano" type="text" name="fPP:numeroProcesso:Ano" class="col-sm-2" maxlength="4"><input id="fPP:numeroProcesso:ramoJustica" type="text" name="fPP:numeroProcesso:ramoJustica" value="4" class="col-sm-1 text-center" maxlength="1"><input id="fPP:numeroProcesso:respectivoTribunal" type="text" name="fPP:numeroProcesso:respectivoTribunal" value="01" class="col-sm-2 text-center" maxlength="2"><input id="fPP:numeroProcesso:NumeroOrgaoJustica" type="text" name="fPP:numeroProcesso:NumeroOrgaoJustica" class="col-sm-2" maxlength="4">
+        </div>
+    </div>
+	</div>
+
+	<script type="text/javascript">
+		function avancaFoco(atual) {
+			var ids = new Array();
+			ids[0] = "fPP:numeroProcesso:numeroSequencial";
+			ids[1] = "fPP:numeroProcesso:numeroDigitoVerificador";
+			ids[2] = "fPP:numeroProcesso:Ano";
+			ids[3] = "fPP:numeroProcesso:respectivoTribunal";
+			ids[4] = "fPP:numeroProcesso:NumeroOrgaoJustica";
+			i = atual;
+			apenasNumeros(document.getElementById(ids[i]));
+			if (document.getElementById(ids[i]).value.length == document.getElementById(ids[i]).maxLength) {
+				document.getElementById(ids[i + 1]).focus();
+			}
+		}
+		
+		jQuery(document).ready(function(){
+			jQuery("[id$='numeroSequencial']").bind("paste", function(e){
+			    var pastedData = e.originalEvent.clipboardData.getData('text');
+			    if(pastedData!=null){
+					pastedData = pastedData.replace(/[^0-9]/g,'');
+			    }
+
+				if(pastedData.length>=20 ){
+					var digitoVerificador = pastedData.substring(7, 9)
+					var ano = pastedData.substring(9, 13)
+					var numeroOrigem = pastedData.substring(13, 14)
+					var ramoJustica = pastedData.substring(14, 16)
+					var respectivoTribunal = pastedData.substring(16, 20)
+
+					jQuery("[id$='numeroDigitoVerificador']").val(digitoVerificador)
+					jQuery("[id$='Ano']").val(ano)
+
+					jQuery("[id$='NumeroOrgaoJustica']").val(respectivoTribunal)
+					if (false) {
+						jQuery("[id$='respectivoTribunal']").val(ramoJustica)
+					} else {
+						jQuery("[id$='labelTribunalRespectivo']").val(ramoJustica)
+					}
+				}
+			} );
+		});
+
+		ativaQuebraNumeroProcesso("fPP:numeroProcesso:numeroSequencial","fPP:numeroProcesso:numeroDigitoVerificador","fPP:numeroProcesso:Ano","fPP:numeroProcesso:NumeroOrgaoJustica");
+
+		</script></div><div id="fPP:processoReferenciaFragment">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia">
+Processo referência</label>
+        </div>
+        
+        <div class="value col-sm-12 "><table id="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia" class="radio">
+	<tbody><tr>
+<td>
+<input type="radio" checked="checked" name="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia" id="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia:0" value="true" onchange="A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:processoReferenciaDecoration:j_id244','parameters':{'fPP:processoReferenciaDecoration:j_id244':'fPP:processoReferenciaDecoration:j_id244'} } )"><label for="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia:0"> Numeração única</label></td>
+<td>
+<input type="radio" name="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia" id="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia:1" value="false" onchange="A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:processoReferenciaDecoration:j_id244','parameters':{'fPP:processoReferenciaDecoration:j_id244':'fPP:processoReferenciaDecoration:j_id244'} } )"><label for="fPP:processoReferenciaDecoration:habilitarMascaraProcessoReferencia:1"> Livre</label></td>
+	</tr>
+</tbody></table>
+
+    <div class="propertyView col-sm-12 "><div id="fPP:processoReferenciaDecoration:IdProcessoReferenciaComMascaraDecoration:fieldIdProcessoReferenciaComMascaraDiv" class="name"><label for="fPP:processoReferenciaDecoration:IdProcessoReferenciaComMascaraDecoration:IdProcessoReferenciaComMascara" class="">
+</label></div>
+        <div class="value col-sm-12 ">
+
+	<script type="text/javascript">
+	//<![CDATA[
+	(function($){
+		  $(document).ready(function() {
+			var selector = 'IdProcessoReferenciaComMascara';
+
+			//Seleciona elemento por id
+			var $input = $("input[id$='" + selector + "']");
+			
+			if($input.length < 1){
+				//Seleciona elemento por class
+				$input = $("input" + selector);
+			}
+			
+			if ('9999999-99.9999.9.99.9999' == '') {
+				$input.unmask();
+			} else {
+				$input.mask('9999999-99.9999.9.99.9999');
+			}
+		 });
+	})(jQuery_21);
+	//]]>
+	</script><input id="fPP:processoReferenciaDecoration:IdProcessoReferenciaComMascaraDecoration:IdProcessoReferenciaComMascara" type="text" name="fPP:processoReferenciaDecoration:IdProcessoReferenciaComMascaraDecoration:IdProcessoReferenciaComMascara" class="" alt="#(alt)" maxlength="255" onblur="apenasNumeros(this);" onchange="" onfocus="" onkeypress="" onkeyup="" size="0" tabindex="">
+    </div>
+    </div>
+        </div>
+    </div></div>
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id271:assunto">
+Assunto</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id271:assunto" type="text" name="fPP:j_id271:assunto" class="form-control" alt="Assunto" maxlength="100">
+        </div>
+    </div>
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id280:classeJudicial">
+Classe judicial</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id280:classeJudicial" type="text" name="fPP:j_id280:classeJudicial" class="form-control" alt="Classe judicial" maxlength="100" autocomplete="off"><div id="fPP:j_id280:sgbClasseJudicial" class="rich-sb-common-container  " style="display:none; z-index: 201;width:600px;height:200px;;;"><div class="rich-sb-ext-decor-1"><div class="rich-sb-ext-decor-2" style=";; border-width: null  null  null  null ;"><table border="0" cellpadding="0" cellspacing="1" class="rich-sb-ext-decor-3"><tbody><tr><td><div class="_suggestion_size_ rich-sb-overflow" style="width:596px;height:196px;"><table width="100%" id="fPP:j_id280:sgbClasseJudicial:suggest" border="0"><tbody><tr style="display:none;"><td></td></tr></tbody></table></div></td></tr></tbody></table></div></div><div class="rich-sb-shadow" style="opacity:0.1; filter:alpha(opacity=10);top: 4px; left: 4px; "></div></div><div id="fPP:j_id280:sgbClasseJudicial_script" style="display:none;"><script type="text/javascript">Richfaces.onAvailable('fPP:j_id280:classeJudicial', function() { new RichFaces.Suggestion('fPP','fPP:j_id280:classeJudicial','fPP:j_id280:sgbClasseJudicial',{'similarityGroupingId':'fPP:j_id280:sgbClasseJudicial','onselect':function(suggestion,event){A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:j_id280:sgbClasseJudicial:j_id290','parameters':{'fPP:j_id280:sgbClasseJudicial:j_id290':'fPP:j_id280:sgbClasseJudicial:j_id290','ajaxSingle':'fPP:j_id280:sgbClasseJudicial'} ,'status':'_viewRoot:status'} )},'implicitEventsQueue':'fPP:j_id280:sgbClasseJudicial','width':'600','parameters':{'fPP:j_id280:sgbClasseJudicial':'fPP:j_id280:sgbClasseJudicial','ajaxSingle':'fPP:j_id280:sgbClasseJudicial'} ,'status':'_viewRoot:status','frequency':1.0,'minChars':'3'} );
+});</script></div><iframe src="/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif" id="fPP:j_id280:sgbClasseJudicial_iframe" style="position:absolute;display:none;z-index:200;"></iframe><input type="hidden" autocomplete="off" id="fPP:j_id280:sgbClasseJudicial_selection" name="fPP:j_id280:sgbClasseJudicial_selection">
+        </div>
+    </div>
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id294:numeroDocumento">
+Número do documento</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id294:numeroDocumento" type="text" name="fPP:j_id294:numeroDocumento" class="form-control" alt="Número do documento" maxlength="100">
+        </div>
+    </div><div id="fPP:decorationDados">
+
+    <div class="propertyView col-sm-12 "><div id="fPP:decorationDados:fieldDiv" class="name"><label for="fPP:decorationDados:numeroOAB" class="">
+OAB (000000 A UF)</label></div>
+        <div class="value col-sm-12 "><input id="fPP:decorationDados:numeroOAB" type="text" name="fPP:decorationDados:numeroOAB" class="col-sm-4" alt="Número OAB" maxlength="10"><span class="pull-left"> - </span><input id="fPP:decorationDados:letraOAB" type="text" name="fPP:decorationDados:letraOAB" class="col-sm-2 text-upper" maxlength="1" onkeyup="apenasTextos(this)"><span class="pull-left"> - </span><select id="fPP:decorationDados:ufOABCombo" name="fPP:decorationDados:ufOABCombo" class="col-sm-2 select2-hidden-accessible" size="1" tabindex="-1" aria-hidden="true">	<option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue" selected="selected">UF</option>
+	<option value="0">AC</option>
+	<option value="1">AL</option>
+	<option value="2">AP</option>
+	<option value="3">AM</option>
+	<option value="4">BA</option>
+	<option value="5">CE</option>
+	<option value="6">DF</option>
+	<option value="7">ES</option>
+	<option value="8">GO</option>
+	<option value="9">MA</option>
+	<option value="10">MT</option>
+	<option value="11">MS</option>
+	<option value="12">MG</option>
+	<option value="13">PR</option>
+	<option value="14">PB</option>
+	<option value="15">PA</option>
+	<option value="16">PE</option>
+	<option value="17">PI</option>
+	<option value="18">RJ</option>
+	<option value="19">RN</option>
+	<option value="20">RS</option>
+	<option value="21">RO</option>
+	<option value="22">RR</option>
+	<option value="23">SC</option>
+	<option value="24">SE</option>
+	<option value="25">SP</option>
+	<option value="26">TO</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-fPP:decorationDados:ufOABCombo-container"><span class="select2-selection__rendered" id="select2-fPP:decorationDados:ufOABCombo-container" title="UF">UF</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+    </div>
+    </div></div>
+
+    <div class="propertyView col-sm-12 "><div id="fPP:jurisdicaoComboDecoration:fieldjurisdicaoComboDiv" class="name"><label for="fPP:jurisdicaoComboDecoration:jurisdicaoCombo" class="" id="fPP:jurisdicaoComboDecoration:jurisdicaoCombo_label">
+
+			<span style=""> Jurisdição </span></label></div>
+        <div class="value col-sm-12 "><select id="fPP:jurisdicaoComboDecoration:jurisdicaoCombo" name="fPP:jurisdicaoComboDecoration:jurisdicaoCombo" class="select2-hidden-accessible" size="1" onchange="A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:jurisdicaoComboDecoration:j_id366','control':this,'parameters':{'ajaxSingle':'fPP:jurisdicaoComboDecoration:jurisdicaoCombo','fPP:jurisdicaoComboDecoration:j_id366':'fPP:jurisdicaoComboDecoration:j_id366'} } )" onclick="" tabindex="-1" aria-hidden="true" aria-labelledby="fPP:jurisdicaoComboDecoration:jurisdicaoCombo_label">	<option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue" selected="selected">Selecione</option>
+	<option value="27">Núcleos de Justiça 4.0</option>
+	<option value="28">Seção Judiciária da Bahia</option>
+	<option value="29">Seção Judiciária de Goiás</option>
+	<option value="30">Seção Judiciária de Mato Grosso</option>
+	<option value="31">Seção Judiciária de Rondônia</option>
+	<option value="32">Seção Judiciária de Roraima</option>
+	<option value="33">Seção Judiciária do Acre</option>
+	<option value="34">Seção Judiciária do Amapá</option>
+	<option value="35">Seção Judiciária do Amazonas</option>
+	<option value="36">Seção Judiciária do Distrito Federal</option>
+	<option value="37">Seção Judiciária do Maranhão</option>
+	<option value="38">Seção Judiciária do Pará</option>
+	<option value="39">Seção Judiciária do Piauí</option>
+	<option value="40">Seção Judiciária do Tocantins</option>
+	<option value="41">Subseção Judiciária de Alagoinhas-BA</option>
+	<option value="42">Subseção Judiciária de Altamira-PA</option>
+	<option value="43">Subseção Judiciária de Anápolis-GO</option>
+	<option value="44">Subseção Judiciária de Aparecida de Goiânia-GO</option>
+	<option value="45">Subseção Judiciária de Araguaína-TO</option>
+	<option value="46">Subseção Judiciária de Bacabal-MA</option>
+	<option value="47">Subseção Judiciária de Balsas-MA</option>
+	<option value="48">Subseção Judiciária de Barra do Garças-MT</option>
+	<option value="49">Subseção Judiciária de Barreiras-BA</option>
+	<option value="50">Subseção Judiciária de Bom Jesus da Lapa-BA</option>
+	<option value="51">Subseção Judiciária de Campo Formoso-BA</option>
+	<option value="52">Subseção Judiciária de Castanhal-PA</option>
+	<option value="53">Subseção Judiciária de Caxias-MA</option>
+	<option value="54">Subseção Judiciária de Corrente-PI</option>
+	<option value="55">Subseção Judiciária de Cruzeiro do Sul-AC</option>
+	<option value="56">Subseção Judiciária de Cáceres-MT</option>
+	<option value="57">Subseção Judiciária de Diamantino-MT</option>
+	<option value="58">Subseção Judiciária de Eunápolis-BA</option>
+	<option value="59">Subseção Judiciária de Feira de Santana-BA</option>
+	<option value="60">Subseção Judiciária de Floriano-PI</option>
+	<option value="61">Subseção Judiciária de Formosa-GO</option>
+	<option value="62">Subseção Judiciária de Guanambi-BA</option>
+	<option value="63">Subseção Judiciária de Gurupi-TO</option>
+	<option value="64">Subseção Judiciária de Ilhéus-BA</option>
+	<option value="65">Subseção Judiciária de Imperatriz-MA</option>
+	<option value="66">Subseção Judiciária de Irecê-BA</option>
+	<option value="67">Subseção Judiciária de Itabuna-BA</option>
+	<option value="68">Subseção Judiciária de Itaituba-PA</option>
+	<option value="69">Subseção Judiciária de Itumbiara-GO</option>
+	<option value="70">Subseção Judiciária de Jataí-GO</option>
+	<option value="71">Subseção Judiciária de Jequié-BA</option>
+	<option value="72">Subseção Judiciária de Ji-Paraná-RO</option>
+	<option value="73">Subseção Judiciária de Juazeiro-BA</option>
+	<option value="74">Subseção Judiciária de Juína-MT</option>
+	<option value="75">Subseção Judiciária de Laranjal do Jari-AP</option>
+	<option value="76">Subseção Judiciária de Luziânia-GO</option>
+	<option value="77">Subseção Judiciária de Marabá-PA</option>
+	<option value="78">Subseção Judiciária de Oiapoque-AP</option>
+	<option value="79">Subseção Judiciária de Paragominas-PA</option>
+	<option value="80">Subseção Judiciária de Parnaíba-PI</option>
+	<option value="81">Subseção Judiciária de Paulo Afonso-BA</option>
+	<option value="82">Subseção Judiciária de Picos-PI</option>
+	<option value="83">Subseção Judiciária de Redenção-PA</option>
+	<option value="84">Subseção Judiciária de Rio Verde-GO</option>
+	<option value="85">Subseção Judiciária de Rondonópolis-MT</option>
+	<option value="86">Subseção Judiciária de Santarém-PA</option>
+	<option value="87">Subseção Judiciária de Sinop-MT</option>
+	<option value="88">Subseção Judiciária de São Raimundo Nonato-PI</option>
+	<option value="89">Subseção Judiciária de Tabatinga-AM</option>
+	<option value="90">Subseção Judiciária de Teixeira de Freitas-BA</option>
+	<option value="91">Subseção Judiciária de Tucuruí-PA</option>
+	<option value="92">Subseção Judiciária de Uruaçu-GO</option>
+	<option value="93">Subseção Judiciária de Vilhena-RO</option>
+	<option value="94">Subseção Judiciária de Vitória da Conquista-BA</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;" aria-labelledby="fPP:jurisdicaoComboDecoration:jurisdicaoCombo_label"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="fPP:jurisdicaoComboDecoration:jurisdicaoCombo_label"><span class="select2-selection__rendered" id="select2-fPP:jurisdicaoComboDecoration:jurisdicaoCombo-container" title="Selecione">Selecione</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+    </div>
+    </div><div id="fPP:comboOrgaoJulgadorDiv">
+
+    <div class="propertyView col-sm-12 "><div id="fPP:orgaoJulgadorComboDecoration:fieldorgaoJulgadorComboDiv" class="name"><label for="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo" class="" id="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo_label">
+
+			<span style=""> Órgão Julgador </span></label></div>
+        <div class="value col-sm-12 "><select id="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo" name="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo" class="select2-hidden-accessible" size="1" onchange="" onclick="" tabindex="-1" aria-hidden="true" aria-labelledby="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo_label">	<option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue" selected="selected">Selecione</option>
+	<option value="95">1ª Vara Federal Criminal da SJMA</option>
+	<option value="96">1ª Vara Federal Criminal da SJPI</option>
+	<option value="97">1ª Vara Federal Cível da SJAM</option>
+	<option value="98">1ª Vara Federal Cível da SJAP</option>
+	<option value="99">1ª Vara Federal Cível da SJBA</option>
+	<option value="100">1ª Vara Federal Cível da SJDF</option>
+	<option value="101">1ª Vara Federal Cível da SJGO</option>
+	<option value="102">1ª Vara Federal Cível da SJPA</option>
+	<option value="103">1ª Vara Federal Cível da SJRO</option>
+	<option value="104">1ª Vara Federal Cível da SJRR</option>
+	<option value="105">1ª Vara Federal Cível da SJTO</option>
+	<option value="106">1ª Vara Federal Cível e Agrária da SJMT</option>
+	<option value="107">1ª Vara Federal Cível e Criminal da SJAC</option>
+	<option value="108">1ª Vara Federal Cível e Criminal da SSJ de Anápolis-GO</option>
+	<option value="109">1ª Vara Federal Cível e Criminal da SSJ de Araguaína-TO</option>
+	<option value="110">1ª Vara Federal Cível e Criminal da SSJ de Cáceres-MT</option>
+	<option value="111">1ª Vara Federal Cível e Criminal da SSJ de Divinópolis-MG</option>
+	<option value="112">1ª Vara Federal Cível e Criminal da SSJ de Feira de Santana-BA</option>
+	<option value="113">1ª Vara Federal Cível e Criminal da SSJ de Governador Valadares-MG</option>
+	<option value="114">1ª Vara Federal Cível e Criminal da SSJ de Imperatriz-MA</option>
+	<option value="115">1ª Vara Federal Cível e Criminal da SSJ de Ipatinga-MG</option>
+	<option value="116">1ª Vara Federal Cível e Criminal da SSJ de Itabuna-BA</option>
+	<option value="117">1ª Vara Federal Cível e Criminal da SSJ de Ji-Paraná-RO</option>
+	<option value="118">1ª Vara Federal Cível e Criminal da SSJ de Marabá-PA</option>
+	<option value="119">1ª Vara Federal Cível e Criminal da SSJ de Montes Claros-MG</option>
+	<option value="120">1ª Vara Federal Cível e Criminal da SSJ de Patos de Minas-MG</option>
+	<option value="121">1ª Vara Federal Cível e Criminal da SSJ de Pouso Alegre-MG</option>
+	<option value="122">1ª Vara Federal Cível e Criminal da SSJ de Rondonópolis-MT</option>
+	<option value="123">1ª Vara Federal Cível e Criminal da SSJ de Santarém-PA</option>
+	<option value="124">1ª Vara Federal Cível e Criminal da SSJ de Sete Lagoas-MG</option>
+	<option value="125">1ª Vara Federal Cível e Criminal da SSJ de Sinop-MT</option>
+	<option value="126">1ª Vara Federal Cível e Criminal da SSJ de Uberaba-MG</option>
+	<option value="127">1ª Vara Federal Cível e Criminal da SSJ de Uberlândia-MG</option>
+	<option value="128">1ª Vara Federal Cível e Criminal da SSJ de Varginha-MG</option>
+	<option value="129">1ª Vara Federal Cível e Criminal da SSJ de Vitória da Conquista-BA</option>
+	<option value="130">1ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="131">1ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Contagem-MG</option>
+	<option value="132">1ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Juiz de Fora-MG</option>
+	<option value="133">2ª Vara Federal Criminal da SJAM</option>
+	<option value="134">2ª Vara Federal Criminal da SJBA</option>
+	<option value="135">2ª Vara Federal Criminal da SJMA</option>
+	<option value="136">2ª Vara Federal Cível da SJAP</option>
+	<option value="137">2ª Vara Federal Cível da SJDF</option>
+	<option value="138">2ª Vara Federal Cível da SJGO</option>
+	<option value="139">2ª Vara Federal Cível da SJMT</option>
+	<option value="140">2ª Vara Federal Cível da SJPA</option>
+	<option value="141">2ª Vara Federal Cível da SJPI</option>
+	<option value="142">2ª Vara Federal Cível da SJRO</option>
+	<option value="143">2ª Vara Federal Cível da SJRR</option>
+	<option value="144">2ª Vara Federal Cível da SJTO</option>
+	<option value="145">2ª Vara Federal Cível e Criminal da SJAC</option>
+	<option value="146">2ª Vara Federal Cível e Criminal da SSJ de Anápolis-GO</option>
+	<option value="147">2ª Vara Federal Cível e Criminal da SSJ de Araguaína-TO</option>
+	<option value="148">2ª Vara Federal Cível e Criminal da SSJ de Cáceres-MT</option>
+	<option value="149">2ª Vara Federal Cível e Criminal da SSJ de Divinópolis-MG</option>
+	<option value="150">2ª Vara Federal Cível e Criminal da SSJ de Feira de Santana-BA</option>
+	<option value="151">2ª Vara Federal Cível e Criminal da SSJ de Governador Valadares-MG</option>
+	<option value="152">2ª Vara Federal Cível e Criminal da SSJ de Imperatriz-MA</option>
+	<option value="153">2ª Vara Federal Cível e Criminal da SSJ de Ipatinga-MG</option>
+	<option value="154">2ª Vara Federal Cível e Criminal da SSJ de Itabuna-BA</option>
+	<option value="155">2ª Vara Federal Cível e Criminal da SSJ de Ji-Paraná-RO</option>
+	<option value="156">2ª Vara Federal Cível e Criminal da SSJ de Juiz de Fora-MG</option>
+	<option value="157">2ª Vara Federal Cível e Criminal da SSJ de Marabá-PA</option>
+	<option value="158">2ª Vara Federal Cível e Criminal da SSJ de Montes Claros-MG</option>
+	<option value="159">2ª Vara Federal Cível e Criminal da SSJ de Patos de Minas-MG</option>
+	<option value="160">2ª Vara Federal Cível e Criminal da SSJ de Pouso Alegre-MG</option>
+	<option value="161">2ª Vara Federal Cível e Criminal da SSJ de Santarém-PA</option>
+	<option value="162">2ª Vara Federal Cível e Criminal da SSJ de Sete Lagoas-MG</option>
+	<option value="163">2ª Vara Federal Cível e Criminal da SSJ de Sinop-MT</option>
+	<option value="164">2ª Vara Federal Cível e Criminal da SSJ de Uberaba-MG</option>
+	<option value="165">2ª Vara Federal Cível e Criminal da SSJ de Uberlândia-MG</option>
+	<option value="166">2ª Vara Federal Cível e Criminal da SSJ de Varginha-MG</option>
+	<option value="167">2ª Vara Federal Cível e Criminal da SSJ de Vitória da Conquista-BA</option>
+	<option value="168">2ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="169">2ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Contagem-MG</option>
+	<option value="170">2ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Rondonópolis-MT</option>
+	<option value="171">3ª Vara Federal Criminal da SJPA</option>
+	<option value="172">3ª Vara Federal Criminal da SJPI</option>
+	<option value="173">3ª Vara Federal Criminal da SJRO</option>
+	<option value="174">3ª Vara Federal Cível da SJAM</option>
+	<option value="175">3ª Vara Federal Cível da SJBA</option>
+	<option value="176">3ª Vara Federal Cível da SJDF</option>
+	<option value="177">3ª Vara Federal Cível da SJGO</option>
+	<option value="178">3ª Vara Federal Cível da SJMA</option>
+	<option value="179">3ª Vara Federal Cível da SJMG</option>
+	<option value="180">3ª Vara Federal Cível da SJMT</option>
+	<option value="181">3ª Vara Federal Cível e Criminal da SJAC</option>
+	<option value="182">3ª Vara Federal Cível e Criminal da SSJ de Feira de Santana - BA</option>
+	<option value="183">3ª Vara Federal Cível e Criminal da SSJ de Juiz de Fora-MG</option>
+	<option value="184">3ª Vara Federal Cível e Criminal da SSJ de Montes Claros-MG</option>
+	<option value="185">3ª Vara Federal Cível e Criminal da SSJ de Uberlândia-MG</option>
+	<option value="186">3ª Vara Federal de Execução Fiscal da SSJ de Contagem-MG</option>
+	<option value="187">3ª Vara Federal de Juizado Especial Cível da SJAP</option>
+	<option value="188">3ª Vara Federal de Juizado Especial Cível da SJRR</option>
+	<option value="189">3ª Vara Federal de Juizado Especial Cível da SJTO</option>
+	<option value="190">3ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Governador Valadares-MG</option>
+	<option value="191">3ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Uberaba-MG</option>
+	<option value="192">4ª Vara Federal Criminal da SJAM</option>
+	<option value="193">4ª Vara Federal Criminal da SJAP</option>
+	<option value="194">4ª Vara Federal Criminal da SJMG</option>
+	<option value="195">4ª Vara Federal Criminal da SJPA</option>
+	<option value="196">4ª Vara Federal Criminal da SJRR</option>
+	<option value="197">4ª Vara Federal Criminal da SJTO</option>
+	<option value="198">4ª Vara Federal Cível da SJBA</option>
+	<option value="199">4ª Vara Federal Cível da SJDF</option>
+	<option value="200">4ª Vara Federal Cível da SJGO</option>
+	<option value="201">4ª Vara Federal Cível e Criminal da SSJ de Juiz de Fora-MG</option>
+	<option value="202">4ª Vara Federal Cível e Criminal da SSJ de Uberaba-MG</option>
+	<option value="203">4ª Vara Federal de Execução Fiscal da SJMA</option>
+	<option value="204">4ª Vara Federal de Execução Fiscal da SJMT</option>
+	<option value="205">4ª Vara Federal de Execução Fiscal da SJPI</option>
+	<option value="206">4ª Vara Federal de Juizado Especial Cível da SJRO</option>
+	<option value="207">4ª Vara Federal de Juizado Especial Cível e Criminal da SJAC</option>
+	<option value="208">4ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Uberlândia-MG</option>
+	<option value="209">5ª Vara Federal Ambiental e Agrária da SJRO</option>
+	<option value="210">5ª Vara Federal Criminal da SJGO</option>
+	<option value="211">5ª Vara Federal Criminal da SJMT</option>
+	<option value="212">5ª Vara Federal Cível da SJDF</option>
+	<option value="213">5ª Vara Federal Cível da SJMA</option>
+	<option value="214">5ª Vara Federal Cível da SJMG</option>
+	<option value="215">5ª Vara Federal Cível da SJPA</option>
+	<option value="216">5ª Vara Federal Cível da SJPI</option>
+	<option value="217">5ª Vara Federal de Execução Fiscal da SJAM</option>
+	<option value="218">5ª Vara Federal de Execução Fiscal da SJTO</option>
+	<option value="219">5ª Vara Federal de Execução Fiscal da SSJ de Uberlândia-MG</option>
+	<option value="220">5ª Vara Federal de Juizado Especial Cível da SJAP</option>
+	<option value="221">5ª Vara Federal de Juizado Especial Cível da SJBA</option>
+	<option value="222">5ª Vara Federal de Juizado Especial Cível e Criminal da SSJ de Juiz de Fora-MG</option>
+	<option value="223">6ª Vara Federal Cível da SJAP</option>
+	<option value="224">6ª Vara Federal Cível da SJBA</option>
+	<option value="225">6ª Vara Federal Cível da SJDF</option>
+	<option value="226">6ª Vara Federal Cível da SJGO</option>
+	<option value="227">6ª Vara Federal Cível da SJMA</option>
+	<option value="228">6ª Vara Federal Cível da SJMG</option>
+	<option value="229">6ª Vara Federal de Execução Fiscal da SJPA</option>
+	<option value="230">6ª Vara Federal de Juizado Especial Cível da SJAM</option>
+	<option value="231">6ª Vara Federal de Juizado Especial Cível da SJMT</option>
+	<option value="232">6ª Vara Federal de Juizado Especial Cível da SJPI</option>
+	<option value="233">6ª Vara Federal de Juizado Especial Cível da SJRO</option>
+	<option value="234">7ª Vara Federal Ambiental e Agrária da SJAM</option>
+	<option value="235">7ª Vara Federal Criminal da SJMT</option>
+	<option value="236">7ª Vara Federal Criminal da SJRO</option>
+	<option value="237">7ª Vara Federal Cível da SJDF</option>
+	<option value="238">7ª Vara Federal Cível da SJMG</option>
+	<option value="239">7ª Vara Federal Cível e Agrária da SJBA</option>
+	<option value="240">7ª Vara Federal de Execução Fiscal da SJGO</option>
+	<option value="241">7ª Vara Federal de Execução Fiscal da SJPA</option>
+	<option value="242">7ª Vara Federal de Juizado Especial Cível da SJMA</option>
+	<option value="243">7ª Vara Federal de Juizado Especial Cível da SJPI</option>
+	<option value="244">8ª Vara Federal Ambiental e Agrária da SJMA</option>
+	<option value="245">8ª Vara Federal Cível da SJDF</option>
+	<option value="246">8ª Vara Federal Cível da SJGO</option>
+	<option value="247">8ª Vara Federal Cível da SJMT</option>
+	<option value="248">8ª Vara Federal de Execução Fiscal da SJBA</option>
+	<option value="249">8ª Vara Federal de Juizado Especial Cível da SJAM</option>
+	<option value="250">8ª Vara Federal de Juizado Especial Cível da SJPA</option>
+	<option value="251">8ª Vara Federal de Juizado Especial Cível da SJPI</option>
+	<option value="252">9ª Vara Federal Ambiental e Agrária da SJPA</option>
+	<option value="253">9ª Vara Federal Criminal da SJMG</option>
+	<option value="254">9ª Vara Federal Cível da SJAM</option>
+	<option value="255">9ª Vara Federal Cível da SJDF</option>
+	<option value="256">9ª Vara Federal Cível da SJGO</option>
+	<option value="257">9ª Vara Federal de Juizado Especial Cível da SJBA</option>
+	<option value="258">9ª Vara Federal de Juizado Especial Cível da SJMA</option>
+	<option value="259">9ª Vara Federal de Juizado Especial Cível da SJMT</option>
+	<option value="260">10ª Vara Federal Criminal da SJDF</option>
+	<option value="261">10ª Vara Federal Cível da SJBA</option>
+	<option value="262">10ª Vara Federal Cível da SJMG</option>
+	<option value="263">10ª Vara Federal de Execução Fiscal da SJGO</option>
+	<option value="264">10ª Vara Federal de Juizado Especial Cível da SJMA</option>
+	<option value="265">10ª Vara Federal de Juizado Especial Cível da SJPA</option>
+	<option value="266">11ª Vara Federal Criminal da SJGO</option>
+	<option value="267">11ª Vara Federal Criminal da SJMG</option>
+	<option value="268">11ª Vara Federal Cível da SJBA</option>
+	<option value="269">11ª Vara Federal de Execução Fiscal da SJDF</option>
+	<option value="270">11ª Vara Federal de Execução Fiscal da SJMA</option>
+	<option value="271">11ª Vara Federal de Juizado Especial Cível da SJPA</option>
+	<option value="272">12ª Vara Federal Criminal da SJDF</option>
+	<option value="273">12ª Vara Federal Cível da SJBA</option>
+	<option value="274">12ª Vara Federal Cível e Agrária da SJMG</option>
+	<option value="275">12ª Vara Federal de Execução Fiscal da SJGO</option>
+	<option value="276">12ª Vara Federal de Juizado Especial Cível da SJMA</option>
+	<option value="277">12ª Vara Federal de Juizado Especial Cível da SJPA</option>
+	<option value="278">13ª Vara Federal Cível da SJBA</option>
+	<option value="279">13ª Vara Federal Cível da SJDF</option>
+	<option value="280">13ª Vara Federal Cível da SJMA</option>
+	<option value="281">13ª Vara Federal Cível da SJMG</option>
+	<option value="282">13ª Vara Federal de Juizado Especial Cível da SJGO</option>
+	<option value="283">14ª Vara Federal Cível da SJBA</option>
+	<option value="284">14ª Vara Federal Cível da SJDF</option>
+	<option value="285">14ª Vara Federal Cível da SJMG</option>
+	<option value="286">14ª Vara Federal de Juizado Especial Cível da SJGO</option>
+	<option value="287">15ª Vara Federal Criminal da SJDF</option>
+	<option value="288">15ª Vara Federal Cível da SJMG</option>
+	<option value="289">15ª Vara Federal de Juizado Especial Cível da SJBA</option>
+	<option value="290">15ª Vara Federal de Juizado Especial Cível da SJGO</option>
+	<option value="291">16ª Vara Federal Cível da SJBA</option>
+	<option value="292">16ª Vara Federal Cível da SJDF</option>
+	<option value="293">16ª Vara Federal Cível da SJMG</option>
+	<option value="294">16ª Vara Federal de Juizado Especial Cível da SJGO</option>
+	<option value="295">17ª Vara Federal Criminal da SJBA</option>
+	<option value="296">17ª Vara Federal Cível da SJDF</option>
+	<option value="297">17ª Vara Federal Cível da SJMG</option>
+	<option value="298">18ª Vara Federal Cível da SJDF</option>
+	<option value="299">18ª Vara Federal Cível da SJMG</option>
+	<option value="300">18ª Vara Federal de Execução Fiscal da SJBA</option>
+	<option value="301">19ª Vara Federal Cível da SJMG</option>
+	<option value="302">19ª Vara Federal de Execução Fiscal da SJBA</option>
+	<option value="303">19ª Vara Federal de Execução Fiscal da SJDF</option>
+	<option value="304">20ª Vara Federal Cível da SJDF</option>
+	<option value="305">20ª Vara Federal Cível da SJMG</option>
+	<option value="306">20ª Vara Federal de Execução Fiscal da SJBA</option>
+	<option value="307">21ª Vara Federal Cível da SJDF</option>
+	<option value="308">21ª Vara Federal Cível da SJMG</option>
+	<option value="309">21ª Vara Federal de Juizado Especial Cível da SJBA</option>
+	<option value="310">22ª Vara Federal Cível da SJDF</option>
+	<option value="311">22ª Vara Federal Cível da SJMG</option>
+	<option value="312">22ª Vara Federal de Juizado Especial Cível da SJBA</option>
+	<option value="313">23ª Vara Federal Cível da SJDF</option>
+	<option value="314">23ª Vara Federal de Execução Fiscal da SJMG</option>
+	<option value="315">23ª Vara Federal de Juizado Especial Cível da SJBA</option>
+	<option value="316">23ª Vara Federal de Juizado Especial Cível da SJDF</option>
+	<option value="317">24ª Vara Federal Cível da SJDF</option>
+	<option value="318">24ª Vara Federal de Execução Fiscal da SJBA</option>
+	<option value="319">24ª Vara Federal de Execução Fiscal da SJMG</option>
+	<option value="320">24ª Vara Federal de Juizado Especial Cível da SJDF</option>
+	<option value="321">25ª Vara Federal Cível da SJDF</option>
+	<option value="322">25ª Vara Federal de Execução Fiscal da SJMG</option>
+	<option value="323">25ª Vara Federal de Juizado Especial Cível da SJDF</option>
+	<option value="324">26ª Vara Federal Cível da SJDF</option>
+	<option value="325">26ª Vara Federal de Execução Fiscal da SJMG</option>
+	<option value="326">26ª Vara Federal de Juizado Especial Cível da SJDF</option>
+	<option value="327">27ª Vara Federal Cível da SJDF</option>
+	<option value="328">27ª Vara Federal de Execução Fiscal da SJMG</option>
+	<option value="329">27ª Vara Federal de Juizado Especial Cível da SJDF</option>
+	<option value="330">28ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="331">29ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="332">30ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="333">31ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="334">32ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="335">33ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="336">34ª Vara Federal de Juizado Especial Cível da SJMG</option>
+	<option value="337">35ª Vara Federal Criminal da SJMG</option>
+	<option value="338">Central de Conciliação da SJAC</option>
+	<option value="339">Central de Conciliação da SJAM</option>
+	<option value="340">Central de Conciliação da SJAP</option>
+	<option value="341">Central de Conciliação da SJBA</option>
+	<option value="342">Central de Conciliação da SJDF</option>
+	<option value="343">Central de Conciliação da SJGO</option>
+	<option value="344">Central de Conciliação da SJMA</option>
+	<option value="345">Central de Conciliação da SJMG</option>
+	<option value="346">Central de Conciliação da SJMT</option>
+	<option value="347">Central de Conciliação da SJPA</option>
+	<option value="348">Central de Conciliação da SJPI</option>
+	<option value="349">Central de Conciliação da SJRO</option>
+	<option value="350">Central de Conciliação da SJRR</option>
+	<option value="351">Central de Conciliação da SJTO</option>
+	<option value="352">Central de Conciliação da SSJ de Alagoinhas-BA</option>
+	<option value="353">Central de Conciliação da SSJ de Anápolis-GO</option>
+	<option value="354">Central de Conciliação da SSJ de Araguaína-TO</option>
+	<option value="355">Central de Conciliação da SSJ de Cáceres MT</option>
+	<option value="356">Central de Conciliação da SSJ de Feira de Santana-BA</option>
+	<option value="357">Central de Conciliação da SSJ de Gurupi-TO</option>
+	<option value="358">Central de Conciliação da SSJ de Ilhéus-BA</option>
+	<option value="359">Central de Conciliação da SSJ de Imperatriz-MA</option>
+	<option value="360">Central de Conciliação da SSJ de Ipatinga-MG</option>
+	<option value="361">Central de Conciliação da SSJ de Itabuna-BA</option>
+	<option value="362">Central de Conciliação da SSJ de Juiz de Fora-MG</option>
+	<option value="363">Central de Conciliação da SSJ de Lavras-TO</option>
+	<option value="364">Central de Conciliação da SSJ de Marabá-PA</option>
+	<option value="365">Central de Conciliação da SSJ de Montes Claros-MG</option>
+	<option value="366">Central de Conciliação da SSJ de Muriaé-MG</option>
+	<option value="367">Central de Conciliação da SSJ de Parnaíba-PI</option>
+	<option value="368">Central de Conciliação da SSJ de Rondonópolis-MT</option>
+	<option value="369">Central de Conciliação da SSJ de Santarém-PA</option>
+	<option value="370">Central de Conciliação da SSJ de Sete Lagoas-MG</option>
+	<option value="371">Central de Conciliação da SSJ de Sinop MT</option>
+	<option value="372">Central de Conciliação da SSJ de Teófilo Otoni-MG</option>
+	<option value="373">Central de Conciliação da SSJ de Uberaba-MG</option>
+	<option value="374">Central de Conciliação da SSJ de Uberlândia-MG</option>
+	<option value="375">Central de Conciliação da SSJ de Unaí-MG</option>
+	<option value="376">Central de Conciliação da SSJ de Vitória da Conquista-BA</option>
+	<option value="377">Central de Cumprimento de Julgados da SJDF</option>
+	<option value="378">Central de Perícias da SJPI</option>
+	<option value="379">Central de Perícias da SJRO</option>
+	<option value="380">Central de Perícias da SJRR</option>
+	<option value="381">Central de Perícias da SJTO</option>
+	<option value="382">Central de Perícias da SSJ de Feira de Santana-BA</option>
+	<option value="383">Central de Perícias da SSJ de Ituiutaba-MG</option>
+	<option value="384">Central de Perícias da SSJ de Juiz de Fora-MG</option>
+	<option value="385">Central de Perícias da SSJ de Rio Verde-GO</option>
+	<option value="386">Central de Perícias da SSJ de Uberlândia-MG</option>
+	<option value="387">Direção do Foro da SJAC</option>
+	<option value="388">Direção do Foro da SJAM</option>
+	<option value="389">Direção do Foro da SJAP</option>
+	<option value="390">Direção do Foro da SJBA</option>
+	<option value="391">Direção do Foro da SJDF</option>
+	<option value="392">Direção do Foro da SJGO</option>
+	<option value="393">Direção do Foro da SJMA</option>
+	<option value="394">Direção do Foro da SJMT</option>
+	<option value="395">Direção do Foro da SJPA</option>
+	<option value="396">Direção do Foro da SJPI</option>
+	<option value="397">Direção do Foro da SJRO</option>
+	<option value="398">Direção do Foro da SJRR</option>
+	<option value="399">Direção do Foro da SJTO</option>
+	<option value="400">Direção do Foro da SSJ de Alagoinhas-BA</option>
+	<option value="401">Direção do Foro da SSJ de Altamira-PA</option>
+	<option value="402">Direção do Foro da SSJ de Anápolis-GO</option>
+	<option value="403">Direção do Foro da SSJ de Araguaína-TO</option>
+	<option value="404">Direção do Foro da SSJ de Bacabal-MA</option>
+	<option value="405">Direção do Foro da SSJ de Balsas-MA</option>
+	<option value="406">Direção do Foro da SSJ de Barra do Garças-MT</option>
+	<option value="407">Direção do Foro da SSJ de Barreiras-BA</option>
+	<option value="408">Direção do Foro da SSJ de Bom Jesus da Lapa-BA</option>
+	<option value="409">Direção do Foro da SSJ de Campo Formoso-BA</option>
+	<option value="410">Direção do Foro da SSJ de Castanhal-PA</option>
+	<option value="411">Direção do Foro da SSJ de Caxias-MA</option>
+	<option value="412">Direção do Foro da SSJ de Corrente-PI</option>
+	<option value="413">Direção do Foro da SSJ de Cruzeiro do Sul-AC</option>
+	<option value="414">Direção do Foro da SSJ de Cáceres-MT</option>
+	<option value="415">Direção do Foro da SSJ de Diamantino-MT</option>
+	<option value="416">Direção do Foro da SSJ de Eunápolis-BA</option>
+	<option value="417">Direção do Foro da SSJ de Feira de Santana-BA</option>
+	<option value="418">Direção do Foro da SSJ de Floriano-PI</option>
+	<option value="419">Direção do Foro da SSJ de Formosa-GO</option>
+	<option value="420">Direção do Foro da SSJ de Guanambi-BA</option>
+	<option value="421">Direção do Foro da SSJ de Gurupi-TO</option>
+	<option value="422">Direção do Foro da SSJ de Ilhéus-BA</option>
+	<option value="423">Direção do Foro da SSJ de Imperatriz-MA</option>
+	<option value="424">Direção do Foro da SSJ de Irecê-BA</option>
+	<option value="425">Direção do Foro da SSJ de Itabuna-BA</option>
+	<option value="426">Direção do Foro da SSJ de Itaituba-PA</option>
+	<option value="427">Direção do Foro da SSJ de Itumbiara-GO</option>
+	<option value="428">Direção do Foro da SSJ de Jataí-GO</option>
+	<option value="429">Direção do Foro da SSJ de Jequié-BA</option>
+	<option value="430">Direção do Foro da SSJ de Ji-Paraná-RO</option>
+	<option value="431">Direção do Foro da SSJ de Juazeiro-BA</option>
+	<option value="432">Direção do Foro da SSJ de Juína-MT</option>
+	<option value="433">Direção do Foro da SSJ de Laranjal do Jari-AP</option>
+	<option value="434">Direção do Foro da SSJ de Luziânia-GO</option>
+	<option value="435">Direção do Foro da SSJ de Marabá-PA</option>
+	<option value="436">Direção do Foro da SSJ de Oiapoque-AP</option>
+	<option value="437">Direção do Foro da SSJ de Paragominas-PA</option>
+	<option value="438">Direção do Foro da SSJ de Parnaíba-PI</option>
+	<option value="439">Direção do Foro da SSJ de Paulo Afonso-BA</option>
+	<option value="440">Direção do Foro da SSJ de Picos-PI</option>
+	<option value="441">Direção do Foro da SSJ de Redenção-PA</option>
+	<option value="442">Direção do Foro da SSJ de Rio Verde-GO</option>
+	<option value="443">Direção do Foro da SSJ de Rondonópolis-MT</option>
+	<option value="444">Direção do Foro da SSJ de Santarém-PA</option>
+	<option value="445">Direção do Foro da SSJ de Sinop-MT</option>
+	<option value="446">Direção do Foro da SSJ de São Raimundo Nonato-PI</option>
+	<option value="447">Direção do Foro da SSJ de Tabatinga-AM</option>
+	<option value="448">Direção do Foro da SSJ de Teixeira de Freitas-BA</option>
+	<option value="449">Direção do Foro da SSJ de Tucuruí-PA</option>
+	<option value="450">Direção do Foro da SSJ de Uruaçu-GO</option>
+	<option value="451">Direção do Foro da SSJ de Vilhena-RO</option>
+	<option value="452">Direção do Foro da SSJ de Vitória da Conquista-BA</option>
+	<option value="453">Juizado Especial Criminal Adjunto à 10ª Vara Federal da SJDF</option>
+	<option value="454">Juizado Especial Criminal Adjunto à 11ª Vara Federal da SJGO</option>
+	<option value="455">Juizado Especial Criminal Adjunto à 11ª Vara Federal da SJMG</option>
+	<option value="456">Juizado Especial Criminal Adjunto à 12ª Vara Federal da SJDF</option>
+	<option value="457">Juizado Especial Criminal Adjunto à 15ª Vara Federal da SJDF</option>
+	<option value="458">Juizado Especial Criminal Adjunto à 17ª Vara Federal da SJBA</option>
+	<option value="459">Juizado Especial Criminal Adjunto à 1ª Vara Federal da SJMA</option>
+	<option value="460">Juizado Especial Criminal Adjunto à 1ª Vara Federal da SJPI</option>
+	<option value="461">Juizado Especial Criminal Adjunto à 2ª Vara Federal da SJAM</option>
+	<option value="462">Juizado Especial Criminal Adjunto à 2ª Vara Federal da SJBA</option>
+	<option value="463">Juizado Especial Criminal Adjunto à 2ª Vara Federal da SJMA</option>
+	<option value="464">Juizado Especial Criminal Adjunto à 35ª Vara Federal da SJMG</option>
+	<option value="465">Juizado Especial Criminal Adjunto à 3ª Vara Federal da SJPA</option>
+	<option value="466">Juizado Especial Criminal Adjunto à 3ª Vara Federal da SJPI</option>
+	<option value="467">Juizado Especial Criminal Adjunto à 3ª Vara Federal da SJRO</option>
+	<option value="468">Juizado Especial Criminal Adjunto à 4ª Vara Federal da SJAM</option>
+	<option value="469">Juizado Especial Criminal Adjunto à 4ª Vara Federal da SJAP</option>
+	<option value="470">Juizado Especial Criminal Adjunto à 4ª Vara Federal da SJMG</option>
+	<option value="471">Juizado Especial Criminal Adjunto à 4ª Vara Federal da SJPA</option>
+	<option value="472">Juizado Especial Criminal Adjunto à 4ª Vara Federal da SJRR</option>
+	<option value="473">Juizado Especial Criminal Adjunto à 4ª Vara Federal da SJTO</option>
+	<option value="474">Juizado Especial Criminal Adjunto à 5ª Vara Federal da SJGO</option>
+	<option value="475">Juizado Especial Criminal Adjunto à 5ª Vara Federal da SJMT</option>
+	<option value="476">Juizado Especial Criminal Adjunto à 7ª Vara Federal da SJAM</option>
+	<option value="477">Juizado Especial Criminal Adjunto à 7ª Vara Federal da SJMT</option>
+	<option value="478">Juizado Especial Criminal Adjunto à 7ª Vara Federal da SJRO</option>
+	<option value="479">Juizado Especial Criminal Adjunto à 8ª Vara Federal da SJMA</option>
+	<option value="480">Juizado Especial Criminal Adjunto à 9ª Vara Federal da SJMG</option>
+	<option value="481">Juizado Especial Criminal Adjunto à 9ª Vara Federal da SJPA</option>
+	<option value="482">Juizado Especial Cível Adjunto à 11ª Vara Federal de Execução Fiscal da SJDF</option>
+	<option value="483">Juizado Especial Cível Adjunto à 13ª Vara Federal da SJDF</option>
+	<option value="484">Juizado Especial Cível Adjunto à 14ª Vara Federal da SJDF</option>
+	<option value="485">Juizado Especial Cível Adjunto à 16ª Vara Federal da SJDF</option>
+	<option value="486">Juizado Especial Cível Adjunto à 17ª Vara Federal da SJDF</option>
+	<option value="487">Juizado Especial Cível Adjunto à 18ª Vara Federal da SJDF</option>
+	<option value="488">Juizado Especial Cível Adjunto à 19ª Vara Federal de Execução Fiscal da SJDF</option>
+	<option value="489">Juizado Especial Cível Adjunto à 1ª Vara Federal da SJDF</option>
+	<option value="490">Juizado Especial Cível Adjunto à 1ª Vara Federal da SJGO</option>
+	<option value="491">Juizado Especial Cível Adjunto à 1ª Vara Federal da SJTO</option>
+	<option value="492">Juizado Especial Cível Adjunto à 20ª Vara Federal da SJDF</option>
+	<option value="493">Juizado Especial Cível Adjunto à 21ª Vara Federal da SJDF</option>
+	<option value="494">Juizado Especial Cível Adjunto à 22ª Vara Federal da SJDF</option>
+	<option value="495">Juizado Especial Cível Adjunto à 2ª Vara Federal da SJDF</option>
+	<option value="496">Juizado Especial Cível Adjunto à 2ª Vara Federal da SJGO</option>
+	<option value="497">Juizado Especial Cível Adjunto à 2ª Vara Federal da SJTO</option>
+	<option value="498">Juizado Especial Cível Adjunto à 3ª Vara Federal da SJDF</option>
+	<option value="499">Juizado Especial Cível Adjunto à 3ª Vara Federal da SJGO</option>
+	<option value="500">Juizado Especial Cível Adjunto à 4ª Vara Federal da SJDF</option>
+	<option value="501">Juizado Especial Cível Adjunto à 4ª Vara Federal da SJGO</option>
+	<option value="502">Juizado Especial Cível Adjunto à 5ª Vara Federal da SJDF</option>
+	<option value="503">Juizado Especial Cível Adjunto à 6ª Vara Federal da SJDF</option>
+	<option value="504">Juizado Especial Cível Adjunto à 6ª Vara Federal da SJGO</option>
+	<option value="505">Juizado Especial Cível Adjunto à 6ª Vara Federal de Execução Fiscal da SJPA</option>
+	<option value="506">Juizado Especial Cível Adjunto à 7ª Vara Federal da SJDF</option>
+	<option value="507">Juizado Especial Cível Adjunto à 7ª Vara Federal de Execução Fiscal da SJPA</option>
+	<option value="508">Juizado Especial Cível Adjunto à 8ª Vara Federal da SJDF</option>
+	<option value="509">Juizado Especial Cível Adjunto à 8ª Vara Federal da SJGO</option>
+	<option value="510">Juizado Especial Cível Adjunto à 9ª Vara Federal da SJDF</option>
+	<option value="511">Juizado Especial Cível Adjunto à 9ª Vara Federal da SJGO</option>
+	<option value="512">Juizado Especial Cível Adjunto à Vara Federal da SSJ de Picos-PI</option>
+	<option value="513">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Anápolis-GO</option>
+	<option value="514">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Araguaína-TO</option>
+	<option value="515">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Cáceres-MT</option>
+	<option value="516">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Divinópolis-MG</option>
+	<option value="517">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Feira de Santana-BA</option>
+	<option value="518">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Imperatriz-MA</option>
+	<option value="519">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Ipatinga-MG</option>
+	<option value="520">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Itabuna-BA</option>
+	<option value="521">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Ji-Paraná-RO</option>
+	<option value="522">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Marabá-PA</option>
+	<option value="523">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Montes Claros-MG</option>
+	<option value="524">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Patos de Minas-MG</option>
+	<option value="525">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Pouso Alegre-MG</option>
+	<option value="526">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Santarém-PA</option>
+	<option value="527">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Sete Lagoas-MG</option>
+	<option value="528">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Sinop-MT</option>
+	<option value="529">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Varginha-MG</option>
+	<option value="530">Juizado Especial Cível e Criminal Adjunto à 1ª Vara Federal da SSJ de Vitória da Conquista-BA</option>
+	<option value="531">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Anápolis-GO</option>
+	<option value="532">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Araguaína-TO</option>
+	<option value="533">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Cáceres-MT</option>
+	<option value="534">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Divinópolis-MG</option>
+	<option value="535">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Feira de Santana-BA</option>
+	<option value="536">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Imperatriz-MA</option>
+	<option value="537">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Ipatinga-MG</option>
+	<option value="538">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Itabuna-BA</option>
+	<option value="539">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Ji-Paraná-RO</option>
+	<option value="540">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Marabá-PA</option>
+	<option value="541">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Montes Claros-MG</option>
+	<option value="542">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Patos de Minas-MG</option>
+	<option value="543">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Pouso Alegre-MG</option>
+	<option value="544">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Santarém-PA</option>
+	<option value="545">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Sete Lagoas-MG</option>
+	<option value="546">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Sinop-MT</option>
+	<option value="547">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Varginha-MG</option>
+	<option value="548">Juizado Especial Cível e Criminal Adjunto à 2ª Vara Federal da SSJ de Vitória da Conquista-BA</option>
+	<option value="549">Juizado Especial Cível e Criminal Adjunto à 3ª Vara Federal da SSJ de Feira de Santana-BA</option>
+	<option value="550">Juizado Especial Cível e Criminal Adjunto à 3ª Vara Federal da SSJ de Montes Claros-MG</option>
+	<option value="551">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Alagoinhas-BA</option>
+	<option value="552">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Altamira-PA</option>
+	<option value="553">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Bacabal-MA</option>
+	<option value="554">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Balsas-MA</option>
+	<option value="555">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Barra do Garças-MT</option>
+	<option value="556">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Barreiras-BA</option>
+	<option value="557">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Bom Jesus da Lapa-BA</option>
+	<option value="558">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Campo Formoso-BA</option>
+	<option value="559">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Castanhal-PA</option>
+	<option value="560">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Caxias-MA</option>
+	<option value="561">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Corrente-PI</option>
+	<option value="562">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Cruzeiro do Sul-AC</option>
+	<option value="563">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Diamantino-MT</option>
+	<option value="564">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Eunápolis-BA</option>
+	<option value="565">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Floriano-PI</option>
+	<option value="566">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Formosa-GO</option>
+	<option value="567">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Guanambi-BA</option>
+	<option value="568">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Gurupi-TO</option>
+	<option value="569">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Ilhéus-BA</option>
+	<option value="570">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Irecê-BA</option>
+	<option value="571">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Itaituba-PA</option>
+	<option value="572">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Ituiutaba-MG</option>
+	<option value="573">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Itumbiara-GO</option>
+	<option value="574">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Janaúba-MG</option>
+	<option value="575">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Jataí-GO</option>
+	<option value="576">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Jequié-BA</option>
+	<option value="577">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Juazeiro-BA</option>
+	<option value="578">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Juína-MT</option>
+	<option value="579">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Laranjal do Jari-AP</option>
+	<option value="580">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Lavras-MG</option>
+	<option value="581">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Luziânia-GO</option>
+	<option value="582">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Manhuaçu-MG</option>
+	<option value="583">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Muriaé-MG</option>
+	<option value="584">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Oiapoque-AP</option>
+	<option value="585">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Paracatu-MG</option>
+	<option value="586">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Paragominas-PA</option>
+	<option value="587">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Parnaíba-PI</option>
+	<option value="588">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Passos-MG</option>
+	<option value="589">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Paulo Afonso-BA</option>
+	<option value="590">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Ponte Nova-MG</option>
+	<option value="591">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Poços de Caldas-MG</option>
+	<option value="592">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Redenção-PA</option>
+	<option value="593">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Rio Verde-GO</option>
+	<option value="594">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de São João Del Rei-MG</option>
+	<option value="595">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de São Raimundo Nonato-PI</option>
+	<option value="596">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de São Sebastião do Paraíso-MG</option>
+	<option value="597">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Tabatinga-AM</option>
+	<option value="598">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Teixeira de Freitas-BA</option>
+	<option value="599">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Teófilo Otoni-MG</option>
+	<option value="600">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Tucuruí-PA</option>
+	<option value="601">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Unaí-MG</option>
+	<option value="602">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Uruaçu-GO</option>
+	<option value="603">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Vilhena-RO</option>
+	<option value="604">Juizado Especial Cível e Criminal Adjunto à Vara Federal da SSJ de Viçosa-MG</option>
+	<option value="605">Juizado Especial Cível e Criminal da SSJ de Aparecida de Goiânia-GO</option>
+	<option value="606">Núcleo de Justiça 4.0 - Apoio ao Cumprimento de Sentença</option>
+	<option value="607">Núcleo de Prática Restaurativa da SSJ de Uberaba-MG</option>
+	<option value="608">Vara Federal Cível da SSJ de Picos-PI</option>
+	<option value="609">Vara Federal Cível e Criminal da SSJ de Alagoinhas-BA</option>
+	<option value="610">Vara Federal Cível e Criminal da SSJ de Altamira-PA</option>
+	<option value="611">Vara Federal Cível e Criminal da SSJ de Aparecida de Goiânia-GO</option>
+	<option value="612">Vara Federal Cível e Criminal da SSJ de Bacabal-MA</option>
+	<option value="613">Vara Federal Cível e Criminal da SSJ de Balsas-MA</option>
+	<option value="614">Vara Federal Cível e Criminal da SSJ de Barra do Garças-MT</option>
+	<option value="615">Vara Federal Cível e Criminal da SSJ de Barreiras-BA</option>
+	<option value="616">Vara Federal Cível e Criminal da SSJ de Bom Jesus da Lapa-BA</option>
+	<option value="617">Vara Federal Cível e Criminal da SSJ de Campo Formoso-BA</option>
+	<option value="618">Vara Federal Cível e Criminal da SSJ de Castanhal-PA</option>
+	<option value="619">Vara Federal Cível e Criminal da SSJ de Caxias-MA</option>
+	<option value="620">Vara Federal Cível e Criminal da SSJ de Corrente-PI</option>
+	<option value="621">Vara Federal Cível e Criminal da SSJ de Cruzeiro do Sul-AC</option>
+	<option value="622">Vara Federal Cível e Criminal da SSJ de Diamantino-MT</option>
+	<option value="623">Vara Federal Cível e Criminal da SSJ de Eunápolis-BA</option>
+	<option value="624">Vara Federal Cível e Criminal da SSJ de Floriano-PI</option>
+	<option value="625">Vara Federal Cível e Criminal da SSJ de Formosa-GO</option>
+	<option value="626">Vara Federal Cível e Criminal da SSJ de Guanambi-BA</option>
+	<option value="627">Vara Federal Cível e Criminal da SSJ de Gurupi-TO</option>
+	<option value="628">Vara Federal Cível e Criminal da SSJ de Ilhéus-BA</option>
+	<option value="629">Vara Federal Cível e Criminal da SSJ de Irecê-BA</option>
+	<option value="630">Vara Federal Cível e Criminal da SSJ de Itaituba-PA</option>
+	<option value="631">Vara Federal Cível e Criminal da SSJ de Ituiutaba-MG</option>
+	<option value="632">Vara Federal Cível e Criminal da SSJ de Itumbiara-GO</option>
+	<option value="633">Vara Federal Cível e Criminal da SSJ de Janaúba-MG</option>
+	<option value="634">Vara Federal Cível e Criminal da SSJ de Jataí-GO</option>
+	<option value="635">Vara Federal Cível e Criminal da SSJ de Jequié-BA</option>
+	<option value="636">Vara Federal Cível e Criminal da SSJ de Juazeiro-BA</option>
+	<option value="637">Vara Federal Cível e Criminal da SSJ de Juína-MT</option>
+	<option value="638">Vara Federal Cível e Criminal da SSJ de Laranjal do Jari-AP</option>
+	<option value="639">Vara Federal Cível e Criminal da SSJ de Lavras-MG</option>
+	<option value="640">Vara Federal Cível e Criminal da SSJ de Luziânia-GO</option>
+	<option value="641">Vara Federal Cível e Criminal da SSJ de Manhuaçu-MG</option>
+	<option value="642">Vara Federal Cível e Criminal da SSJ de Muriaé-MG</option>
+	<option value="643">Vara Federal Cível e Criminal da SSJ de Oiapoque-AP</option>
+	<option value="644">Vara Federal Cível e Criminal da SSJ de Paracatu-MG</option>
+	<option value="645">Vara Federal Cível e Criminal da SSJ de Paragominas-PA</option>
+	<option value="646">Vara Federal Cível e Criminal da SSJ de Parnaíba-PI</option>
+	<option value="647">Vara Federal Cível e Criminal da SSJ de Passos-MG</option>
+	<option value="648">Vara Federal Cível e Criminal da SSJ de Paulo Afonso-BA</option>
+	<option value="649">Vara Federal Cível e Criminal da SSJ de Ponte Nova-MG</option>
+	<option value="650">Vara Federal Cível e Criminal da SSJ de Poços de Caldas-MG</option>
+	<option value="651">Vara Federal Cível e Criminal da SSJ de Redenção-PA</option>
+	<option value="652">Vara Federal Cível e Criminal da SSJ de Rio Verde-GO</option>
+	<option value="653">Vara Federal Cível e Criminal da SSJ de São João Del Rei-MG</option>
+	<option value="654">Vara Federal Cível e Criminal da SSJ de São Raimundo Nonato-PI</option>
+	<option value="655">Vara Federal Cível e Criminal da SSJ de São Sebastião do Paraíso-MG</option>
+	<option value="656">Vara Federal Cível e Criminal da SSJ de Tabatinga-AM</option>
+	<option value="657">Vara Federal Cível e Criminal da SSJ de Teixeira de Freitas-BA</option>
+	<option value="658">Vara Federal Cível e Criminal da SSJ de Teófilo Otoni-MG</option>
+	<option value="659">Vara Federal Cível e Criminal da SSJ de Tucuruí-PA</option>
+	<option value="660">Vara Federal Cível e Criminal da SSJ de Unaí-MG</option>
+	<option value="661">Vara Federal Cível e Criminal da SSJ de Uruaçu-GO</option>
+	<option value="662">Vara Federal Cível e Criminal da SSJ de Vilhena-RO</option>
+	<option value="663">Vara Federal Cível e Criminal da SSJ de Viçosa-MG</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;" aria-labelledby="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo_label"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo_label"><span class="select2-selection__rendered" id="select2-fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo-container" title="Selecione">Selecione</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+    </div>
+    </div></div><div id="fPP:dataAutuacaoDiv">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:dataAutuacaoDecoration:dataAutuacaoInicio">
+Data de Autuação</label>
+        </div>
+        
+        <div class="value col-sm-12 ">
+
+	<script type="text/javascript">
+	//<![CDATA[
+	(function($){
+		  $(document).ready(function() {
+			var selector = '.maskDate';
+
+			//Seleciona elemento por id
+			var $input = $("input[id$='" + selector + "']");
+			
+			if($input.length < 1){
+				//Seleciona elemento por class
+				$input = $("input" + selector);
+			}
+			
+			if ('99/99/9999' == '') {
+				$input.unmask();
+			} else {
+				$input.mask('99/99/9999');
+			}
+		 });
+	})(jQuery_21);
+	//]]>
+	</script>
+		<div class="col-sm-6"><label for="fPP:dataAutuacaoDecoration:dataAutuacaoInicio" class="pull-left mt-10 mr-5">
+De </label><span id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioPopup"><input class="rich-calendar-input col-sm-8 text-center maskDate" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioInputDate" name="fPP:dataAutuacaoDecoration:dataAutuacaoInicioInputDate" style="vertical-align: middle; " type="text"><img alt="" class="rich-calendar-button mt-10" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioPopupButton" style="vertical-align: middle" src="/pje/stylesheet/estilos/richfaces/img/calendar-icon.png"><input autocomplete="off" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioInputCurrentDate" name="fPP:dataAutuacaoDecoration:dataAutuacaoInicioInputCurrentDate" style="display:none" type="hidden" value="03/2026"></span><div id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioIFrame" style="display: none;"></div><table id="fPP:dataAutuacaoDecoration:dataAutuacaoInicio" border="0" cellpadding="0" cellspacing="0" class="rich-calendar-exterior rich-calendar-popup undefined" style="display:none; position:absolute;z-index: 3;" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.skipEventOnCollapse=true;"><tbody><tr><td class="rich-calendar-header" colspan="7" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioHeader"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDay"><td class="rich-calendar-days rich-calendar-weekends" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDayCell0">Dom</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDayCell1">Seg</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDayCell2">Ter</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDayCell3">Qua</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDayCell4">Qui</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDayCell5">Sex</td><td class="rich-calendar-days rich-calendar-weekends rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekDayCell6">Sáb</td></tr>
+<tr id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekNum1"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell0" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell1" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell2" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell3" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell4" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell5" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell6" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekNum2"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell7" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell8" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell9" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell10" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell11" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell12" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell13" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekNum3"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell14" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell15" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell16" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell17" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell18" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell19" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell20" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekNum4"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell21" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell22" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell23" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell24" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell25" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell26" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell27" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekNum5"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell28" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell29" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell30" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell31" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell32" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell33" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell34" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioWeekNum6"><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell35" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell36" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell37" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell38" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell39" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell40" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioDayCell41" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoInicio').component.eventCellOnMouseOut(event, this);"></td></tr><tr><td class="rich-calendar-footer" colspan="7" id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioFooter"></td></tr></tbody></table><div id="fPP:dataAutuacaoDecoration:dataAutuacaoInicioScript" style="display: none;"><script type="text/javascript">Richfaces.Calendar.addLocale('pt_BR', {'weekDayLabels':['Domingo','Segunda\x2Dfeira','Terça\x2Dfeira','Quarta\x2Dfeira','Quinta\x2Dfeira','Sexta\x2Dfeira','Sábado'] ,'weekDayLabelsShort':['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'] ,'monthLabels':['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'] ,'monthLabelsShort':['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'] ,'minDaysInFirstWeek':1,'firstWeekDay':0} );
+new Calendar('fPP:dataAutuacaoDecoration:dataAutuacaoInicio', 
+			"pt_BR",{'datePattern':'dd/MM/yyyy','enableManualInput':true,'currentDate':new Date(2026,2,9),'showWeeksBar':false,'direction':'auto','labels':{'cancel':'Cancelar','apply':'Aplicar','today':'Hoje','clean':'Limpar','ok':'OK','close':'Fechar'} } ,{} ).load();</script></div>
+		</div>
+           	
+		<div class="col-sm-6"><label for="fPP:dataAutuacaoDecoration:dataAutuacaoFim" class="pull-left mt-10 mr-5">
+ Até </label><span id="fPP:dataAutuacaoDecoration:dataAutuacaoFimPopup"><input class="rich-calendar-input col-sm-8 text-center maskDate" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimInputDate" name="fPP:dataAutuacaoDecoration:dataAutuacaoFimInputDate" style="vertical-align: middle; " type="text"><img alt="" class="rich-calendar-button mt-10" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimPopupButton" style="vertical-align: middle" src="/pje/stylesheet/estilos/richfaces/img/calendar-icon.png"><input autocomplete="off" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimInputCurrentDate" name="fPP:dataAutuacaoDecoration:dataAutuacaoFimInputCurrentDate" style="display:none" type="hidden" value="03/2026"></span><div id="fPP:dataAutuacaoDecoration:dataAutuacaoFimIFrame" style="display: none;"></div><table id="fPP:dataAutuacaoDecoration:dataAutuacaoFim" border="0" cellpadding="0" cellspacing="0" class="rich-calendar-exterior rich-calendar-popup undefined" style="display:none; position:absolute;z-index: 3;" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.skipEventOnCollapse=true;"><tbody><tr><td class="rich-calendar-header" colspan="7" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimHeader"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDay"><td class="rich-calendar-days rich-calendar-weekends" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDayCell0">Dom</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDayCell1">Seg</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDayCell2">Ter</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDayCell3">Qua</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDayCell4">Qui</td><td class="rich-calendar-days" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDayCell5">Sex</td><td class="rich-calendar-days rich-calendar-weekends rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekDayCell6">Sáb</td></tr>
+<tr id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekNum1"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell0" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell1" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell2" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell3" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell4" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell5" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell6" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekNum2"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell7" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell8" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell9" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell10" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell11" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell12" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell13" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekNum3"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell14" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell15" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell16" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell17" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell18" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell19" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell20" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekNum4"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell21" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell22" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell23" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell24" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell25" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell26" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell27" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekNum5"><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell28" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell29" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell30" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell31" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell32" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell33" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell34" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td></tr><tr id="fPP:dataAutuacaoDecoration:dataAutuacaoFimWeekNum6"><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell rich-calendar-holly" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell35" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell36" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell37" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell38" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell39" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell40" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td><td class="rich-bottom-cell rich-calendar-cell-size rich-calendar-cell rich-calendar-holly rich-right-cell" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimDayCell41" onclick="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnClick(event, this);" onmouseover="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOver(event, this);" onmouseout="$('fPP:dataAutuacaoDecoration:dataAutuacaoFim').component.eventCellOnMouseOut(event, this);"></td></tr><tr><td class="rich-calendar-footer" colspan="7" id="fPP:dataAutuacaoDecoration:dataAutuacaoFimFooter"></td></tr></tbody></table><div id="fPP:dataAutuacaoDecoration:dataAutuacaoFimScript" style="display: none;"><script type="text/javascript">new Calendar('fPP:dataAutuacaoDecoration:dataAutuacaoFim', 
+			"pt_BR",{'datePattern':'dd/MM/yyyy','enableManualInput':true,'currentDate':new Date(2026,2,9),'showWeeksBar':false,'direction':'auto','labels':{'cancel':'Cancelar','apply':'Aplicar','today':'Hoje','clean':'Limpar','ok':'OK','close':'Fechar'} } ,{} ).load();</script></div>
+		</div>
+        </div>
+    </div></div>
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:valorDaCausaDecoration:valorCausaInicial">
+Valor da Causa</label>
+        </div>
+        
+        <div class="value col-sm-12 ">
+		<div class="col-sm-6"><label for="fPP:valorDaCausaDecoration:valorCausaInicial" class="pull-left mr-5 mt-10">
+De </label><input id="fPP:valorDaCausaDecoration:valorCausaInicial" type="text" name="fPP:valorDaCausaDecoration:valorCausaInicial" class="col-sm-9 text-center" maxlength="26" onblur="validarFaixaMonetaria('fPP:valorDaCausaDecoration:valorCausaInicial', 'fPP:valorDaCausaDecoration:valorCausaFinal');">	
+		</div>
+			 							
+		<div class="col-sm-6"><label for="fPP:valorDaCausaDecoration:valorCausaFinal" class="pull-left mr-5 mt-10">
+ Até </label><input id="fPP:valorDaCausaDecoration:valorCausaFinal" type="text" name="fPP:valorDaCausaDecoration:valorCausaFinal" class="col-sm-9 text-center" maxlength="26" onblur="validarFaixaMonetaria('fPP:valorDaCausaDecoration:valorCausaInicial', 'fPP:valorDaCausaDecoration:valorCausaFinal');">	
+		</div><div id="fPP:valorDaCausaDecoration:carregarMascaraMonetaria"><script type="text/javascript">//<![CDATA[
+ {
+	var selector = "#fPP\\:valorDaCausaDecoration\\:valorCausaFinal";
+	try {
+		selector = eval("#fPP\\:valorDaCausaDecoration\\:valorCausaFinal");
+	} catch (e) {}
+	jQuery(selector).maskMoney();
+}
+//]]></script><script type="text/javascript">//<![CDATA[
+ {
+	var selector = "#fPP\\:valorDaCausaDecoration\\:valorCausaInicial";
+	try {
+		selector = eval("#fPP\\:valorDaCausaDecoration\\:valorCausaInicial");
+	} catch (e) {}
+	jQuery(selector).maskMoney();
+}
+//]]></script></div>
+        </div>
+    </div><div id="fPP:movimentacaoProcessualSuggestDiv">
+
+    <div class="propertyView col-sm-12 "><div id="fPP:j_id435:fieldmovimentacaoProcessualSuggestDiv" class="name"><label for="fPP:j_id435:movimentacaoProcessualSuggest" class="">
+Movimento processual</label></div>
+        <div class="value col-sm-12 "><input id="fPP:j_id435:movimentacaoProcessualSuggest" type="text" name="fPP:j_id435:movimentacaoProcessualSuggest" value="" class="suggest" maxlength="50" onblur="" onchange="if(this.value != '') return false;;A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:j_id435:j_id445','control':this,'eventsQueue':'org.richfaces.queue.global','parameters':{'fPP:j_id435:j_id445':'fPP:j_id435:j_id445','ajaxSingle':'fPP:j_id435:movimentacaoProcessualSuggest'} ,'status':'_viewRoot:status'} )" onkeyup="" title="Auto-completar" autocomplete="off"><div id="fPP:j_id435:j_id446" class="rich-sb-common-container  " style="display:none; z-index: 201;width:250px;height:200px;;;"><div class="rich-sb-ext-decor-1"><div class="rich-sb-ext-decor-2" style=";; border-width: null  null  null  null ;"><table border="0" cellpadding="0" cellspacing="1" class="rich-sb-ext-decor-3"><tbody><tr><td><div class="_suggestion_size_ rich-sb-overflow" style="width:246px;height:196px;"><table width="100%" id="fPP:j_id435:j_id446:suggest" border="0"><tbody><tr style="display:none;"><td></td></tr></tbody></table></div></td></tr></tbody></table></div></div><div class="rich-sb-shadow" style="opacity:0.1; filter:alpha(opacity=10);top: 4px; left: 4px; "></div></div><div id="fPP:j_id435:j_id446_script" style="display:none;"><script type="text/javascript">Richfaces.onAvailable('fPP:j_id435:movimentacaoProcessualSuggest', function() { new RichFaces.Suggestion('fPP','fPP:j_id435:movimentacaoProcessualSuggest','fPP:j_id435:j_id446',{'similarityGroupingId':'fPP:j_id435:j_id446','onselect':function(suggestion,event){A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:j_id435:j_id446:j_id449','eventsQueue':'org.richfaces.queue.global','oncomplete':function(request,event,data){},'parameters':{'fPP:j_id435:j_id446:j_id449':'fPP:j_id435:j_id446:j_id449','ajaxSingle':'fPP:j_id435:j_id446'} ,'status':'_viewRoot:status'} )},'implicitEventsQueue':'fPP:j_id435:j_id446','width':'250','eventsQueue':'org.richfaces.queue.global','oncomplete':function(request,event,data){},'parameters':{'ajaxSingle':'fPP:j_id435:j_id446','fPP:j_id435:j_id446':'fPP:j_id435:j_id446'} ,'status':'_viewRoot:status','frequency':1.0,'minChars':'1'} );
+});</script></div><iframe src="/pje/a4j/g/3_3_3.Finalorg/richfaces/renderkit/html/images/spacer.gif" id="fPP:j_id435:j_id446_iframe" style="position:absolute;display:none;z-index:200;"></iframe><input type="hidden" autocomplete="off" id="fPP:j_id435:j_id446_selection" name="fPP:j_id435:j_id446_selection">
+    </div>
+    </div></div>
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id452:j_id459:orgaoOrigemCriminal" id="fPP:j_id452:j_id459:orgaoOrigemCriminal_label">
+</label>
+        </div>
+        
+        <div class="value col-sm-12 "><div class="rich-stglpanel mt-10" id="fPP:j_id452:j_id457"><script type="text/javascript">SimpleTogglePanelManager.add(new SimpleTogglePanel("fPP:j_id452:j_id457", 
+            													"false",{onexpand: function(event){A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:j_id452:j_id458','parameters':{'fPP:j_id452:j_id458':'fPP:j_id452:j_id458','ajaxSingle':'fPP:j_id452:j_id457'} } )},oncollapse: ''}
+            													
+            							 ));</script><div class="rich-stglpanel-header " id="fPP:j_id452:j_id457_header" onclick="SimpleTogglePanelManager.toggleOnClient(event,'fPP:j_id452:j_id457');"><div class="rich-stglpanel-marker"><div class="rich-stglpnl-marker" id="fPP:j_id452:j_id457_switch_on" style="display: none">«</div><div class="rich-stglpnl-marker" id="fPP:j_id452:j_id457_switch_off">»</div></div>Filtros Criminais&nbsp;</div><div style="display: none;"><input autocomplete="off" id="fPP:j_id452:j_id457_input" name="fPP:j_id452:j_id457" type="hidden"></div><div class="rich-stglpanel-body " id="fPP:j_id452:j_id457_body" style="display: none"><div id="fPP:j_id452:campoProcedOrigemCriminal">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id452:j_id459:orgaoOrigemCriminal" id="fPP:j_id452:j_id459:orgaoOrigemCriminal_label">
+Orgao de Origem do Proced. Criminal</label>
+        </div>
+        
+        <div class="value col-sm-12 "><select id="fPP:j_id452:j_id459:orgaoOrigemCriminal" name="fPP:j_id452:j_id459:orgaoOrigemCriminal" size="1" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" aria-labelledby="fPP:j_id452:j_id459:orgaoOrigemCriminal_label">	<option value="org.jboss.seam.ui.NoSelectionConverter.noSelectionValue" selected="selected">Selecione</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;" aria-labelledby="fPP:j_id452:j_id459:orgaoOrigemCriminal_label"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="fPP:j_id452:j_id459:orgaoOrigemCriminal_label"><span class="select2-selection__rendered" id="select2-fPP:j_id452:j_id459:orgaoOrigemCriminal-container" title="Selecione">Selecione</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+        </div>
+    </div></div><div id="fPP:j_id452:numProcedCriminalDiv">
+	
+	<div class="form-group numero-processo">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id452:numeroProcedCriminal">
+Número do procedimento criminal</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id452:numeroProcedCriminal:numeroProcedCriminal" type="text" name="fPP:j_id452:numeroProcedCriminal:numeroProcedCriminal" class="col-sm-4" maxlength="60" onkeyup="avancaFoco(0)"><label class="pull-left">
+ - </label><input id="fPP:j_id452:numeroProcedCriminal:anoProcedCriminal" type="text" name="fPP:j_id452:numeroProcedCriminal:anoProcedCriminal" class="col-sm-2" maxlength="4" onkeyup="avancaFoco(1)">
+        </div>
+    </div>
+	</div>
+
+	<script type="text/javascript">
+		function avancaFoco(atual) {
+			var ids = new Array();
+			ids[0] = "fPP:j_id452:numeroProcedCriminal";
+			ids[1] = "fPP:j_id452:numeroProcedCriminal:anoProcedCriminal";
+			i = atual;
+			apenasNumeros(document.getElementById(ids[i]));
+			if (document.getElementById(ids[i]).value.length == document
+					.getElementById(ids[i]).maxLength) {
+				document.getElementById(ids[i + 1]).focus();
+			}
+		}
+	</script></div><div id="fPP:j_id452:numeroProtocoloPoliciaDiv">
+	
+	<div class="form-group numero-processo">
+	
+    <div class="propertyView ">
+        <div class="name"><label for="fPP:j_id452:numeroProtocoloPolicia">
+Protocolo de Polícia</label>
+        </div>
+        
+        <div class="value col-sm-12 "><input id="fPP:j_id452:numeroProtocoloPolicia:numeroProtocoloPolicia" type="text" name="fPP:j_id452:numeroProtocoloPolicia:numeroProtocoloPolicia" class="col-sm-8" maxlength="20">
+        </div>
+    </div>
+	</div></div></div></div>
+        </div>
+    </div><div id="fPP:j_id493" class="actionButtons col-sm-12"><script id="fPP:j_id494" type="text/javascript">//<![CDATA[
+		executarPesquisaReCaptcha=function(){A4J.AJAX.Submit('fPP',null,{'similarityGroupingId':'fPP:j_id494','oncomplete':function(request,event,data){hideLoading(); hcaptcha.reset();},'parameters':{'fPP:j_id494':'fPP:j_id494'} } )};
+		//]]></script><script language="JavaScript" type="text/javascript">document.forms['fPP'].onkeypress = new Function("event", "{var keycode;if (window.event) keycode = window.event.keyCode;else if (event) keycode = event.which;else return true;if (keycode == 13) { document.getElementById('fPP:searchProcessos').click();return false; } else return true; }");</script><input class="btn btn-primary pull-left" id="fPP:searchProcessos" name="fPP:searchProcessos" onclick="return executarReCaptcha();;A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:searchProcessos','parameters':{'fPP:searchProcessos':'fPP:searchProcessos'} } );return false;" value="Pesquisar" type="button"><input class="btn btn-default pull-left" id="fPP:clearButtonProcessos" name="fPP:clearButtonProcessos" onclick="A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:clearButtonProcessos','oncomplete':function(request,event,data){hideLoading();mascaraDocumento();},'parameters':{'fPP:clearButtonProcessos':'fPP:clearButtonProcessos'} } );return false;" value="Limpar" type="button"></div></div></div></div><div xmlns="http://www.w3.org/1999/xhtml" class="rich-panel col-sm-9" id="fPP:processosGridPanel"><div class="rich-panel-body" id="fPP:processosGridPanel_body"><dl id="fPP:j_id496" class="rich-messages alert alert-warning" style="display: none;"><dt></dt></dl><table class="rich-table" id="fPP:processosTable" border="0" cellpadding="0" cellspacing="0"><colgroup span="9"></colgroup><thead class="rich-table-thead"><tr class="rich-table-subheader"><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id502header"><div id="fPP:processosTable:j_id502header:sortDiv">Ações</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id507header"><div id="fPP:processosTable:j_id507header:sortDiv">Processo</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id511header"><div id="fPP:processosTable:j_id511header:sortDiv">Características</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id525header"><div id="fPP:processosTable:j_id525header:sortDiv">Órgão julgador</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id528header"><div id="fPP:processosTable:j_id528header:sortDiv">Autuado em</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id531header"><div id="fPP:processosTable:j_id531header:sortDiv">Classe judicial</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id534header"><div id="fPP:processosTable:j_id534header:sortDiv">Polo ativo</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id537header"><div id="fPP:processosTable:j_id537header:sortDiv">Polo passivo</div></th><th class="rich-table-subheadercell" scope="col" id="fPP:processosTable:j_id545header"><div id="fPP:processosTable:j_id545header:sortDiv">Última moviment.</div></th></tr></thead><tfoot><tr class="rich-table-footer"><td class="rich-table-footercell" colspan="9" scope="colgroup"><div id="fPP:processosTable:j_id497" class="col-sm-12"><div class="pull-left" title="Paginação"><div class="rich-datascr" id="fPP:processosTable:scTabela" style="" align="center"><table border="0" cellpadding="0" cellspacing="1" class="rich-dtascroller-table" id="fPP:processosTable:scTabela_table" style="text-align:center"><tbody><tr><td class="rich-datascr-button-dsbld rich-datascr-button">««</td><td class="rich-datascr-button-dsbld rich-datascr-button">«</td><td class="rich-datascr-button-dsbld rich-datascr-button"></td><td class="rich-datascr-button-dsbld rich-datascr-button"></td><td class="rich-datascr-button-dsbld rich-datascr-button">»</td><td class="rich-datascr-button-dsbld rich-datascr-button">»»</td></tr></tbody></table><script type="text/javascript">//<![CDATA[
+new Richfaces.Datascroller('fPP:processosTable:scTabela', function(event){A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:processosTable:scTabela','implicitEventsQueue':'fPP:processosTable:scTabela','parameters':{'fPP:processosTable:scTabela':event.memo.page,'ajaxSingle':'fPP:processosTable:scTabela'} ,'ignoreDupResponses':true} ); return false;});
+//]]>
+</script></div></div><div class="pull-right"><span class="text-muted">1 resultados encontrados.</span></div></div></td></tr></tfoot><tbody id="fPP:processosTable:tb"><tr class="rich-table-row rich-table-firstrow"><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id502"><a class="btn btn-default btn-sm" href="#" id="fPP:processosTable:11283561:j_id504" name="fPP:processosTable:11283561:j_id504" onclick="A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:processosTable:11283561:j_id504','parameters':{'idProcessoSelecionado':11283561,'fPP:processosTable:11283561:j_id504':'fPP:processosTable:11283561:j_id504','ajaxSingle':'fPP:processosTable:11283561:j_id504'} } );return false;" title="Peticionar nos autos"><i class="fa fa-pencil-square-o"></i></a></td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id507"><a class="btn-link btn-condensed" href="#" id="fPP:processosTable:11283561:j_id509" name="fPP:processosTable:11283561:j_id509" onclick="A4J.AJAX.Submit('fPP',event,{'similarityGroupingId':'fPP:processosTable:11283561:j_id509','parameters':{'fPP:processosTable:11283561:j_id509':'fPP:processosTable:11283561:j_id509','idProcessoSelecionado':11283561,'ajaxSingle':'fPP:processosTable:11283561:j_id509'} } );return false;" title="1028212-91.2024.4.01.3400">1028212-91.2024.4.01.3400</a></td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id511"><div class="col-sm-12 text-center"><i title="Prioritário" class="fa fa-arrow-circle-up mr-5" aria-hidden="true"></i></div></td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id525">Núcleo de Justiça 4.0 - Apoio ao Cumprimento de Sentença</td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id528">29/04/2024</td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id531">CUMPRIMENTO DE SENTENÇA CONTRA A FAZENDA PÚBLICA</td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id534">MAURINA DOS SANTOS CARVALHO</td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id537">INSTITUTO NACIONAL DO SEGURO SOCIAL - INSS</td><td class="rich-table-cell warning" id="fPP:processosTable:11283561:j_id545">Decorrido prazo de MAURINA DOS SANTOS CARVALHO em 04/03/2026 23:59.</td></tr></tbody></table></div></div><script id="fPP:j_id550" type="text/javascript">//<![CDATA[
+		verificarConsultaProcessoPorRequestParameter=function(){A4J.AJAX.Submit('fPP',null,{'similarityGroupingId':'fPP:j_id550','oncomplete':function(request,event,data){if (data == 'true') { abrirProcessoPorRequestParameter(); }},'parameters':{'fPP:j_id550':'fPP:j_id550','ajaxSingle':'fPP:j_id550'} } )};
+		//]]></script><script id="fPP:j_id551" type="text/javascript">//<![CDATA[
+		abrirProcessoPorRequestParameter=function(idProcessoSelecionado){A4J.AJAX.Submit('fPP',null,{'similarityGroupingId':'fPP:j_id551','parameters':{'idProcessoSelecionado':idProcessoSelecionado,'ajaxSingle':'fPP:j_id551','fPP:j_id551':'fPP:j_id551'} ,'status':'_viewRoot:status'} )};
+		//]]></script><input type="hidden" autocomplete="off" name="fPP" value="fPP"><input type="hidden" autocomplete="off" name="autoScroll" value=""><script type="text/javascript">function clear_fPP() {
+_clearJSFFormParameters('fPP','',['fPP:j_idcl','fPP:_link_hidden_']);
+}
+function clearFormHiddenParams_fPP(){clear_fPP();}
+function clearFormHiddenParams_fPP(){clear_fPP();}
+clear_fPP();</script><input type="hidden" name="javax.faces.ViewState" id="javax.faces.ViewState" value="j_id26" autocomplete="off"></form><div id="idPopupTarefas"></div><div id="divAcaovisualizarProcesso"></div><div id="divPeticionar"></div>
+	
+	
+		<script type="text/javascript">
+			jQuery_21(document).ready(function() {
+				jQuery_21("input[id$='numeroSequencial']").focus();
+			verificarConsultaProcessoPorRequestParameter();
+			});
+		</script>
+		</div>	
+	</div></div>
+			</div></div>
+
+	<style>
+			.index-topo {
+				z-index: 2000 !important;
+			}
+	</style><div id="mpPJeOfficeIndisponivel" style="display: none;"><input autocomplete="off" id="mpPJeOfficeIndisponivelOpenedState" name="mpPJeOfficeIndisponivelOpenedState" type="hidden"><div class="rich-modalpanel index-topo" id="mpPJeOfficeIndisponivelContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="mpPJeOfficeIndisponivelDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="mpPJeOfficeIndisponivelFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="mpPJeOfficeIndisponivelCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="mpPJeOfficeIndisponivelShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="mpPJeOfficeIndisponivelContentDiv"><div class="rich-mpnl-text rich-mpnl-controls ">
+				<span class="btn-fechar" onclick="Richfaces.hideModalPanel('mpPJeOfficeIndisponivel')" title="Fechar"><i class="icon-fechar"></i></span></div><table border="0" cellpadding="0" cellspacing="0" class="rich-mp-content-table" id="mpPJeOfficeIndisponivelContentTable" style="height: 100%; width: 100%;"><tbody><tr style="height: 1%;"><td class="rich-mpnl-header-cell"><div class="rich-mpnl-text rich-mpnl-header " id="mpPJeOfficeIndisponivelHeader" style="white-space: nowrap; cursor: move;">PJeOffice Indisponível</div></td></tr><tr style="height: 99%"><td class="rich-mpnl-body" valign="top">
+								
+		<h3>O aplicativo PJeOffice não está disponível!</h3></td></tr></tbody></table></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerN" style="width: 40px; height: 4px; cursor: n-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerE" style="height: 40px; width: 4px; cursor: e-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerS" style="width: 40px; height: 4px; cursor: s-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerW" style="height: 40px; width: 4px; cursor: w-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerNWU" style="width: 40px; height: 4px; cursor: nw-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerNEU" style="height: 40px; width: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerNEL" style="width: 40px; height: 4px; cursor: ne-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerSEU" style="height: 40px; width: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerSEL" style="width: 40px; height: 4px; cursor: se-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerSWL" style="height: 40px; width: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerSWU" style="width: 40px; height: 4px; cursor: sw-resize;"></div><div class="rich-mpnl-resizer" id="mpPJeOfficeIndisponivelResizerNWL" style="height: 40px; width: 4px; cursor: nw-resize;"></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="mpPJeOfficeIndisponivelCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="mpPJeOfficeIndisponivelLastHref"></button></div><script type="text/javascript">new ModalPanel('mpPJeOfficeIndisponivel',
+				{
+					width: 400,
+					height: 190,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: true,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div><div id="mpProgresso" style="display: none;"><input autocomplete="off" id="mpProgressoOpenedState" name="mpProgressoOpenedState" type="hidden"><div class="rich-modalpanel modal-small" id="mpProgressoContainer" style="position: absolute; display: none; z-index: 100; background-color: inherit;"><div class="rich-mpnl-mask-div-opaque rich-mpnl-mask-div" id="mpProgressoDiv" style="z-index: -1;"><button class="rich-mpnl-button" id="mpProgressoFirstHref"></button></div><div class="rich-mpnl-panel"><div class="rich-mp-container" id="mpProgressoCDiv" style="position: absolute; left: 0px; top: 0px; z-index: 9;"><div class="rich-mpnl-shadow" id="mpProgressoShadowDiv"></div><div class="rich-mpnl-ovf-hd rich-mpnl-trim rich-mpnl-content" id="mpProgressoContentDiv"><table border="0" cellpadding="0" cellspacing="0" class="rich-mp-content-table" id="mpProgressoContentTable" style="height: 100%; width: 100%;"><tbody><tr style="height: 99%"><td class="rich-mpnl-body" valign="top">			
+		<div class="media">
+			
+			<div class="media-body" align="center">
+				<h6>Por favor aguarde</h6>
+			</div>
+		</div></td></tr></tbody></table></div></div></div><div class="rich-mpnl-mask-div rich-mpnl-mask-div-transparent" id="mpProgressoCursorDiv" style="z-index: -200;"><button class="rich-mpnl-button" id="mpProgressoLastHref"></button></div><script type="text/javascript">new ModalPanel('mpProgresso',
+				{
+					width: -1,
+					height: 110,
+
+					minWidth: -1,
+					minHeight: -1,
+
+					resizeable: false,
+					moveable: true,
+
+					left: "auto",
+					top: "auto",
+
+					zindex: 100,onresize: '',onmove: '',onshow: '',onhide: '',onbeforeshow: '',onbeforehide: '',
+					domElementAttachment: "",				
+					keepVisualState: false,
+					showWhenRendered: false,
+					selectBehavior: "disable",
+
+					autosized: false,
+					overlapEmbedObjects: false});</script></div><script type="text/javascript"></script></div>
+	
+	<script type="text/javascript">
+		function showMpProgresso() {
+			Richfaces.showModalPanel('mpProgresso');
+		}
+		function hideMpProgresso() {
+			Richfaces.hideModalPanel('mpProgresso');
+		}
+	</script>
+	
+<div id="fPP:decorationDados:ufOABCombo_live" aria-live="polite" role="status" class="sr-only"></div><div id="fPP:jurisdicaoComboDecoration:jurisdicaoCombo_live" aria-live="polite" role="status" class="sr-only"></div><div id="fPP:orgaoJulgadorComboDecoration:orgaoJulgadorCombo_live" aria-live="polite" role="status" class="sr-only"></div><div id="fPP:j_id452:j_id459:orgaoOrigemCriminal_live" aria-live="polite" role="status" class="sr-only"></div><script xmlns="http://www.w3.org/1999/xhtml">A4J.AJAX._scriptEvaluated=true;</script></body></html>
