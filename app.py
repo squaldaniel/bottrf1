@@ -268,7 +268,7 @@ def create_context(playwright, config: AppConfig):
         if profile_in_use:
             print(
                 "Perfil do Firefox de debug aparenta estar em uso. "
-                "Tentando aproveitar o estado salvo de sessão."
+                "Tentando reaproveitar sessão existente via perfil/storage_state."
             )
 
         try:
@@ -402,34 +402,38 @@ def close_certificado_alert_popup_if_present(page) -> bool:
     if popup.count() == 0:
         return False
 
+    try:
+        popup.first.wait_for(state="visible", timeout=1200)
+    except PlaywrightTimeoutError:
+        return False
+
     if CERTIFICADO_ALERTA_TEXT not in popup.first.inner_text().strip().lower():
         return False
 
-    close_button = popup.locator("span.btn-fechar, .ui-dialog-titlebar-close, button[aria-label='Close']")
-    if close_button.count() == 0:
-        print(
-            "Popup de alerta de certificado foi detectado, "
-            "mas o botão de fechar não foi encontrado."
-        )
+    close_button = popup.locator("span.btn-fechar, .ui-dialog-titlebar-close, button[aria-label='Close']").first
+    if close_button.count() == 0 or not close_button.is_visible():
         return False
 
     print("Popup de certificado próximo de expirar detectado. Fechando alerta...")
-    close_button.first.click()
+    try:
+        close_button.click(timeout=1500)
+    except PlaywrightTimeoutError:
+        return False
 
     try:
-        popup.first.wait_for(state="hidden", timeout=5000)
+        popup.first.wait_for(state="hidden", timeout=2000)
     except PlaywrightTimeoutError:
-        print("Popup de certificado não ocultou no tempo esperado; seguindo fluxo.")
+        pass
 
     return True
 
 
-def dismiss_blocking_certificado_popup_if_present(page, attempts: int = 3) -> None:
+def dismiss_blocking_certificado_popup_if_present(page, attempts: int = 2) -> None:
     for attempt in range(1, attempts + 1):
         if not close_certificado_alert_popup_if_present(page):
             return
         log_message(f"Popup de certificado fechado (tentativa {attempt}).")
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(250)
 
 
 
@@ -512,30 +516,39 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
 
     print("Disparando consulta (fPP:searchProcessos) e aguardando resposta AJAX...")
     status_info = "desconhecido"
-    try:
-        with page.expect_response(is_target_response, timeout=60000) as response_info:
-            search_button.click()
-        response = response_info.value
-        body_text = response.text()
-        status_info = str(response.status)
-    except PlaywrightTimeoutError:
-        print(
-            "Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. "
-            "Continuando com fallback baseado no DOM atual."
-        )
+
+    body_text = ""
+    for attempt in range(1, 3):
+        dismiss_blocking_certificado_popup_if_present(page)
         try:
-            page.wait_for_load_state("networkidle", timeout=15000)
+            with page.expect_response(is_target_response, timeout=20000) as response_info:
+                search_button.click(timeout=5000)
+            response = response_info.value
+            body_text = response.text()
+            status_info = str(response.status)
+            break
         except PlaywrightTimeoutError:
-            pass
+            log_message(f"Tentativa {attempt} de disparar pesquisa sem resposta AJAX esperada.")
+            if attempt == 2:
+                print(
+                    "Não foi possível capturar a resposta AJAX esperada dentro do tempo limite. "
+                    "Continuando com fallback baseado no DOM atual."
+                )
+                try:
+                    page.wait_for_load_state("networkidle", timeout=7000)
+                except PlaywrightTimeoutError:
+                    pass
 
-        if is_bad_request_page(page):
-            raise ValueError(
-                "Portal retornou 'Bad Request' após a autenticação/consulta. "
-                "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
-            )
+                if is_bad_request_page(page):
+                    raise ValueError(
+                        "Portal retornou 'Bad Request' após a autenticação/consulta. "
+                        "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
+                    )
 
-        body_text = page.content()
-        status_info = "fallback-dom"
+                body_text = page.content()
+                status_info = "fallback-dom"
+            else:
+                page.wait_for_timeout(500)
 
     Path(RESPONSE_DUMP_FILE).write_text(body_text, encoding="utf-8")
     print(f"Resposta de consulta capturada com status: {status_info}")
