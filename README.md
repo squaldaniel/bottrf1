@@ -1,4 +1,4 @@
-# Automação de login PJe TRF1
+# Automação de login PJe TRF3
 
 Aplicação em Python que:
 
@@ -62,8 +62,8 @@ py -m playwright install firefox
 Antes de executar, edite `processos.txt` com um número de processo por linha (linhas em branco e iniciadas com `#` são ignoradas):
 
 ```text
-1000237-96.2026.4.01.3700
-0000000-00.2024.4.01.0000
+1000237-96.2026.4.03.3700
+0000000-00.2024.4.03.0000
 ```
 
 ### 2) Executar

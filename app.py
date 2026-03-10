@@ -13,13 +13,13 @@ from playwright.sync_api import sync_playwright
 AUTH_URL = (
     "https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth"
     "?response_type=code"
-    "&client_id=pje-trf1-1g"
-    "&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam"
-    "&state=54cf8d8f-d065-47ad-8646-fc66deeacaab"
+    "&client_id=pje-trf3-1g"
+    "&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam"
+    "&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4"
     "&login=true"
     "&scope=openid"
 )
-CONSULTA_URL = "https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 PROCESSOS_FILE = Path("processos.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
@@ -278,7 +278,7 @@ def load_env_cookies() -> list[dict]:
             {
                 "name": name,
                 "value": value,
-                "domain": "pje1g.trf1.jus.br",
+                "domain": "pje1g.trf3.jus.br",
                 "path": "/",
                 "httpOnly": False,
                 "secure": True,
