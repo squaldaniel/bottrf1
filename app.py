@@ -579,33 +579,61 @@ def trigger_certificado_digital_click(page) -> None:
     cert_button.click(timeout=15000)
 
 
-def click_certificado_digital_and_wait_otp(page) -> None:
-    last_error = None
-    for attempt in range(1, 4):
-        try:
-            trigger_certificado_digital_click(page)
-            page.locator("#otp").wait_for(state="visible", timeout=15000)
-            log_message(f"Botão de certificado acionado com sucesso na tentativa {attempt}.")
-            return
-        except PlaywrightTimeoutError as exc:
-            last_error = exc
-            log_message(f"Tentativa {attempt} de abrir OTP falhou; aplicando fallback de clique.")
-            cert_button = page.locator("#kc-pje-office")
+
+
+def wait_for_otp_field(page, timeout_ms: int = 45000) -> bool:
+    deadline = datetime.now().timestamp() + (timeout_ms / 1000)
+
+    while datetime.now().timestamp() < deadline:
+        if page.is_closed():
+            raise PlaywrightError("Página foi fechada durante a espera do OTP.")
+
+        otp = page.locator("#otp")
+        if otp.count() > 0:
             try:
-                cert_button.click(force=True, timeout=5000)
-                page.locator("#otp").wait_for(state="visible", timeout=10000)
-                return
-            except PlaywrightTimeoutError:
+                if otp.first.is_visible():
+                    return True
+            except PlaywrightError:
                 pass
 
-            try:
-                cert_button.evaluate("el => el.click()")
-                page.locator("#otp").wait_for(state="visible", timeout=10000)
-                return
-            except PlaywrightTimeoutError:
-                continue
+        # Se caiu direto na consulta sem OTP, força retorno ao login para exigir OTP.
+        if "ConsultaProcesso/listView.seam" in (page.url or ""):
+            log_message("Consulta abriu sem OTP durante login forçado. Retornando para AUTH_URL...")
+            goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
 
-    raise ValueError("Não foi possível avançar ao campo OTP ao clicar em 'CERTIFICADO DIGITAL'.") from last_error
+        page.wait_for_timeout(800)
+
+    return False
+
+def click_certificado_digital_and_wait_otp(page) -> None:
+    last_error = None
+
+    for attempt in range(1, 4):
+        try:
+            # Reinicia o estado no link oficial em cada tentativa para reduzir loops quebrados.
+            goto_with_transient_recovery(
+                page,
+                AUTH_URL,
+                wait_until="domcontentloaded",
+                timeout=60000,
+                retries=5,
+            )
+
+            trigger_certificado_digital_click(page)
+            if wait_for_otp_field(page, timeout_ms=45000):
+                log_message(f"Campo OTP visível com sucesso na tentativa {attempt}.")
+                return
+
+            raise PlaywrightTimeoutError("OTP não ficou visível dentro do tempo limite.")
+        except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+            last_error = exc
+            log_message(f"Tentativa {attempt} de abrir OTP falhou: {exc}")
+            page.wait_for_timeout(1200)
+            continue
+
+    raise ValueError(
+        "Não foi possível avançar ao campo OTP após múltiplas tentativas de login por certificado."
+    ) from last_error
 
 
 
