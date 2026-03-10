@@ -13,13 +13,13 @@ from playwright.sync_api import sync_playwright
 AUTH_URL = (
     "https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth"
     "?response_type=code"
-    "&client_id=pje-trf1-1g"
-    "&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam"
-    "&state=54cf8d8f-d065-47ad-8646-fc66deeacaab"
+    "&client_id=pje-trf3-1g"
+    "&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam"
+    "&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4"
     "&login=true"
     "&scope=openid"
 )
-CONSULTA_URL = "https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 PROCESSOS_FILE = Path("processos.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
@@ -87,7 +87,19 @@ def attach_page_debug_logging(page) -> None:
 def navigate_to_consulta_page(page, attempts: int = 3) -> None:
     for attempt in range(1, attempts + 1):
         log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {CONSULTA_URL}")
-        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        try:
+            page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        except PlaywrightError as exc:
+            error_text = str(exc)
+            if "NS_ERROR_NET_INTERRUPT" in error_text:
+                log_message(
+                    "Falha transitória de rede ao abrir consulta (NS_ERROR_NET_INTERRUPT). "
+                    "Validando estado atual da página antes de repetir..."
+                )
+                page.wait_for_timeout(1200)
+            else:
+                raise
+
         try:
             page.locator(SEL_NUMERO_SEQUENCIAL).wait_for(state="visible", timeout=15000)
             log_message(f"Tela de consulta pronta. URL final: {page.url}")
@@ -138,7 +150,7 @@ class AppConfig:
 
 
 def parse_bool(raw_value: str) -> bool:
-    return raw_value.strip().lower() in {"1", "true", "yes", "y", "on"}
+    return raw_value.strip().lower() in {"1", "true", "tree", "yes", "y", "on"}
 
 
 def parse_app_config(argv: list[str]) -> AppConfig:
@@ -278,7 +290,7 @@ def load_env_cookies() -> list[dict]:
             {
                 "name": name,
                 "value": value,
-                "domain": "pje1g.trf1.jus.br",
+                "domain": "pje1g.trf3.jus.br",
                 "path": "/",
                 "httpOnly": False,
                 "secure": True,
