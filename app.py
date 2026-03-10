@@ -1,4 +1,5 @@
 import builtins
+import json
 import os
 import re
 import sys
@@ -13,13 +14,13 @@ from playwright.sync_api import sync_playwright
 AUTH_URL = (
     "https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth"
     "?response_type=code"
-    "&client_id=pje-trf1-1g"
-    "&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam"
-    "&state=54cf8d8f-d065-47ad-8646-fc66deeacaab"
+    "&client_id=pje-trf3-1g"
+    "&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam"
+    "&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4"
     "&login=true"
     "&scope=openid"
 )
-CONSULTA_URL = "https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 PROCESSOS_FILE = Path("processos.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
@@ -84,10 +85,77 @@ def attach_page_debug_logging(page) -> None:
     page.on("requestfailed", _request_failed)
 
 
+
+
+SECURE_CONNECTION_FAILED_SNIPPETS = [
+    "secure connection failed",
+    "conexão segura falhou",
+    "authenticity of the received data could not be verified",
+]
+
+
+def is_secure_connection_failed_page(page) -> bool:
+    try:
+        title = (page.title() or "").strip().lower()
+    except PlaywrightError:
+        title = ""
+
+    if any(snippet in title for snippet in SECURE_CONNECTION_FAILED_SNIPPETS):
+        return True
+
+    try:
+        body_text = (page.inner_text("body") or "").strip().lower()
+    except PlaywrightError:
+        body_text = ""
+
+    return any(snippet in body_text for snippet in SECURE_CONNECTION_FAILED_SNIPPETS)
+
+
+def goto_with_transient_recovery(
+    page,
+    url: str,
+    *,
+    wait_until: str,
+    timeout: int,
+    retries: int = 3,
+    retry_delay_ms: int = 1600,
+) -> None:
+    last_exc: Exception | None = None
+
+    for attempt in range(1, retries + 1):
+        try:
+            page.goto(url, wait_until=wait_until, timeout=timeout)
+            if is_secure_connection_failed_page(page):
+                raise PlaywrightError("Secure Connection Failed page detected")
+            return
+        except PlaywrightError as exc:
+            last_exc = exc
+            if attempt < retries and is_transient_navigation_error(exc):
+                log_message(
+                    f"Falha transitória ao navegar para {url} (tentativa {attempt}/{retries}): {exc}"
+                )
+                page.wait_for_timeout(retry_delay_ms)
+                continue
+            raise
+
+    if last_exc:
+        raise last_exc
+
 def navigate_to_consulta_page(page, attempts: int = 3) -> None:
     for attempt in range(1, attempts + 1):
         log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {CONSULTA_URL}")
-        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        try:
+            goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        except PlaywrightError as exc:
+            if is_transient_navigation_error(exc):
+                log_message(
+                    "Falha transitória de rede/TLS ao abrir consulta; "
+                    "validando estado atual da página antes de repetir..."
+                )
+                page.wait_for_timeout(1600)
+            else:
+                raise
+
         try:
             page.locator(SEL_NUMERO_SEQUENCIAL).wait_for(state="visible", timeout=15000)
             log_message(f"Tela de consulta pronta. URL final: {page.url}")
@@ -138,7 +206,7 @@ class AppConfig:
 
 
 def parse_bool(raw_value: str) -> bool:
-    return raw_value.strip().lower() in {"1", "true", "yes", "y", "on"}
+    return raw_value.strip().lower() in {"1", "true", "tree", "yes", "y", "on"}
 
 
 def parse_app_config(argv: list[str]) -> AppConfig:
@@ -278,7 +346,7 @@ def load_env_cookies() -> list[dict]:
             {
                 "name": name,
                 "value": value,
-                "domain": "pje1g.trf1.jus.br",
+                "domain": "pje1g.trf3.jus.br",
                 "path": "/",
                 "httpOnly": False,
                 "secure": True,
@@ -299,6 +367,39 @@ def apply_cookies_if_available(context) -> None:
 
 
 
+
+
+
+def is_transient_navigation_error(exc: Exception) -> bool:
+    error_text = str(exc)
+    return (
+        "NS_ERROR_NET_INTERRUPT" in error_text
+        or "Secure Connection Failed page detected" in error_text
+    )
+
+
+def apply_debug_storage_state_if_available(context) -> None:
+    if not DEBUG_STORAGE_STATE_FILE.exists():
+        return
+
+    try:
+        payload = json.loads(DEBUG_STORAGE_STATE_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        log_message(f"Não foi possível ler storage state debug: {exc}")
+        return
+
+    cookies = payload.get("cookies") or []
+    if not cookies:
+        log_message("Storage state debug encontrado, mas sem cookies para reaproveitar.")
+        return
+
+    try:
+        context.add_cookies(cookies)
+        log_message(
+            f"Cookies carregados do storage state debug: {len(cookies)} entradas."
+        )
+    except PlaywrightError as exc:
+        log_message(f"Falha ao aplicar cookies do storage state debug: {exc}")
 
 def get_debug_storage_state() -> str | None:
     if not DEBUG_STORAGE_STATE_FILE.exists():
@@ -348,6 +449,7 @@ def create_context(playwright, config: AppConfig):
                 user_data_dir=str(DEBUG_PROFILE_DIR),
                 headless=False,
                 accept_downloads=True,
+                ignore_https_errors=True,
             )
             print(f"Modo debug ativo. Perfil persistente: {DEBUG_PROFILE_DIR}")
             return browser, context
@@ -363,11 +465,12 @@ def create_context(playwright, config: AppConfig):
             context = browser.new_context(
                 accept_downloads=True,
                 storage_state=get_debug_storage_state(),
+                ignore_https_errors=True,
             )
             return browser, context
 
     browser = playwright.firefox.launch(headless=False)
-    context = browser.new_context(accept_downloads=True)
+    context = browser.new_context(accept_downloads=True, ignore_https_errors=True)
     return browser, context
 def attach_dialog_auto_accept(page) -> None:
     def _handler(dialog):
@@ -378,7 +481,11 @@ def attach_dialog_auto_accept(page) -> None:
 
 
 def is_logged_in(page) -> bool:
-    page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+    try:
+        goto_with_transient_recovery(page, CONSULTA_URL, wait_until="networkidle", timeout=60000)
+    except PlaywrightError as exc:
+        log_message(f"Falha ao validar sessão autenticada: {exc}")
+        return False
 
     if "ConsultaProcesso/listView.seam" not in page.url:
         return False
@@ -436,10 +543,10 @@ def click_certificado_digital_and_wait_otp(page) -> None:
 
 
 def perform_login_flow(page) -> None:
-    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+    goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
 
     if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
-        page.goto(AUTH_URL, wait_until="domcontentloaded", timeout=60000)
+        goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000)
 
     click_certificado_digital_and_wait_otp(page)
 
@@ -720,6 +827,7 @@ def main() -> int:
                     print("Cookies já presentes no contexto debug persistente.")
                 else:
                     apply_cookies_if_available(context)
+                apply_debug_storage_state_if_available(context)
 
             page = context.new_page()
             attach_dialog_auto_accept(page)
@@ -754,7 +862,7 @@ def main() -> int:
                         f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {exc}"
                     )
                 finally:
-                    if detail_page:
+                    if detail_page and detail_page != page:
                         try:
                             detail_page.close()
                         except PlaywrightError:
