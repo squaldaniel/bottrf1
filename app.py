@@ -542,11 +542,42 @@ def click_certificado_digital_and_wait_otp(page) -> None:
     raise ValueError("Não foi possível avançar ao campo OTP ao clicar em 'CERTIFICADO DIGITAL'.") from last_error
 
 
-def perform_login_flow(page) -> None:
-    goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
 
-    if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
-        goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000)
+
+def ensure_active_page(page, context):
+    if page and not page.is_closed():
+        return page
+
+    log_message("Página principal estava fechada. Reabrindo nova aba no mesmo contexto...")
+    new_page = context.new_page()
+    attach_dialog_auto_accept(new_page)
+    attach_page_debug_logging(new_page)
+    return new_page
+
+
+def should_force_otp_reauth(exc: Exception) -> bool:
+    error_text = str(exc).lower()
+    return (
+        is_transient_navigation_error(exc)
+        or "target page, context or browser has been closed" in error_text
+        or "security" in error_text
+        or "segurança" in error_text
+        or "secure connection failed" in error_text
+    )
+
+
+def force_return_to_auth_and_request_otp(page) -> None:
+    log_message("Retornando ao início para autenticar novamente e solicitar OTP...")
+    perform_login_flow(page, force_auth=True)
+
+def perform_login_flow(page, force_auth: bool = False) -> None:
+    if force_auth:
+        goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
+    else:
+        goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+
+        if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
+            goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
 
     click_certificado_digital_and_wait_otp(page)
 
@@ -837,7 +868,7 @@ def main() -> int:
                 log_message("Sessão válida detectada por cookies/perfil. Pulando etapa de login/OTP.")
             else:
                 log_message("Sessão não autenticada. Executando login e OTP...")
-                perform_login_flow(page)
+                perform_login_flow(page, force_auth=True)
 
             ensure_consulta_page_ready(page)
 
@@ -846,27 +877,47 @@ def main() -> int:
 
             for index, numero_processo in enumerate(processos, start=1):
                 log_message(f"[{index}/{len(processos)}] Iniciando processamento: {numero_processo}")
-                detail_page = None
-                try:
-                    ensure_consulta_page_ready(page)
-                    fill_numero_processo_fields(page, numero_processo)
-                    trigger_search_and_capture_ajax(page, numero_processo)
 
-                    detail_page = open_process_result(page, numero_processo)
-                    download_file = download_processo_pdf(detail_page)
-                    downloaded_files.append(download_file)
-                    log_message(f"[{index}/{len(processos)}] Download concluído: {download_file}")
-                except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
-                    failed_processes.append((numero_processo, str(exc)))
+                process_done = False
+                process_error = None
+
+                for process_attempt in range(1, 3):
+                    detail_page = None
+                    try:
+                        page = ensure_active_page(page, context)
+                        ensure_consulta_page_ready(page)
+                        fill_numero_processo_fields(page, numero_processo)
+                        trigger_search_and_capture_ajax(page, numero_processo)
+
+                        detail_page = open_process_result(page, numero_processo)
+                        download_file = download_processo_pdf(detail_page)
+                        downloaded_files.append(download_file)
+                        log_message(f"[{index}/{len(processos)}] Download concluído: {download_file}")
+                        process_done = True
+                        break
+                    except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+                        process_error = exc
+                        if process_attempt == 1 and should_force_otp_reauth(exc):
+                            log_message(
+                                f"[{index}/{len(processos)}] Erro transitório/segurança detectado. "
+                                "Voltando para autenticação com OTP e tentando novamente..."
+                            )
+                            page = ensure_active_page(page, context)
+                            force_return_to_auth_and_request_otp(page)
+                            continue
+                        break
+                    finally:
+                        if detail_page and detail_page != page:
+                            try:
+                                detail_page.close()
+                            except PlaywrightError:
+                                pass
+
+                if not process_done and process_error is not None:
+                    failed_processes.append((numero_processo, str(process_error)))
                     log_message(
-                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {exc}"
+                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {process_error}"
                     )
-                finally:
-                    if detail_page and detail_page != page:
-                        try:
-                            detail_page.close()
-                        except PlaywrightError:
-                            pass
 
             log_message(
                 f"Processamento finalizado. Sucessos: {len(downloaded_files)}; "
