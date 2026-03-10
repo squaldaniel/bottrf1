@@ -500,7 +500,36 @@ def create_instrumented_page(context):
     attach_page_debug_logging(page)
     return page
 
+
+
+def get_or_create_active_page(context):
+    for existing_page in reversed(context.pages):
+        if not existing_page.is_closed():
+            attach_dialog_auto_accept(existing_page)
+            attach_page_debug_logging(existing_page)
+            log_message(f"Reaproveitando janela ativa existente. URL atual: {existing_page.url}")
+            return existing_page
+
+    log_message("Nenhuma janela ativa encontrada. Abrindo nova janela...")
+    return create_instrumented_page(context)
+
+
+def is_consulta_page_ready_without_navigation(page) -> bool:
+    if not page or page.is_closed():
+        return False
+
+    if "ConsultaProcesso/listView.seam" not in (page.url or ""):
+        return False
+
+    try:
+        return page.locator(SEL_NUMERO_SEQUENCIAL).count() > 0
+    except PlaywrightError:
+        return False
+
 def is_logged_in(page) -> bool:
+    if is_consulta_page_ready_without_navigation(page):
+        return True
+
     try:
         # Sempre começa pela URL oficial de login do TRF3.
         goto_with_transient_recovery(
@@ -603,36 +632,51 @@ def should_force_otp_reauth(exc: Exception) -> bool:
     )
 
 
-def force_return_to_auth_and_request_otp(page) -> None:
+def force_return_to_auth_and_request_otp(page, context) -> object:
     log_message("Retornando ao início para autenticar novamente e solicitar OTP...")
-    perform_login_flow(page, force_auth=True)
+    return perform_login_flow(page, context, force_auth=True)
 
-def perform_login_flow(page, force_auth: bool = False) -> None:
-    if force_auth:
-        goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
-    else:
-        goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+def perform_login_flow(page, context, force_auth: bool = False) -> object:
+    last_error = None
+    for attempt in range(1, 4):
+        try:
+            page = ensure_active_page(page, context)
 
-        if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
-            goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
+            if force_auth:
+                goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
+            else:
+                goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
 
-    click_certificado_digital_and_wait_otp(page)
+                if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
+                    goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
 
-    otp_input = page.locator("#otp")
-    otp_input.wait_for(state="visible", timeout=60000)
+            click_certificado_digital_and_wait_otp(page)
 
-    otp_code = input("Digite o código OTP para continuar: ").strip()
-    while not otp_code:
-        otp_code = input("Código vazio. Digite o OTP: ").strip()
+            otp_input = page.locator("#otp")
+            otp_input.wait_for(state="visible", timeout=60000)
 
-    otp_input.fill(otp_code)
+            otp_code = input("Digite o código OTP para continuar: ").strip()
+            while not otp_code:
+                otp_code = input("Código vazio. Digite o OTP: ").strip()
 
-    # Em alguns fluxos o OTP só é processado após ENTER ou submit explícito.
-    otp_input.press("Enter")
-    page.wait_for_load_state("networkidle", timeout=60000)
-    log_message(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
-    dismiss_blocking_certificado_popup_if_present(page)
-    navigate_to_consulta_page(page)
+            otp_input.fill(otp_code)
+
+            # Em alguns fluxos o OTP só é processado após ENTER ou submit explícito.
+            otp_input.press("Enter")
+            page.wait_for_load_state("networkidle", timeout=60000)
+            log_message(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
+            dismiss_blocking_certificado_popup_if_present(page)
+            navigate_to_consulta_page(page)
+            try_save_debug_storage_state(context)
+            return page
+        except (PlaywrightError, PlaywrightTimeoutError, ValueError) as exc:
+            last_error = exc
+            log_message(f"Tentativa {attempt}/3 de login com OTP falhou: {exc}")
+            page = ensure_active_page(page, context)
+            force_auth = True
+            page.wait_for_timeout(1200)
+
+    raise ValueError("Não foi possível concluir login com OTP após 3 tentativas.") from last_error
 
 
 
@@ -891,7 +935,7 @@ def main() -> int:
             # Rotina explícita: restore de estado + validação de sessão antes de qualquer navegação de negócio.
             restore_session_state_before_navigation(context, config)
 
-            page = create_instrumented_page(context)
+            page = get_or_create_active_page(context)
 
             if is_logged_in(page):
                 log_message("Sessão válida reaproveitada após rotina explícita de restore/validação.")
@@ -899,7 +943,7 @@ def main() -> int:
                 log_message(
                     "Não foi possível reaproveitar sessão. Iniciando login pelo link oficial do TRF3..."
                 )
-                perform_login_flow(page, force_auth=True)
+                page = perform_login_flow(page, context, force_auth=True)
 
             ensure_consulta_page_ready(page)
 
@@ -934,7 +978,7 @@ def main() -> int:
                                 "Voltando para autenticação com OTP e tentando novamente..."
                             )
                             page = ensure_active_page(page, context)
-                            force_return_to_auth_and_request_otp(page)
+                            page = force_return_to_auth_and_request_otp(page, context)
                             continue
                         break
                     finally:
