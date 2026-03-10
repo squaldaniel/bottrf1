@@ -480,7 +480,44 @@ def attach_dialog_auto_accept(page) -> None:
     page.on("dialog", _handler)
 
 
+
+
+def restore_session_state_before_navigation(context, config: AppConfig) -> None:
+    """Restaura explicitamente estado de sessão antes de qualquer navegação."""
+    if config.debug and context.cookies():
+        log_message("Contexto debug já possui cookies do perfil persistente.")
+
+    # 1) Tenta restaurar estado salvo local (storage_state) quando existir.
+    apply_debug_storage_state_if_available(context)
+
+    # 2) Complementa com cookies de ambiente (quando fornecidos).
+    apply_cookies_if_available(context)
+
+
+def create_instrumented_page(context):
+    page = context.new_page()
+    attach_dialog_auto_accept(page)
+    attach_page_debug_logging(page)
+    return page
+
 def is_logged_in(page) -> bool:
+    try:
+        # Sempre começa pela URL oficial de login do TRF3.
+        goto_with_transient_recovery(
+            page,
+            AUTH_URL,
+            wait_until="domcontentloaded",
+            timeout=60000,
+            retries=5,
+        )
+    except PlaywrightError as exc:
+        log_message(f"Falha ao abrir página inicial de login (TRF3): {exc}")
+        return False
+
+    # Se a tela de autenticação está ativa (certificado/otp), ainda não há sessão reaproveitada.
+    if page.locator("#otp").count() > 0 or page.locator("#kc-pje-office").count() > 0:
+        return False
+
     try:
         goto_with_transient_recovery(page, CONSULTA_URL, wait_until="networkidle", timeout=60000)
     except PlaywrightError as exc:
@@ -851,23 +888,17 @@ def main() -> int:
         try:
             browser, context = create_context(p, config)
 
-            if not config.debug:
-                apply_cookies_if_available(context)
-            else:
-                if context.cookies():
-                    print("Cookies já presentes no contexto debug persistente.")
-                else:
-                    apply_cookies_if_available(context)
-                apply_debug_storage_state_if_available(context)
+            # Rotina explícita: restore de estado + validação de sessão antes de qualquer navegação de negócio.
+            restore_session_state_before_navigation(context, config)
 
-            page = context.new_page()
-            attach_dialog_auto_accept(page)
-            attach_page_debug_logging(page)
+            page = create_instrumented_page(context)
 
             if is_logged_in(page):
-                log_message("Sessão válida detectada por cookies/perfil. Pulando etapa de login/OTP.")
+                log_message("Sessão válida reaproveitada após rotina explícita de restore/validação.")
             else:
-                log_message("Sessão não autenticada. Executando login e OTP...")
+                log_message(
+                    "Não foi possível reaproveitar sessão. Iniciando login pelo link oficial do TRF3..."
+                )
                 perform_login_flow(page, force_auth=True)
 
             ensure_consulta_page_ready(page)
