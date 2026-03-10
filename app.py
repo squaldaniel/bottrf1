@@ -216,6 +216,38 @@ def load_processos_from_file(file_path: Path) -> list[str]:
     return processos
 
 
+def split_processos_by_download_status(
+    processos: list[str],
+    download_dir: Path,
+) -> tuple[list[str], list[str], list[str]]:
+    pendentes: list[str] = []
+    baixados_validos: list[str] = []
+    baixados_vazios: list[str] = []
+
+    for numero_processo in processos:
+        matching_files = sorted(download_dir.glob(f"{numero_processo}*.pdf"))
+
+        if not matching_files:
+            pendentes.append(numero_processo)
+            continue
+
+        has_non_empty_file = any(file_path.is_file() and file_path.stat().st_size > 0 for file_path in matching_files)
+        if has_non_empty_file:
+            baixados_validos.append(numero_processo)
+        else:
+            baixados_vazios.append(numero_processo)
+            pendentes.append(numero_processo)
+
+    return pendentes, baixados_validos, baixados_vazios
+
+
+def rewrite_processos_file(file_path: Path, processos: list[str]) -> None:
+    new_content = "\n".join(processos)
+    if new_content:
+        new_content += "\n"
+    file_path.write_text(new_content, encoding="utf-8")
+
+
 def show_missing_browser_help() -> None:
     print("\nPlaywright está instalado, mas o navegador Firefox não foi baixado.")
     print("Execute um dos comandos abaixo e tente novamente:\n")
@@ -734,6 +766,28 @@ def main() -> int:
             )
             for numero_processo, error_text in failed_processes:
                 log_message(f"Falha registrada em {numero_processo}: {error_text}")
+
+            pendentes, baixados_validos, baixados_vazios = split_processos_by_download_status(
+                processos,
+                DOWNLOAD_DIR,
+            )
+            rewrite_processos_file(PROCESSOS_FILE, pendentes)
+
+            log_message(
+                "Conferência de processos.txt concluída: "
+                f"baixados válidos removidos={len(baixados_validos)}, "
+                f"pendentes mantidos={len(pendentes)}, "
+                f"arquivos encontrados com tamanho 0={len(baixados_vazios)}"
+            )
+            if baixados_validos:
+                log_message("Processos removidos do processos.txt por download concluído:")
+                for numero_processo in baixados_validos:
+                    log_message(f"  - {numero_processo}")
+
+            if baixados_vazios:
+                log_message("Processos com arquivo PDF existente, mas vazio (mantidos em processos.txt):")
+                for numero_processo in baixados_vazios:
+                    log_message(f"  - {numero_processo}")
 
             if config.debug:
                 try_save_debug_storage_state(context)
