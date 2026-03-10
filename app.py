@@ -1,4 +1,5 @@
 import builtins
+import json
 import os
 import re
 import sys
@@ -110,11 +111,35 @@ def is_secure_connection_failed_page(page) -> bool:
     return any(snippet in body_text for snippet in SECURE_CONNECTION_FAILED_SNIPPETS)
 
 
-def goto_with_transient_recovery(page, url: str, *, wait_until: str, timeout: int) -> None:
-    page.goto(url, wait_until=wait_until, timeout=timeout)
+def goto_with_transient_recovery(
+    page,
+    url: str,
+    *,
+    wait_until: str,
+    timeout: int,
+    retries: int = 3,
+    retry_delay_ms: int = 1600,
+) -> None:
+    last_exc: Exception | None = None
 
-    if is_secure_connection_failed_page(page):
-        raise PlaywrightError("Secure Connection Failed page detected")
+    for attempt in range(1, retries + 1):
+        try:
+            page.goto(url, wait_until=wait_until, timeout=timeout)
+            if is_secure_connection_failed_page(page):
+                raise PlaywrightError("Secure Connection Failed page detected")
+            return
+        except PlaywrightError as exc:
+            last_exc = exc
+            if attempt < retries and is_transient_navigation_error(exc):
+                log_message(
+                    f"Falha transitória ao navegar para {url} (tentativa {attempt}/{retries}): {exc}"
+                )
+                page.wait_for_timeout(retry_delay_ms)
+                continue
+            raise
+
+    if last_exc:
+        raise last_exc
 
 def navigate_to_consulta_page(page, attempts: int = 3) -> None:
     for attempt in range(1, attempts + 1):
@@ -122,15 +147,10 @@ def navigate_to_consulta_page(page, attempts: int = 3) -> None:
         try:
             goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
         except PlaywrightError as exc:
-            error_text = str(exc)
-            if (
-                "NS_ERROR_NET_INTERRUPT" in error_text
-                or "Secure Connection Failed page detected" in error_text
-            ):
+            if is_transient_navigation_error(exc):
                 log_message(
-                    "Falha transitória de rede/TLS ao abrir consulta "
-                    "(NS_ERROR_NET_INTERRUPT ou Secure Connection Failed). "
-                    "Validando estado atual da página antes de repetir..."
+                    "Falha transitória de rede/TLS ao abrir consulta; "
+                    "validando estado atual da página antes de repetir..."
                 )
                 page.wait_for_timeout(1600)
             else:
@@ -347,6 +367,39 @@ def apply_cookies_if_available(context) -> None:
 
 
 
+
+
+
+def is_transient_navigation_error(exc: Exception) -> bool:
+    error_text = str(exc)
+    return (
+        "NS_ERROR_NET_INTERRUPT" in error_text
+        or "Secure Connection Failed page detected" in error_text
+    )
+
+
+def apply_debug_storage_state_if_available(context) -> None:
+    if not DEBUG_STORAGE_STATE_FILE.exists():
+        return
+
+    try:
+        payload = json.loads(DEBUG_STORAGE_STATE_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        log_message(f"Não foi possível ler storage state debug: {exc}")
+        return
+
+    cookies = payload.get("cookies") or []
+    if not cookies:
+        log_message("Storage state debug encontrado, mas sem cookies para reaproveitar.")
+        return
+
+    try:
+        context.add_cookies(cookies)
+        log_message(
+            f"Cookies carregados do storage state debug: {len(cookies)} entradas."
+        )
+    except PlaywrightError as exc:
+        log_message(f"Falha ao aplicar cookies do storage state debug: {exc}")
 
 def get_debug_storage_state() -> str | None:
     if not DEBUG_STORAGE_STATE_FILE.exists():
@@ -774,6 +827,7 @@ def main() -> int:
                     print("Cookies já presentes no contexto debug persistente.")
                 else:
                     apply_cookies_if_available(context)
+                apply_debug_storage_state_if_available(context)
 
             page = context.new_page()
             attach_dialog_auto_accept(page)
