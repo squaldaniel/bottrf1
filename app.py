@@ -20,6 +20,7 @@ AUTH_URL = (
     "&login=true"
     "&scope=openid"
 )
+QUADRO_AVISO_URL = "https://pje1g.trf3.jus.br/pje/QuadroAviso/listViewQuadroAvisoMensagem.seam"
 CONSULTA_URL = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 PROCESSOS_FILE = Path("processos.txt")
 
@@ -37,6 +38,7 @@ SEL_TRIBUNAL = "[id='fPP:numeroProcesso:respectivoTribunal']"
 SEL_ORGAO = "[id='fPP:numeroProcesso:NumeroOrgaoJustica']"
 SEL_SEARCH_PROCESSOS = "[id='fPP:searchProcessos']"
 SEL_DOWNLOAD_PROCESSO = "[id='navbar:downloadProcesso']"
+SEL_DOWNLOAD_VISIVEL = "[id='navbar:j_id218']"
 SEL_ALERTA_CERTIFICADO_POPUP = "#popupAlertaCertificadoProximoDeExpirarContentDiv"
 CERTIFICADO_ALERTA_TEXT = "certificado próximo de expirar"
 
@@ -694,6 +696,7 @@ def perform_login_flow(page, context, force_auth: bool = False) -> object:
             page.wait_for_load_state("networkidle", timeout=60000)
             log_message(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
             dismiss_blocking_certificado_popup_if_present(page)
+            go_to_quadro_aviso_after_login(page)
             navigate_to_consulta_page(page)
             try_save_debug_storage_state(context)
             return page
@@ -707,6 +710,12 @@ def perform_login_flow(page, context, force_auth: bool = False) -> object:
     raise ValueError("Não foi possível concluir login com OTP após 3 tentativas.") from last_error
 
 
+
+
+
+def go_to_quadro_aviso_after_login(page) -> None:
+    goto_with_transient_recovery(page, QUADRO_AVISO_URL, wait_until="domcontentloaded", timeout=60000)
+    log_message(f"Pós-login confirmado. URL atual (Quadro de Avisos): {page.url}")
 
 def ensure_consulta_page_ready(page) -> None:
     dismiss_blocking_certificado_popup_if_present(page)
@@ -877,16 +886,14 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
 
 
 def open_process_result(page, numero_processo: str):
-    result_link = page.locator(
-        f"a[id^='fPP:processosTable:'][id$=':j_id509'][title='{numero_processo}']"
-    )
+    result_link = page.locator(f"a.btn-link.btn-condensed[title='{numero_processo}']")
 
     if result_link.count() == 0:
         print(
-            "Link exato do processo não encontrado pelo title; "
-            "usando primeiro resultado da tabela como fallback."
+            "Link do processo não encontrado pelo title exato; "
+            "usando primeiro resultado clicável da tabela como fallback."
         )
-        result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+        result_link = page.locator("a.btn-link.btn-condensed[title]").first
 
     result_link.wait_for(state="visible", timeout=60000)
 
@@ -897,10 +904,10 @@ def open_process_result(page, numero_processo: str):
         with page.expect_popup(timeout=20000) as popup_info:
             result_link.click()
         popup_page = popup_info.value
-        popup_page.wait_for_load_state("networkidle", timeout=60000)
+        popup_page.wait_for_load_state("domcontentloaded", timeout=60000)
         return popup_page
     except PlaywrightTimeoutError:
-        page.wait_for_load_state("networkidle", timeout=60000)
+        page.wait_for_load_state("domcontentloaded", timeout=60000)
         return page
 
 
@@ -910,20 +917,36 @@ def download_processo_pdf(detail_page) -> Path:
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
     menu_download = detail_page.locator("a.btn-menu-abas.dropdown-toggle[title='Download autos do processo']")
-    download_button = detail_page.locator(SEL_DOWNLOAD_PROCESSO)
+    download_button = detail_page.locator(SEL_DOWNLOAD_VISIVEL)
+    hidden_download_button = detail_page.locator(SEL_DOWNLOAD_PROCESSO)
 
     last_exc = None
     for attempt in range(1, 4):
         try:
             menu_download.wait_for(state="visible", timeout=60000)
             menu_download.click(timeout=10000)
-            download_button.wait_for(state="visible", timeout=20000)
+
+            if download_button.count() > 0:
+                download_button.first.wait_for(state="visible", timeout=20000)
+                trigger_button = download_button.first
+            else:
+                hidden_download_button.first.wait_for(state="visible", timeout=20000)
+                trigger_button = hidden_download_button.first
 
             print(f"Solicitando download do PDF dos autos (tentativa {attempt})...")
-            with detail_page.expect_download(timeout=120000) as download_info:
-                download_button.click(timeout=10000)
-            download = download_info.value
-            break
+            try:
+                with detail_page.expect_download(timeout=120000) as download_info:
+                    trigger_button.click(timeout=10000)
+                download = download_info.value
+                break
+            except PlaywrightTimeoutError:
+                # Em alguns casos o sistema apenas agenda geração e mostra aviso em modal.
+                alert_modal = detail_page.locator("#panelAlertContentTable")
+                if alert_modal.count() > 0 and "será gerado" in alert_modal.first.inner_text().lower():
+                    raise ValueError(
+                        "Download foi agendado na Área de Download (modal de Atenção exibido)."
+                    )
+                raise
         except (PlaywrightTimeoutError, PlaywrightError) as exc:
             last_exc = exc
             log_message(f"Tentativa {attempt} de download falhou: {exc}")
