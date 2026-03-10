@@ -1,2 +1,10 @@
 __pycache__/*
 .playwright-firefox-profile/
+./processos_baixados/*
+processos_baixados/*
+ajax_response_dump.txt
+acesso.log
+processos.txt
+ajax_response_dump.txt
+acesso.log
+.playwright-debug-storage-state.json
