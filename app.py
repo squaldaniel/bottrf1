@@ -1,4 +1,5 @@
 import builtins
+import json
 import os
 import re
 import sys
@@ -13,13 +14,13 @@ from playwright.sync_api import sync_playwright
 AUTH_URL = (
     "https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth"
     "?response_type=code"
-    "&client_id=pje-trf1-1g"
-    "&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam"
-    "&state=54cf8d8f-d065-47ad-8646-fc66deeacaab"
+    "&client_id=pje-trf3-1g"
+    "&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam"
+    "&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4"
     "&login=true"
     "&scope=openid"
 )
-CONSULTA_URL = "https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 PROCESSOS_FILE = Path("processos.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
@@ -84,10 +85,77 @@ def attach_page_debug_logging(page) -> None:
     page.on("requestfailed", _request_failed)
 
 
+
+
+SECURE_CONNECTION_FAILED_SNIPPETS = [
+    "secure connection failed",
+    "conexão segura falhou",
+    "authenticity of the received data could not be verified",
+]
+
+
+def is_secure_connection_failed_page(page) -> bool:
+    try:
+        title = (page.title() or "").strip().lower()
+    except PlaywrightError:
+        title = ""
+
+    if any(snippet in title for snippet in SECURE_CONNECTION_FAILED_SNIPPETS):
+        return True
+
+    try:
+        body_text = (page.inner_text("body") or "").strip().lower()
+    except PlaywrightError:
+        body_text = ""
+
+    return any(snippet in body_text for snippet in SECURE_CONNECTION_FAILED_SNIPPETS)
+
+
+def goto_with_transient_recovery(
+    page,
+    url: str,
+    *,
+    wait_until: str,
+    timeout: int,
+    retries: int = 3,
+    retry_delay_ms: int = 1600,
+) -> None:
+    last_exc: Exception | None = None
+
+    for attempt in range(1, retries + 1):
+        try:
+            page.goto(url, wait_until=wait_until, timeout=timeout)
+            if is_secure_connection_failed_page(page):
+                raise PlaywrightError("Secure Connection Failed page detected")
+            return
+        except PlaywrightError as exc:
+            last_exc = exc
+            if attempt < retries and is_transient_navigation_error(exc):
+                log_message(
+                    f"Falha transitória ao navegar para {url} (tentativa {attempt}/{retries}): {exc}"
+                )
+                page.wait_for_timeout(retry_delay_ms)
+                continue
+            raise
+
+    if last_exc:
+        raise last_exc
+
 def navigate_to_consulta_page(page, attempts: int = 3) -> None:
     for attempt in range(1, attempts + 1):
         log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {CONSULTA_URL}")
-        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        try:
+            goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        except PlaywrightError as exc:
+            if is_transient_navigation_error(exc):
+                log_message(
+                    "Falha transitória de rede/TLS ao abrir consulta; "
+                    "validando estado atual da página antes de repetir..."
+                )
+                page.wait_for_timeout(1600)
+            else:
+                raise
+
         try:
             page.locator(SEL_NUMERO_SEQUENCIAL).wait_for(state="visible", timeout=15000)
             log_message(f"Tela de consulta pronta. URL final: {page.url}")
@@ -138,7 +206,7 @@ class AppConfig:
 
 
 def parse_bool(raw_value: str) -> bool:
-    return raw_value.strip().lower() in {"1", "true", "yes", "y", "on"}
+    return raw_value.strip().lower() in {"1", "true", "tree", "yes", "y", "on"}
 
 
 def parse_app_config(argv: list[str]) -> AppConfig:
@@ -278,7 +346,7 @@ def load_env_cookies() -> list[dict]:
             {
                 "name": name,
                 "value": value,
-                "domain": "pje1g.trf1.jus.br",
+                "domain": "pje1g.trf3.jus.br",
                 "path": "/",
                 "httpOnly": False,
                 "secure": True,
@@ -299,6 +367,39 @@ def apply_cookies_if_available(context) -> None:
 
 
 
+
+
+
+def is_transient_navigation_error(exc: Exception) -> bool:
+    error_text = str(exc)
+    return (
+        "NS_ERROR_NET_INTERRUPT" in error_text
+        or "Secure Connection Failed page detected" in error_text
+    )
+
+
+def apply_debug_storage_state_if_available(context) -> None:
+    if not DEBUG_STORAGE_STATE_FILE.exists():
+        return
+
+    try:
+        payload = json.loads(DEBUG_STORAGE_STATE_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        log_message(f"Não foi possível ler storage state debug: {exc}")
+        return
+
+    cookies = payload.get("cookies") or []
+    if not cookies:
+        log_message("Storage state debug encontrado, mas sem cookies para reaproveitar.")
+        return
+
+    try:
+        context.add_cookies(cookies)
+        log_message(
+            f"Cookies carregados do storage state debug: {len(cookies)} entradas."
+        )
+    except PlaywrightError as exc:
+        log_message(f"Falha ao aplicar cookies do storage state debug: {exc}")
 
 def get_debug_storage_state() -> str | None:
     if not DEBUG_STORAGE_STATE_FILE.exists():
@@ -348,6 +449,7 @@ def create_context(playwright, config: AppConfig):
                 user_data_dir=str(DEBUG_PROFILE_DIR),
                 headless=False,
                 accept_downloads=True,
+                ignore_https_errors=True,
             )
             print(f"Modo debug ativo. Perfil persistente: {DEBUG_PROFILE_DIR}")
             return browser, context
@@ -363,11 +465,12 @@ def create_context(playwright, config: AppConfig):
             context = browser.new_context(
                 accept_downloads=True,
                 storage_state=get_debug_storage_state(),
+                ignore_https_errors=True,
             )
             return browser, context
 
     browser = playwright.firefox.launch(headless=False)
-    context = browser.new_context(accept_downloads=True)
+    context = browser.new_context(accept_downloads=True, ignore_https_errors=True)
     return browser, context
 def attach_dialog_auto_accept(page) -> None:
     def _handler(dialog):
@@ -377,8 +480,78 @@ def attach_dialog_auto_accept(page) -> None:
     page.on("dialog", _handler)
 
 
+
+
+def restore_session_state_before_navigation(context, config: AppConfig) -> None:
+    """Restaura explicitamente estado de sessão antes de qualquer navegação."""
+    if config.debug and context.cookies():
+        log_message("Contexto debug já possui cookies do perfil persistente.")
+
+    # 1) Tenta restaurar estado salvo local (storage_state) quando existir.
+    apply_debug_storage_state_if_available(context)
+
+    # 2) Complementa com cookies de ambiente (quando fornecidos).
+    apply_cookies_if_available(context)
+
+
+def create_instrumented_page(context):
+    page = context.new_page()
+    attach_dialog_auto_accept(page)
+    attach_page_debug_logging(page)
+    return page
+
+
+
+def get_or_create_active_page(context):
+    for existing_page in reversed(context.pages):
+        if not existing_page.is_closed():
+            attach_dialog_auto_accept(existing_page)
+            attach_page_debug_logging(existing_page)
+            log_message(f"Reaproveitando janela ativa existente. URL atual: {existing_page.url}")
+            return existing_page
+
+    log_message("Nenhuma janela ativa encontrada. Abrindo nova janela...")
+    return create_instrumented_page(context)
+
+
+def is_consulta_page_ready_without_navigation(page) -> bool:
+    if not page or page.is_closed():
+        return False
+
+    if "ConsultaProcesso/listView.seam" not in (page.url or ""):
+        return False
+
+    try:
+        return page.locator(SEL_NUMERO_SEQUENCIAL).count() > 0
+    except PlaywrightError:
+        return False
+
 def is_logged_in(page) -> bool:
-    page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+    if is_consulta_page_ready_without_navigation(page):
+        return True
+
+    try:
+        # Sempre começa pela URL oficial de login do TRF3.
+        goto_with_transient_recovery(
+            page,
+            AUTH_URL,
+            wait_until="domcontentloaded",
+            timeout=60000,
+            retries=5,
+        )
+    except PlaywrightError as exc:
+        log_message(f"Falha ao abrir página inicial de login (TRF3): {exc}")
+        return False
+
+    # Se a tela de autenticação está ativa (certificado/otp), ainda não há sessão reaproveitada.
+    if page.locator("#otp").count() > 0 or page.locator("#kc-pje-office").count() > 0:
+        return False
+
+    try:
+        goto_with_transient_recovery(page, CONSULTA_URL, wait_until="networkidle", timeout=60000)
+    except PlaywrightError as exc:
+        log_message(f"Falha ao validar sessão autenticada: {exc}")
+        return False
 
     if "ConsultaProcesso/listView.seam" not in page.url:
         return False
@@ -435,29 +608,75 @@ def click_certificado_digital_and_wait_otp(page) -> None:
     raise ValueError("Não foi possível avançar ao campo OTP ao clicar em 'CERTIFICADO DIGITAL'.") from last_error
 
 
-def perform_login_flow(page) -> None:
-    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
 
-    if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
-        page.goto(AUTH_URL, wait_until="domcontentloaded", timeout=60000)
 
-    click_certificado_digital_and_wait_otp(page)
+def ensure_active_page(page, context):
+    if page and not page.is_closed():
+        return page
 
-    otp_input = page.locator("#otp")
-    otp_input.wait_for(state="visible", timeout=60000)
+    log_message("Página principal estava fechada. Reabrindo nova aba no mesmo contexto...")
+    new_page = context.new_page()
+    attach_dialog_auto_accept(new_page)
+    attach_page_debug_logging(new_page)
+    return new_page
 
-    otp_code = input("Digite o código OTP para continuar: ").strip()
-    while not otp_code:
-        otp_code = input("Código vazio. Digite o OTP: ").strip()
 
-    otp_input.fill(otp_code)
+def should_force_otp_reauth(exc: Exception) -> bool:
+    error_text = str(exc).lower()
+    return (
+        is_transient_navigation_error(exc)
+        or "target page, context or browser has been closed" in error_text
+        or "security" in error_text
+        or "segurança" in error_text
+        or "secure connection failed" in error_text
+    )
 
-    # Em alguns fluxos o OTP só é processado após ENTER ou submit explícito.
-    otp_input.press("Enter")
-    page.wait_for_load_state("networkidle", timeout=60000)
-    log_message(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
-    dismiss_blocking_certificado_popup_if_present(page)
-    navigate_to_consulta_page(page)
+
+def force_return_to_auth_and_request_otp(page, context) -> object:
+    log_message("Retornando ao início para autenticar novamente e solicitar OTP...")
+    return perform_login_flow(page, context, force_auth=True)
+
+def perform_login_flow(page, context, force_auth: bool = False) -> object:
+    last_error = None
+    for attempt in range(1, 4):
+        try:
+            page = ensure_active_page(page, context)
+
+            if force_auth:
+                goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
+            else:
+                goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+
+                if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
+                    goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000, retries=5)
+
+            click_certificado_digital_and_wait_otp(page)
+
+            otp_input = page.locator("#otp")
+            otp_input.wait_for(state="visible", timeout=60000)
+
+            otp_code = input("Digite o código OTP para continuar: ").strip()
+            while not otp_code:
+                otp_code = input("Código vazio. Digite o OTP: ").strip()
+
+            otp_input.fill(otp_code)
+
+            # Em alguns fluxos o OTP só é processado após ENTER ou submit explícito.
+            otp_input.press("Enter")
+            page.wait_for_load_state("networkidle", timeout=60000)
+            log_message(f"OTP enviado com sucesso. URL atual após envio: {page.url}")
+            dismiss_blocking_certificado_popup_if_present(page)
+            navigate_to_consulta_page(page)
+            try_save_debug_storage_state(context)
+            return page
+        except (PlaywrightError, PlaywrightTimeoutError, ValueError) as exc:
+            last_error = exc
+            log_message(f"Tentativa {attempt}/3 de login com OTP falhou: {exc}")
+            page = ensure_active_page(page, context)
+            force_auth = True
+            page.wait_for_timeout(1200)
+
+    raise ValueError("Não foi possível concluir login com OTP após 3 tentativas.") from last_error
 
 
 
@@ -713,23 +932,18 @@ def main() -> int:
         try:
             browser, context = create_context(p, config)
 
-            if not config.debug:
-                apply_cookies_if_available(context)
-            else:
-                if context.cookies():
-                    print("Cookies já presentes no contexto debug persistente.")
-                else:
-                    apply_cookies_if_available(context)
+            # Rotina explícita: restore de estado + validação de sessão antes de qualquer navegação de negócio.
+            restore_session_state_before_navigation(context, config)
 
-            page = context.new_page()
-            attach_dialog_auto_accept(page)
-            attach_page_debug_logging(page)
+            page = get_or_create_active_page(context)
 
             if is_logged_in(page):
-                log_message("Sessão válida detectada por cookies/perfil. Pulando etapa de login/OTP.")
+                log_message("Sessão válida reaproveitada após rotina explícita de restore/validação.")
             else:
-                log_message("Sessão não autenticada. Executando login e OTP...")
-                perform_login_flow(page)
+                log_message(
+                    "Não foi possível reaproveitar sessão. Iniciando login pelo link oficial do TRF3..."
+                )
+                page = perform_login_flow(page, context, force_auth=True)
 
             ensure_consulta_page_ready(page)
 
@@ -738,27 +952,47 @@ def main() -> int:
 
             for index, numero_processo in enumerate(processos, start=1):
                 log_message(f"[{index}/{len(processos)}] Iniciando processamento: {numero_processo}")
-                detail_page = None
-                try:
-                    ensure_consulta_page_ready(page)
-                    fill_numero_processo_fields(page, numero_processo)
-                    trigger_search_and_capture_ajax(page, numero_processo)
 
-                    detail_page = open_process_result(page, numero_processo)
-                    download_file = download_processo_pdf(detail_page)
-                    downloaded_files.append(download_file)
-                    log_message(f"[{index}/{len(processos)}] Download concluído: {download_file}")
-                except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
-                    failed_processes.append((numero_processo, str(exc)))
+                process_done = False
+                process_error = None
+
+                for process_attempt in range(1, 3):
+                    detail_page = None
+                    try:
+                        page = ensure_active_page(page, context)
+                        ensure_consulta_page_ready(page)
+                        fill_numero_processo_fields(page, numero_processo)
+                        trigger_search_and_capture_ajax(page, numero_processo)
+
+                        detail_page = open_process_result(page, numero_processo)
+                        download_file = download_processo_pdf(detail_page)
+                        downloaded_files.append(download_file)
+                        log_message(f"[{index}/{len(processos)}] Download concluído: {download_file}")
+                        process_done = True
+                        break
+                    except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+                        process_error = exc
+                        if process_attempt == 1 and should_force_otp_reauth(exc):
+                            log_message(
+                                f"[{index}/{len(processos)}] Erro transitório/segurança detectado. "
+                                "Voltando para autenticação com OTP e tentando novamente..."
+                            )
+                            page = ensure_active_page(page, context)
+                            page = force_return_to_auth_and_request_otp(page, context)
+                            continue
+                        break
+                    finally:
+                        if detail_page and detail_page != page:
+                            try:
+                                detail_page.close()
+                            except PlaywrightError:
+                                pass
+
+                if not process_done and process_error is not None:
+                    failed_processes.append((numero_processo, str(process_error)))
                     log_message(
-                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {exc}"
+                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {process_error}"
                     )
-                finally:
-                    if detail_page:
-                        try:
-                            detail_page.close()
-                        except PlaywrightError:
-                            pass
 
             log_message(
                 f"Processamento finalizado. Sucessos: {len(downloaded_files)}; "
