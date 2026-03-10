@@ -84,19 +84,55 @@ def attach_page_debug_logging(page) -> None:
     page.on("requestfailed", _request_failed)
 
 
+
+
+SECURE_CONNECTION_FAILED_SNIPPETS = [
+    "secure connection failed",
+    "conexão segura falhou",
+    "authenticity of the received data could not be verified",
+]
+
+
+def is_secure_connection_failed_page(page) -> bool:
+    try:
+        title = (page.title() or "").strip().lower()
+    except PlaywrightError:
+        title = ""
+
+    if any(snippet in title for snippet in SECURE_CONNECTION_FAILED_SNIPPETS):
+        return True
+
+    try:
+        body_text = (page.inner_text("body") or "").strip().lower()
+    except PlaywrightError:
+        body_text = ""
+
+    return any(snippet in body_text for snippet in SECURE_CONNECTION_FAILED_SNIPPETS)
+
+
+def goto_with_transient_recovery(page, url: str, *, wait_until: str, timeout: int) -> None:
+    page.goto(url, wait_until=wait_until, timeout=timeout)
+
+    if is_secure_connection_failed_page(page):
+        raise PlaywrightError("Secure Connection Failed page detected")
+
 def navigate_to_consulta_page(page, attempts: int = 3) -> None:
     for attempt in range(1, attempts + 1):
         log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {CONSULTA_URL}")
         try:
-            page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+            goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
         except PlaywrightError as exc:
             error_text = str(exc)
-            if "NS_ERROR_NET_INTERRUPT" in error_text:
+            if (
+                "NS_ERROR_NET_INTERRUPT" in error_text
+                or "Secure Connection Failed page detected" in error_text
+            ):
                 log_message(
-                    "Falha transitória de rede ao abrir consulta (NS_ERROR_NET_INTERRUPT). "
+                    "Falha transitória de rede/TLS ao abrir consulta "
+                    "(NS_ERROR_NET_INTERRUPT ou Secure Connection Failed). "
                     "Validando estado atual da página antes de repetir..."
                 )
-                page.wait_for_timeout(1200)
+                page.wait_for_timeout(1600)
             else:
                 raise
 
@@ -360,6 +396,7 @@ def create_context(playwright, config: AppConfig):
                 user_data_dir=str(DEBUG_PROFILE_DIR),
                 headless=False,
                 accept_downloads=True,
+                ignore_https_errors=True,
             )
             print(f"Modo debug ativo. Perfil persistente: {DEBUG_PROFILE_DIR}")
             return browser, context
@@ -375,11 +412,12 @@ def create_context(playwright, config: AppConfig):
             context = browser.new_context(
                 accept_downloads=True,
                 storage_state=get_debug_storage_state(),
+                ignore_https_errors=True,
             )
             return browser, context
 
     browser = playwright.firefox.launch(headless=False)
-    context = browser.new_context(accept_downloads=True)
+    context = browser.new_context(accept_downloads=True, ignore_https_errors=True)
     return browser, context
 def attach_dialog_auto_accept(page) -> None:
     def _handler(dialog):
@@ -390,7 +428,11 @@ def attach_dialog_auto_accept(page) -> None:
 
 
 def is_logged_in(page) -> bool:
-    page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+    try:
+        goto_with_transient_recovery(page, CONSULTA_URL, wait_until="networkidle", timeout=60000)
+    except PlaywrightError as exc:
+        log_message(f"Falha ao validar sessão autenticada: {exc}")
+        return False
 
     if "ConsultaProcesso/listView.seam" not in page.url:
         return False
@@ -448,10 +490,10 @@ def click_certificado_digital_and_wait_otp(page) -> None:
 
 
 def perform_login_flow(page) -> None:
-    page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+    goto_with_transient_recovery(page, CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
 
     if "sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth" not in page.url:
-        page.goto(AUTH_URL, wait_until="domcontentloaded", timeout=60000)
+        goto_with_transient_recovery(page, AUTH_URL, wait_until="domcontentloaded", timeout=60000)
 
     click_certificado_digital_and_wait_otp(page)
 
@@ -766,7 +808,7 @@ def main() -> int:
                         f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {exc}"
                     )
                 finally:
-                    if detail_page:
+                    if detail_page and detail_page != page:
                         try:
                             detail_page.close()
                         except PlaywrightError:
