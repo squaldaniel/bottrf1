@@ -2,3 +2,5 @@ __pycache__/*
 .playwright-firefox-profile/
 processos_baixados/*
 session_cookies.json
+venv/*
+ajax_response_dump.txt
