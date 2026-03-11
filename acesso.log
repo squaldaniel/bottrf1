@@ -1,55 +1,71 @@
-[2026-03-10 14:03:03] Iniciando automação. URL de autenticação: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam&state=54cf8d8f-d065-47ad-8646-fc66deeacaab&login=true&scope=openid
-[2026-03-10 14:03:03] Modo debug: ativo
-[2026-03-10 14:03:03] Total de processos para consulta/download: 8
-Perfil do Firefox de debug aparenta estar em uso. Tentando reaproveitar sessão existente via perfil/storage_state.
-Modo debug ativo. Perfil persistente: .playwright-firefox-profile
-Cookies já presentes no contexto debug persistente.
-[2026-03-10 14:03:05] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-10 14:03:05] RESPONSE 302 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-10 14:03:05] REQUEST GET https://pje1g.trf1.jus.br/pje/login.seam;jsessionid=LBy7EXIonNSL8QJbI2zXPghl_vt6mjffAy-NcvQI.pje1gprdwf45?cid=215840
-[2026-03-10 14:03:05] RESPONSE 302 GET https://pje1g.trf1.jus.br/pje/login.seam;jsessionid=LBy7EXIonNSL8QJbI2zXPghl_vt6mjffAy-NcvQI.pje1gprdwf45?cid=215840
-[2026-03-10 14:03:05] REQUEST GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam%3Bjsessionid%3DLBy7EXIonNSL8QJbI2zXPghl_vt6mjffAy-NcvQI.pje1gprdwf45?cid%3D215840&state=d36cb183-dc0e-4bbe-8493-ad6238c8a427&login=true&scope=openid
-[2026-03-10 14:03:05] RESPONSE 200 GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam%3Bjsessionid%3DLBy7EXIonNSL8QJbI2zXPghl_vt6mjffAy-NcvQI.pje1gprdwf45?cid%3D215840&state=d36cb183-dc0e-4bbe-8493-ad6238c8a427&login=true&scope=openid
-[2026-03-10 14:03:05] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam%3Bjsessionid%3DLBy7EXIonNSL8QJbI2zXPghl_vt6mjffAy-NcvQI.pje1gprdwf45?cid%3D215840&state=d36cb183-dc0e-4bbe-8493-ad6238c8a427&login=true&scope=openid
-[2026-03-10 14:03:05] NAVIGATED: about:blank
-[2026-03-10 14:03:05] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
-[2026-03-10 14:03:05] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
-[2026-03-10 14:03:05] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
-[2026-03-10 14:03:05] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
-[2026-03-10 14:03:05] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
-[2026-03-10 14:03:05] RESPONSE 404 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
-[2026-03-10 14:03:06] Sessão não autenticada. Executando login e OTP...
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-10 14:03:06] RESPONSE 302 GET https://pje1g.trf1.jus.br/pje/Processo/ConsultaProcesso/listView.seam
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/login.seam?cid=215857
-[2026-03-10 14:03:06] RESPONSE 302 GET https://pje1g.trf1.jus.br/pje/login.seam?cid=215857
-[2026-03-10 14:03:06] REQUEST GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam?cid%3D215857&state=2b0d087f-556c-4b79-80da-4019a7e6e9c1&login=true&scope=openid
-[2026-03-10 14:03:06] RESPONSE 200 GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam?cid%3D215857&state=2b0d087f-556c-4b79-80da-4019a7e6e9c1&login=true&scope=openid
-[2026-03-10 14:03:06] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf1-1g&redirect_uri=https%3A%2F%2Fpje1g.trf1.jus.br%2Fpje%2Flogin.seam?cid%3D215857&state=2b0d087f-556c-4b79-80da-4019a7e6e9c1&login=true&scope=openid
-[2026-03-10 14:03:06] NAVIGATED: about:blank
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
-[2026-03-10 14:03:06] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
-[2026-03-10 14:03:06] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
-[2026-03-10 14:03:06] RESPONSE 404 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
-Parâmetros encontrados no onclick de autenticar:
-  token: Y8fHLWlTEgLBexS0Bjn4...8TLNeE2dNkRnCpW8lQ==
-  random: 0.47443552875414097
-[2026-03-10 14:03:06] Chamando 'CERTIFICADO DIGITAL'...
-[2026-03-10 14:03:06] REQUEST POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=UBcxb7xbnHTuU8Dtg75DTX8Ik6ZpoRcDKchAjqs9TGg&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf1-1g&tab_id=NvEFOBYtTMg
-[2026-03-10 14:03:06] RESPONSE 200 POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=UBcxb7xbnHTuU8Dtg75DTX8Ik6ZpoRcDKchAjqs9TGg&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf1-1g&tab_id=NvEFOBYtTMg
-[2026-03-10 14:03:06] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=UBcxb7xbnHTuU8Dtg75DTX8Ik6ZpoRcDKchAjqs9TGg&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf1-1g&tab_id=NvEFOBYtTMg
-[2026-03-10 14:03:06] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?execution=a85574ce-7134-42cb-b177-3147783607c5&client_id=pje-trf1-1g&tab_id=NvEFOBYtTMg
-[2026-03-10 14:03:06] NAVIGATED: about:blank
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
-[2026-03-10 14:03:06] REQUEST GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
-[2026-03-10 14:03:06] Botão de certificado acionado com sucesso na tentativa 1.
-[2026-03-10 14:35:30] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
-[2026-03-10 14:35:30] RESPONSE 200 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
-[2026-03-10 14:35:30] RESPONSE 404 GET https://pje1g.trf1.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
-[2026-03-10 14:35:30] Não foi possível salvar estado debug: BrowserContext.storage_state: Target page, context or browser has been closed
-[2026-03-10 14:35:30] Interrupção por Ctrl+C detectada em modo debug. Mantendo execução para preservar a janela do Firefox.
-[2026-03-10 14:35:32] Encerrando modo debug por solicitação do usuário.
-[2026-03-10 14:35:32] Modo debug ativo: pulando fechamento automático do navegador/contexto.
+[2026-03-11 09:50:05] Iniciando automação TRF3. URL login: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&login=true&scope=openid
+[2026-03-11 09:50:05] Modo debug: inativo
+[2026-03-11 09:50:06] REQUEST GET https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-11 09:50:07] RESPONSE 302 GET https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-11 09:50:07] REQUEST GET https://pje1g.trf3.jus.br/pje/login.seam;jsessionid=_9avNuVVoTP9KmDmmHDug439qT1CtTryDSegBntf.svlpje1g06?cid=46855
+[2026-03-11 09:50:07] RESPONSE 302 GET https://pje1g.trf3.jus.br/pje/login.seam;jsessionid=_9avNuVVoTP9KmDmmHDug439qT1CtTryDSegBntf.svlpje1g06?cid=46855
+[2026-03-11 09:50:07] REQUEST GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam%3Bjsessionid%3D_9avNuVVoTP9KmDmmHDug439qT1CtTryDSegBntf.svlpje1g06?cid%3D46855&state=64507d58-3bd8-49e7-b8c8-2756e7c4ef25&login=true&scope=openid
+[2026-03-11 09:50:07] RESPONSE 200 GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam%3Bjsessionid%3D_9avNuVVoTP9KmDmmHDug439qT1CtTryDSegBntf.svlpje1g06?cid%3D46855&state=64507d58-3bd8-49e7-b8c8-2756e7c4ef25&login=true&scope=openid
+[2026-03-11 09:50:07] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam%3Bjsessionid%3D_9avNuVVoTP9KmDmmHDug439qT1CtTryDSegBntf.svlpje1g06?cid%3D46855&state=64507d58-3bd8-49e7-b8c8-2756e7c4ef25&login=true&scope=openid
+[2026-03-11 09:50:07] NAVIGATED: about:blank
+[2026-03-11 09:50:07] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:07] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:07] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:07] RESPONSE 404 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:07] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:07] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:14] REQUEST POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=DYvMpq1RB-jaodTdx4Vyzyx8zbKP3qZ7SKW0-UEwh-Y&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf3-1g&tab_id=2zM7RxL5MIM
+[2026-03-11 09:50:15] RESPONSE 200 POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=DYvMpq1RB-jaodTdx4Vyzyx8zbKP3qZ7SKW0-UEwh-Y&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf3-1g&tab_id=2zM7RxL5MIM
+[2026-03-11 09:50:15] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=DYvMpq1RB-jaodTdx4Vyzyx8zbKP3qZ7SKW0-UEwh-Y&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf3-1g&tab_id=2zM7RxL5MIM
+[2026-03-11 09:50:15] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?execution=a85574ce-7134-42cb-b177-3147783607c5&client_id=pje-trf3-1g&tab_id=2zM7RxL5MIM
+[2026-03-11 09:50:15] NAVIGATED: about:blank
+[2026-03-11 09:50:15] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:15] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:15] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:15] RESPONSE 404 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:15] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:15] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:17] Sessão não reaproveitada. Solicitando OTP...
+[2026-03-11 09:50:17] REQUEST GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&login=true&scope=openid
+[2026-03-11 09:50:17] RESPONSE 200 GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&login=true&scope=openid
+[2026-03-11 09:50:17] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam&state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&login=true&scope=openid
+[2026-03-11 09:50:17] NAVIGATED: about:blank
+[2026-03-11 09:50:17] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:17] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:17] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:17] Clicando em CERTIFICADO DIGITAL...
+[2026-03-11 09:50:17] RESPONSE 404 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:17] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:17] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:17] REQUEST POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=s0hHjyv1LuH48n4cJzK2bZa9APOuqhQlWf6fuX1cCTs&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf3-1g&tab_id=8SI2GlrviSU
+[2026-03-11 09:50:17] RESPONSE 200 POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=s0hHjyv1LuH48n4cJzK2bZa9APOuqhQlWf6fuX1cCTs&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf3-1g&tab_id=8SI2GlrviSU
+[2026-03-11 09:50:17] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=s0hHjyv1LuH48n4cJzK2bZa9APOuqhQlWf6fuX1cCTs&execution=c0cf406e-a9d7-4976-a188-03b59c51aab6&client_id=pje-trf3-1g&tab_id=8SI2GlrviSU
+[2026-03-11 09:50:17] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?execution=a85574ce-7134-42cb-b177-3147783607c5&client_id=pje-trf3-1g&tab_id=8SI2GlrviSU
+[2026-03-11 09:50:17] NAVIGATED: about:blank
+[2026-03-11 09:50:18] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:18] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:18] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:23] RESPONSE 404 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:23] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:23] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:23] REQUEST POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=uu5nsgEQhr983CgHnjC71nUC__XzKDa-Be5o4lA-p0g&execution=a85574ce-7134-42cb-b177-3147783607c5&client_id=pje-trf3-1g&tab_id=8SI2GlrviSU
+[2026-03-11 09:50:23] RESPONSE 302 POST https://sso.cloud.pje.jus.br/auth/realms/pje/login-actions/authenticate?session_code=uu5nsgEQhr983CgHnjC71nUC__XzKDa-Be5o4lA-p0g&execution=a85574ce-7134-42cb-b177-3147783607c5&client_id=pje-trf3-1g&tab_id=8SI2GlrviSU
+[2026-03-11 09:50:23] REQUEST GET https://pje1g.trf3.jus.br/pje/login.seam?state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&session_state=516f8449-7e11-4cf4-b69f-51c366af0ee0&code=395f8d08-c8a2-45e3-afde-8cb2cb07ddc5.516f8449-7e11-4cf4-b69f-51c366af0ee0.6fe6a69a-5af4-481a-8b07-5c04248522c0
+[2026-03-11 09:50:23] RESPONSE 400 GET https://pje1g.trf3.jus.br/pje/login.seam?state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&session_state=516f8449-7e11-4cf4-b69f-51c366af0ee0&code=395f8d08-c8a2-45e3-afde-8cb2cb07ddc5.516f8449-7e11-4cf4-b69f-51c366af0ee0.6fe6a69a-5af4-481a-8b07-5c04248522c0
+[2026-03-11 09:50:23] NAVIGATED: https://pje1g.trf3.jus.br/pje/login.seam?state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&session_state=516f8449-7e11-4cf4-b69f-51c366af0ee0&code=395f8d08-c8a2-45e3-afde-8cb2cb07ddc5.516f8449-7e11-4cf4-b69f-51c366af0ee0.6fe6a69a-5af4-481a-8b07-5c04248522c0
+[2026-03-11 09:50:24] OTP enviado. URL atual: https://pje1g.trf3.jus.br/pje/login.seam?state=fc0ede7a-4d9d-480f-8192-9e3004b1ced4&session_state=516f8449-7e11-4cf4-b69f-51c366af0ee0&code=395f8d08-c8a2-45e3-afde-8cb2cb07ddc5.516f8449-7e11-4cf4-b69f-51c366af0ee0.6fe6a69a-5af4-481a-8b07-5c04248522c0
+[2026-03-11 09:50:24] REQUEST GET https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-11 09:50:24] RESPONSE 302 GET https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam
+[2026-03-11 09:50:24] REQUEST GET https://pje1g.trf3.jus.br/pje/login.seam?cid=47046
+[2026-03-11 09:50:24] RESPONSE 302 GET https://pje1g.trf3.jus.br/pje/login.seam?cid=47046
+[2026-03-11 09:50:24] REQUEST GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam?cid%3D47046&state=1ecb2e2f-6508-4778-b68f-a54b19193872&login=true&scope=openid
+[2026-03-11 09:50:24] RESPONSE 200 GET https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam?cid%3D47046&state=1ecb2e2f-6508-4778-b68f-a54b19193872&login=true&scope=openid
+[2026-03-11 09:50:24] NAVIGATED: https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth?response_type=code&client_id=pje-trf3-1g&redirect_uri=https%3A%2F%2Fpje1g.trf3.jus.br%2Fpje%2Flogin.seam?cid%3D47046&state=1ecb2e2f-6508-4778-b68f-a54b19193872&login=true&scope=openid
+[2026-03-11 09:50:24] NAVIGATED: about:blank
+[2026-03-11 09:50:24] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:24] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:50:24] REQUEST GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:24] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/fale-conosco-info
+[2026-03-11 09:50:24] RESPONSE 200 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/status/versao
+[2026-03-11 09:50:24] RESPONSE 404 GET https://pje1g.trf3.jus.br/pje/seam/resource/rest/pje-legacy/parametros/custom-login-info
+[2026-03-11 09:51:24] Sessão salva. Cookies importantes: AUTH_SESSION_ID, AUTH_SESSION_ID_LEGACY, AWSALB, AWSALBCORS, JSESSIONID, KEYCLOAK_IDENTITY, KEYCLOAK_IDENTITY_LEGACY, KEYCLOAK_SESSION, KEYCLOAK_SESSION_LEGACY

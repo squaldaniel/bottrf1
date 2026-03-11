@@ -8,3 +8,4 @@ processos.txt
 ajax_response_dump.txt
 acesso.log
 .playwright-debug-storage-state.json
+session_cookies.json
