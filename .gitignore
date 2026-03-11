@@ -4,3 +4,5 @@ processos_baixados/*
 session_cookies.json
 venv/*
 ajax_response_dump.txt
+processos.txt
+acesso.log
