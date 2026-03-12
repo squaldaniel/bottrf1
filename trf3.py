@@ -85,9 +85,24 @@ def attach_page_debug_logging(page) -> None:
 
 
 def navigate_to_consulta_page(page, attempts: int = 3) -> None:
+    if is_consulta_form_visible(page):
+        log_message(f"Tela de consulta já está pronta. URL atual: {page.url}")
+        return
+
     for attempt in range(1, attempts + 1):
         log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {CONSULTA_URL}")
-        page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        try:
+            page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+        except PlaywrightError as exc:
+            if "NS_ERROR_NET_INTERRUPT" in str(exc) and attempt < attempts:
+                log_message(
+                    "Falha transitória de rede (NS_ERROR_NET_INTERRUPT) ao abrir consulta; "
+                    f"tentando novamente. URL atual: {page.url}"
+                )
+                page.wait_for_timeout(1200)
+                continue
+            raise
+
         try:
             page.locator(SEL_NUMERO_SEQUENCIAL).wait_for(state="visible", timeout=15000)
             log_message(f"Tela de consulta pronta. URL final: {page.url}")
@@ -377,14 +392,19 @@ def attach_dialog_auto_accept(page) -> None:
     page.on("dialog", _handler)
 
 
-def is_logged_in(page) -> bool:
-    page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
-
+def is_consulta_form_visible(page) -> bool:
     if "ConsultaProcesso/listView.seam" not in page.url:
         return False
 
-    consulta_input = page.locator(SEL_NUMERO_SEQUENCIAL)
-    return consulta_input.count() > 0
+    try:
+        return page.locator(SEL_NUMERO_SEQUENCIAL).first.is_visible(timeout=1500)
+    except PlaywrightError:
+        return False
+
+
+def is_logged_in(page) -> bool:
+    page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
+    return is_consulta_form_visible(page)
 
 
 def trigger_certificado_digital_click(page) -> None:
