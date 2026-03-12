@@ -402,9 +402,22 @@ def is_consulta_form_visible(page) -> bool:
         return False
 
 
-def is_logged_in(page) -> bool:
-    page.goto(CONSULTA_URL, wait_until="networkidle", timeout=60000)
-    return is_consulta_form_visible(page)
+def is_logged_in(page, attempts: int = 3) -> bool:
+    for attempt in range(1, attempts + 1):
+        try:
+            page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+            return is_consulta_form_visible(page)
+        except PlaywrightError as exc:
+            if "NS_ERROR_NET_INTERRUPT" in str(exc) and attempt < attempts:
+                log_message(
+                    "Falha transitória ao validar sessão (NS_ERROR_NET_INTERRUPT); "
+                    f"nova tentativa {attempt + 1}/{attempts}."
+                )
+                page.wait_for_timeout(1200)
+                continue
+            raise
+
+    return False
 
 
 def trigger_certificado_digital_click(page) -> None:
