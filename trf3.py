@@ -21,7 +21,7 @@ AUTH_URL = (
 )
 CONSULTA_URL_1G = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 CONSULTA_URL_2G = "https://pje2g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
-CONSULTA_URL = CONSULTA_URL_1G
+CONSULTA_URL = CONSULTA_URL_2G
 PROCESSOS_FILE = Path("processos.txt")
 PROCESSOS_2G_FILE = Path("processos2g.txt")
 
