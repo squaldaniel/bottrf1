@@ -94,13 +94,17 @@ def navigate_to_consulta_page(page, attempts: int = 3) -> None:
         try:
             page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
         except PlaywrightError as exc:
-            if "NS_ERROR_NET_INTERRUPT" in str(exc) and attempt < attempts:
-                log_message(
-                    "Falha transitória de rede (NS_ERROR_NET_INTERRUPT) ao abrir consulta; "
-                    f"tentando novamente. URL atual: {page.url}"
-                )
-                page.wait_for_timeout(1200)
-                continue
+            if "NS_ERROR_NET_INTERRUPT" in str(exc):
+                if is_consulta_form_visible(page):
+                    log_message("Consulta ficou visível após interrupção de rede; seguindo fluxo.")
+                    return
+                if attempt < attempts:
+                    log_message(
+                        "Falha transitória de rede (NS_ERROR_NET_INTERRUPT) ao abrir consulta; "
+                        f"tentando novamente. URL atual: {page.url}"
+                    )
+                    page.wait_for_timeout(1200)
+                    continue
             raise
 
         try:
@@ -650,6 +654,8 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
                         "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
                     )
 
+                # Mesmo sem capturar resposta AJAX (NS_ERROR_NET_INTERRUPT),
+                # a tabela pode ter sido atualizada no DOM.
                 body_text = page.content()
                 status_info = "fallback-dom"
             else:
@@ -663,21 +669,22 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
 
 
 def open_process_result(page, numero_processo: str):
+    # A pesquisa retorna um único item, então usamos sempre o primeiro link de resultado.
     result_link = page.locator(
-        f"a[id^='fPP:processosTable:'][id$=':j_id509'][title='{numero_processo}']"
-    )
+        "a[id^='fPP:processosTable:'][id$=':j_id509'], "
+        "a[id^='fPP:processosTable:'][onclick*='abrir'], "
+        "a[id^='fPP:processosTable:']"
+    ).first
 
-    if result_link.count() == 0:
-        print(
-            "Link exato do processo não encontrado pelo title; "
-            "usando primeiro resultado da tabela como fallback."
-        )
-        result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+    try:
+        result_link.wait_for(state="visible", timeout=60000)
+    except PlaywrightTimeoutError as exc:
+        raise ValueError(
+            f"Nenhum resultado visível encontrado para o processo {numero_processo}."
+        ) from exc
 
-    result_link.wait_for(state="visible", timeout=60000)
-
-    titulo = result_link.get_attribute("title") or "(sem título)"
-    print(f"Abrindo processo encontrado: {titulo}")
+    titulo = result_link.get_attribute("title") or result_link.inner_text().strip() or "(sem título)"
+    print(f"Abrindo primeiro processo encontrado na tabela: {titulo}")
 
     try:
         with page.expect_popup(timeout=20000) as popup_info:
@@ -697,17 +704,23 @@ def download_processo_pdf(detail_page) -> Path:
 
     menu_download = detail_page.locator("a.btn-menu-abas.dropdown-toggle[title='Download autos do processo']")
     download_button = detail_page.locator(SEL_DOWNLOAD_PROCESSO)
+    fallback_download_button = detail_page.get_by_role("link", name=re.compile("download", re.IGNORECASE))
 
     last_exc = None
     for attempt in range(1, 4):
         try:
             menu_download.wait_for(state="visible", timeout=60000)
             menu_download.click(timeout=10000)
-            download_button.wait_for(state="visible", timeout=20000)
+            if download_button.count() > 0:
+                download_button.wait_for(state="visible", timeout=20000)
+                active_download_button = download_button
+            else:
+                fallback_download_button.first.wait_for(state="visible", timeout=20000)
+                active_download_button = fallback_download_button.first
 
             print(f"Solicitando download do PDF dos autos (tentativa {attempt})...")
             with detail_page.expect_download(timeout=120000) as download_info:
-                download_button.click(timeout=10000)
+                active_download_button.click(timeout=10000)
             download = download_info.value
             break
         except (PlaywrightTimeoutError, PlaywrightError) as exc:
