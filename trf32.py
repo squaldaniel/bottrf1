@@ -10,10 +10,12 @@ from playwright.sync_api import Error as PlaywrightError
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from playwright.sync_api import sync_playwright
 
+AUTH_CLIENT_ID = "pje-trf3-2g"
+
 AUTH_URL = (
-    "https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth"
+    f"https://sso.cloud.pje.jus.br/auth/realms/pje/protocol/openid-connect/auth"
     "?response_type=code"
-    "&client_id=pje-trf3-1g"
+    f"&client_id={AUTH_CLIENT_ID}"
     "&redirect_uri=https%3A%2F%2Fpje2g.trf3.jus.br%2Fpje%2Flogin.seam"
     "&state=54cf8d8f-d065-47ad-8646-fc66deeacaab"
     "&login=true"
@@ -797,7 +799,10 @@ def main() -> int:
                     try:
                         ensure_consulta_page_ready(page)
                         fill_numero_processo_fields(page, numero_processo)
-                        trigger_search_and_capture_ajax(page, numero_processo)
+                        status_info = trigger_search_and_capture_ajax(page, numero_processo)
+                        log_message(
+                            f"[{index}/{len(processos)}] Status da pesquisa para {numero_processo}: {status_info}"
+                        )
 
                         detail_page = open_process_result(page, numero_processo)
                         download_file = download_processo_pdf(detail_page)
