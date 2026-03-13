@@ -27,6 +27,7 @@ LOG_FILE = Path("acesso.log")
 DOWNLOAD_DIR = Path("processos_baixados")
 DEBUG_PROFILE_DIR = Path(".playwright-firefox-profile")
 DEBUG_STORAGE_STATE_FILE = Path(".playwright-debug-storage-state.json")
+PROCESS_MAX_ATTEMPTS = 4
 
 SEL_NUMERO_SEQUENCIAL = "[id='fPP:numeroProcesso:numeroSequencial']"
 SEL_NUMERO_DV = "[id='fPP:numeroProcesso:numeroDigitoVerificador']"
@@ -784,27 +785,46 @@ def main() -> int:
 
             for index, numero_processo in enumerate(processos, start=1):
                 log_message(f"[{index}/{len(processos)}] Iniciando processamento: {numero_processo}")
-                detail_page = None
-                try:
-                    ensure_consulta_page_ready(page)
-                    fill_numero_processo_fields(page, numero_processo)
-                    trigger_search_and_capture_ajax(page, numero_processo)
+                process_success = False
+                last_error_text = ""
 
-                    detail_page = open_process_result(page, numero_processo)
-                    download_file = download_processo_pdf(detail_page)
-                    downloaded_files.append(download_file)
-                    log_message(f"[{index}/{len(processos)}] Download concluído: {download_file}")
-                except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
-                    failed_processes.append((numero_processo, str(exc)))
+                for process_attempt in range(1, PROCESS_MAX_ATTEMPTS + 1):
+                    detail_page = None
                     log_message(
-                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {exc}"
+                        f"[{index}/{len(processos)}] Tentativa {process_attempt}/{PROCESS_MAX_ATTEMPTS} para {numero_processo}"
                     )
-                finally:
-                    if detail_page:
-                        try:
-                            detail_page.close()
-                        except PlaywrightError:
-                            pass
+                    try:
+                        ensure_consulta_page_ready(page)
+                        fill_numero_processo_fields(page, numero_processo)
+                        trigger_search_and_capture_ajax(page, numero_processo)
+
+                        detail_page = open_process_result(page, numero_processo)
+                        download_file = download_processo_pdf(detail_page)
+                        downloaded_files.append(download_file)
+                        log_message(
+                            f"[{index}/{len(processos)}] Download concluído na tentativa {process_attempt}: {download_file}"
+                        )
+                        process_success = True
+                        break
+                    except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+                        last_error_text = str(exc)
+                        log_message(
+                            f"[{index}/{len(processos)}] Tentativa {process_attempt}/{PROCESS_MAX_ATTEMPTS} falhou em {numero_processo}: {exc}"
+                        )
+                        if process_attempt < PROCESS_MAX_ATTEMPTS:
+                            page.wait_for_timeout(1000)
+                    finally:
+                        if detail_page:
+                            try:
+                                detail_page.close()
+                            except PlaywrightError:
+                                pass
+
+                if not process_success:
+                    failed_processes.append((numero_processo, last_error_text or "falha desconhecida"))
+                    log_message(
+                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo} após {PROCESS_MAX_ATTEMPTS} tentativas: {last_error_text}"
+                    )
 
             log_message(
                 f"Processamento finalizado. Sucessos: {len(downloaded_files)}; "
