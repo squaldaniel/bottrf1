@@ -23,14 +23,13 @@ CONSULTA_URL_1G = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listV
 CONSULTA_URL_2G = "https://pje2g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
 CONSULTA_URL = CONSULTA_URL_1G
 PROCESSOS_FILE = Path("processos.txt")
-PROCESSOS_2G_FILE = Path("processos2g.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
 LOG_FILE = Path("acesso.log")
 DOWNLOAD_DIR = Path("processos_baixados")
 DEBUG_PROFILE_DIR = Path(".playwright-firefox-profile")
 DEBUG_STORAGE_STATE_FILE = Path(".playwright-debug-storage-state.json")
-PROCESS_MAX_ATTEMPTS = 4
+PROCESS_MAX_ATTEMPTS = 1
 
 SEL_NUMERO_SEQUENCIAL = "[id='fPP:numeroProcesso:numeroSequencial']"
 SEL_NUMERO_DV = "[id='fPP:numeroProcesso:numeroDigitoVerificador']"
@@ -601,7 +600,7 @@ def is_bad_request_page(page) -> bool:
     return page.get_by_text("Bad Request", exact=False).first.count() > 0
 
 
-def trigger_search_and_capture_ajax(page, numero: str) -> str:
+def trigger_search_and_capture_ajax(page, numero: str) -> None:
     sequencial, _, _, _, _, _ = parse_numero_processo(numero)
 
     search_button = page.locator(SEL_SEARCH_PROCESSOS)
@@ -670,32 +669,6 @@ def trigger_search_and_capture_ajax(page, numero: str) -> str:
     print(f"Resposta salva em: {RESPONSE_DUMP_FILE}")
     print("Trecho da resposta (primeiros 500 caracteres):")
     print(body_text[:500])
-    return status_info
-
-
-def has_visible_process_result(page) -> bool:
-    result_link = page.locator(
-        "a[id^='fPP:processosTable:'][id$=':j_id509'], "
-        "a[id^='fPP:processosTable:'][onclick*='abrir'], "
-        "a[id^='fPP:processosTable:']"
-    ).first
-
-    try:
-        return result_link.is_visible(timeout=2500)
-    except PlaywrightError:
-        return False
-
-
-def mark_process_for_second_instance(numero_processo: str) -> None:
-    existing = set()
-    if PROCESSOS_2G_FILE.exists():
-        existing = {line.strip() for line in PROCESSOS_2G_FILE.read_text(encoding="utf-8").splitlines() if line.strip()}
-
-    if numero_processo in existing:
-        return
-
-    with PROCESSOS_2G_FILE.open("a", encoding="utf-8") as f:
-        f.write(numero_processo + "\n")
 
 
 def open_process_result(page, numero_processo: str):
@@ -851,24 +824,7 @@ def main() -> int:
                     try:
                         ensure_consulta_page_ready(page)
                         fill_numero_processo_fields(page, numero_processo)
-                        status_info = trigger_search_and_capture_ajax(page, numero_processo)
-
-                        if status_info == "200" and not has_visible_process_result(page):
-                            log_message(
-                                f"[{index}/{len(processos)}] Pesquisa retornou HTTP 200 sem resultado em tabela para {numero_processo}. "
-                                "Alternando imediatamente para 2º grau."
-                            )
-                            mark_process_for_second_instance(numero_processo)
-                            download_file = retry_search_on_second_instance(page, numero_processo)
-                            if download_file:
-                                downloaded_files.append(download_file)
-                                log_message(
-                                    f"[{index}/{len(processos)}] Download concluído via 2º grau na tentativa {process_attempt}: {download_file}"
-                                )
-                                process_success = True
-                            else:
-                                last_error_text = "Sem resultado em 1º grau (HTTP 200) e falha no fallback 2º grau."
-                            break
+                        trigger_search_and_capture_ajax(page, numero_processo)
 
                         try:
                             detail_page = open_process_result(page, numero_processo)
