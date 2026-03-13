@@ -19,14 +19,18 @@ AUTH_URL = (
     "&login=true"
     "&scope=openid"
 )
-CONSULTA_URL = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL_1G = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL_2G = "https://pje2g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL = CONSULTA_URL_2G
 PROCESSOS_FILE = Path("processos.txt")
+PROCESSOS_2G_FILE = Path("processos2g.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
 LOG_FILE = Path("acesso.log")
 DOWNLOAD_DIR = Path("processos_baixados")
 DEBUG_PROFILE_DIR = Path(".playwright-firefox-profile")
 DEBUG_STORAGE_STATE_FILE = Path(".playwright-debug-storage-state.json")
+PROCESS_MAX_ATTEMPTS = 4
 
 SEL_NUMERO_SEQUENCIAL = "[id='fPP:numeroProcesso:numeroSequencial']"
 SEL_NUMERO_DV = "[id='fPP:numeroProcesso:numeroDigitoVerificador']"
@@ -84,23 +88,27 @@ def attach_page_debug_logging(page) -> None:
     page.on("requestfailed", _request_failed)
 
 
-def navigate_to_consulta_page(page, attempts: int = 3) -> None:
+def navigate_to_consulta_page(page, attempts: int = 3, consulta_url: str = CONSULTA_URL) -> None:
     if is_consulta_form_visible(page):
         log_message(f"Tela de consulta já está pronta. URL atual: {page.url}")
         return
 
     for attempt in range(1, attempts + 1):
-        log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {CONSULTA_URL}")
+        log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {consulta_url}")
         try:
-            page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+            page.goto(consulta_url, wait_until="domcontentloaded", timeout=60000)
         except PlaywrightError as exc:
-            if "NS_ERROR_NET_INTERRUPT" in str(exc) and attempt < attempts:
-                log_message(
-                    "Falha transitória de rede (NS_ERROR_NET_INTERRUPT) ao abrir consulta; "
-                    f"tentando novamente. URL atual: {page.url}"
-                )
-                page.wait_for_timeout(1200)
-                continue
+            if "NS_ERROR_NET_INTERRUPT" in str(exc):
+                if is_consulta_form_visible(page):
+                    log_message("Consulta ficou visível após interrupção de rede; seguindo fluxo.")
+                    return
+                if attempt < attempts:
+                    log_message(
+                        "Falha transitória de rede (NS_ERROR_NET_INTERRUPT) ao abrir consulta; "
+                        f"tentando novamente. URL atual: {page.url}"
+                    )
+                    page.wait_for_timeout(1200)
+                    continue
             raise
 
         try:
@@ -593,7 +601,7 @@ def is_bad_request_page(page) -> bool:
     return page.get_by_text("Bad Request", exact=False).first.count() > 0
 
 
-def trigger_search_and_capture_ajax(page, numero: str) -> None:
+def trigger_search_and_capture_ajax(page, numero: str) -> str:
     sequencial, _, _, _, _, _ = parse_numero_processo(numero)
 
     search_button = page.locator(SEL_SEARCH_PROCESSOS)
@@ -650,6 +658,8 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
                         "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
                     )
 
+                # Mesmo sem capturar resposta AJAX (NS_ERROR_NET_INTERRUPT),
+                # a tabela pode ter sido atualizada no DOM.
                 body_text = page.content()
                 status_info = "fallback-dom"
             else:
@@ -660,24 +670,51 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
     print(f"Resposta salva em: {RESPONSE_DUMP_FILE}")
     print("Trecho da resposta (primeiros 500 caracteres):")
     print(body_text[:500])
+    return status_info
+
+
+def has_visible_process_result(page) -> bool:
+    result_link = page.locator(
+        "a[id^='fPP:processosTable:'][id$=':j_id509'], "
+        "a[id^='fPP:processosTable:'][onclick*='abrir'], "
+        "a[id^='fPP:processosTable:']"
+    ).first
+
+    try:
+        return result_link.is_visible(timeout=2500)
+    except PlaywrightError:
+        return False
+
+
+def mark_process_for_second_instance(numero_processo: str) -> None:
+    existing = set()
+    if PROCESSOS_2G_FILE.exists():
+        existing = {line.strip() for line in PROCESSOS_2G_FILE.read_text(encoding="utf-8").splitlines() if line.strip()}
+
+    if numero_processo in existing:
+        return
+
+    with PROCESSOS_2G_FILE.open("a", encoding="utf-8") as f:
+        f.write(numero_processo + "\n")
 
 
 def open_process_result(page, numero_processo: str):
+    # A pesquisa retorna um único item, então usamos sempre o primeiro link de resultado.
     result_link = page.locator(
-        f"a[id^='fPP:processosTable:'][id$=':j_id509'][title='{numero_processo}']"
-    )
+        "a[id^='fPP:processosTable:'][id$=':j_id509'], "
+        "a[id^='fPP:processosTable:'][onclick*='abrir'], "
+        "a[id^='fPP:processosTable:']"
+    ).first
 
-    if result_link.count() == 0:
-        print(
-            "Link exato do processo não encontrado pelo title; "
-            "usando primeiro resultado da tabela como fallback."
-        )
-        result_link = page.locator("a[id^='fPP:processosTable:'][id$=':j_id509']").first
+    try:
+        result_link.wait_for(state="visible", timeout=60000)
+    except PlaywrightTimeoutError as exc:
+        raise ValueError(
+            f"Nenhum resultado visível encontrado para o processo {numero_processo}."
+        ) from exc
 
-    result_link.wait_for(state="visible", timeout=60000)
-
-    titulo = result_link.get_attribute("title") or "(sem título)"
-    print(f"Abrindo processo encontrado: {titulo}")
+    titulo = result_link.get_attribute("title") or result_link.inner_text().strip() or "(sem título)"
+    print(f"Abrindo primeiro processo encontrado na tabela: {titulo}")
 
     try:
         with page.expect_popup(timeout=20000) as popup_info:
@@ -697,17 +734,23 @@ def download_processo_pdf(detail_page) -> Path:
 
     menu_download = detail_page.locator("a.btn-menu-abas.dropdown-toggle[title='Download autos do processo']")
     download_button = detail_page.locator(SEL_DOWNLOAD_PROCESSO)
+    fallback_download_button = detail_page.get_by_role("link", name=re.compile("download", re.IGNORECASE))
 
     last_exc = None
     for attempt in range(1, 4):
         try:
             menu_download.wait_for(state="visible", timeout=60000)
             menu_download.click(timeout=10000)
-            download_button.wait_for(state="visible", timeout=20000)
+            if download_button.count() > 0:
+                download_button.wait_for(state="visible", timeout=20000)
+                active_download_button = download_button
+            else:
+                fallback_download_button.first.wait_for(state="visible", timeout=20000)
+                active_download_button = fallback_download_button.first
 
             print(f"Solicitando download do PDF dos autos (tentativa {attempt})...")
             with detail_page.expect_download(timeout=120000) as download_info:
-                download_button.click(timeout=10000)
+                active_download_button.click(timeout=10000)
             download = download_info.value
             break
         except (PlaywrightTimeoutError, PlaywrightError) as exc:
@@ -728,6 +771,32 @@ def download_processo_pdf(detail_page) -> Path:
 
     print(f"Download concluído: {target_file}")
     return target_file
+
+
+def retry_search_on_second_instance(page, numero_processo: str) -> Path | None:
+    log_message(
+        f"Sem retorno de resultado em 1º grau para {numero_processo}. "
+        f"Alternando para 2º grau: {CONSULTA_URL_2G}"
+    )
+
+    detail_page = None
+    try:
+        navigate_to_consulta_page(page, consulta_url=CONSULTA_URL_2G)
+        fill_numero_processo_fields(page, numero_processo)
+        trigger_search_and_capture_ajax(page, numero_processo)
+        detail_page = open_process_result(page, numero_processo)
+        download_file = download_processo_pdf(detail_page)
+        log_message(f"Download concluído em 2º grau para {numero_processo}: {download_file}")
+        return download_file
+    except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+        log_message(f"Falha na tentativa via 2º grau para {numero_processo}: {exc}")
+        return None
+    finally:
+        if detail_page:
+            try:
+                detail_page.close()
+            except PlaywrightError:
+                pass
 
 
 def main() -> int:
@@ -771,27 +840,70 @@ def main() -> int:
 
             for index, numero_processo in enumerate(processos, start=1):
                 log_message(f"[{index}/{len(processos)}] Iniciando processamento: {numero_processo}")
-                detail_page = None
-                try:
-                    ensure_consulta_page_ready(page)
-                    fill_numero_processo_fields(page, numero_processo)
-                    trigger_search_and_capture_ajax(page, numero_processo)
+                process_success = False
+                last_error_text = ""
 
-                    detail_page = open_process_result(page, numero_processo)
-                    download_file = download_processo_pdf(detail_page)
-                    downloaded_files.append(download_file)
-                    log_message(f"[{index}/{len(processos)}] Download concluído: {download_file}")
-                except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
-                    failed_processes.append((numero_processo, str(exc)))
+                for process_attempt in range(1, PROCESS_MAX_ATTEMPTS + 1):
+                    detail_page = None
                     log_message(
-                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo}: {exc}"
+                        f"[{index}/{len(processos)}] Tentativa {process_attempt}/{PROCESS_MAX_ATTEMPTS} para {numero_processo}"
                     )
-                finally:
-                    if detail_page:
+                    try:
+                        ensure_consulta_page_ready(page)
+                        fill_numero_processo_fields(page, numero_processo)
+                        status_info = trigger_search_and_capture_ajax(page, numero_processo)
+
+                        if status_info == "200" and not has_visible_process_result(page):
+                            log_message(
+                                f"[{index}/{len(processos)}] Pesquisa retornou HTTP 200 sem resultado em tabela para {numero_processo}. "
+                                "Alternando imediatamente para 2º grau."
+                            )
+                            mark_process_for_second_instance(numero_processo)
+                            download_file = retry_search_on_second_instance(page, numero_processo)
+                            if download_file:
+                                downloaded_files.append(download_file)
+                                log_message(
+                                    f"[{index}/{len(processos)}] Download concluído via 2º grau na tentativa {process_attempt}: {download_file}"
+                                )
+                                process_success = True
+                            else:
+                                last_error_text = "Sem resultado em 1º grau (HTTP 200) e falha no fallback 2º grau."
+                            break
+
                         try:
-                            detail_page.close()
-                        except PlaywrightError:
-                            pass
+                            detail_page = open_process_result(page, numero_processo)
+                            download_file = download_processo_pdf(detail_page)
+                        except ValueError as exc:
+                            if "Nenhum resultado visível" not in str(exc):
+                                raise
+                            download_file = retry_search_on_second_instance(page, numero_processo)
+                            if not download_file:
+                                raise
+                        downloaded_files.append(download_file)
+                        log_message(
+                            f"[{index}/{len(processos)}] Download concluído na tentativa {process_attempt}: {download_file}"
+                        )
+                        process_success = True
+                        break
+                    except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+                        last_error_text = str(exc)
+                        log_message(
+                            f"[{index}/{len(processos)}] Tentativa {process_attempt}/{PROCESS_MAX_ATTEMPTS} falhou em {numero_processo}: {exc}"
+                        )
+                        if process_attempt < PROCESS_MAX_ATTEMPTS:
+                            page.wait_for_timeout(1000)
+                    finally:
+                        if detail_page:
+                            try:
+                                detail_page.close()
+                            except PlaywrightError:
+                                pass
+
+                if not process_success:
+                    failed_processes.append((numero_processo, last_error_text or "falha desconhecida"))
+                    log_message(
+                        f"[{index}/{len(processos)}] Falha ao processar {numero_processo} após {PROCESS_MAX_ATTEMPTS} tentativas: {last_error_text}"
+                    )
 
             log_message(
                 f"Processamento finalizado. Sucessos: {len(downloaded_files)}; "
