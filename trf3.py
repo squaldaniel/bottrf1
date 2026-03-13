@@ -19,7 +19,9 @@ AUTH_URL = (
     "&login=true"
     "&scope=openid"
 )
-CONSULTA_URL = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL_1G = "https://pje1g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL_2G = "https://pje2g.trf3.jus.br/pje/Processo/ConsultaProcesso/listView.seam"
+CONSULTA_URL = CONSULTA_URL_1G
 PROCESSOS_FILE = Path("processos.txt")
 
 RESPONSE_DUMP_FILE = "ajax_response_dump.txt"
@@ -85,15 +87,15 @@ def attach_page_debug_logging(page) -> None:
     page.on("requestfailed", _request_failed)
 
 
-def navigate_to_consulta_page(page, attempts: int = 3) -> None:
+def navigate_to_consulta_page(page, attempts: int = 3, consulta_url: str = CONSULTA_URL) -> None:
     if is_consulta_form_visible(page):
         log_message(f"Tela de consulta já está pronta. URL atual: {page.url}")
         return
 
     for attempt in range(1, attempts + 1):
-        log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {CONSULTA_URL}")
+        log_message(f"Tentativa {attempt}/{attempts} de ir para tela de consulta: {consulta_url}")
         try:
-            page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
+            page.goto(consulta_url, wait_until="domcontentloaded", timeout=60000)
         except PlaywrightError as exc:
             if "NS_ERROR_NET_INTERRUPT" in str(exc):
                 if is_consulta_form_visible(page):
@@ -150,16 +152,6 @@ def install_print_logger() -> None:
             f.write(message)
 
     builtins.print = _logged_print
-
-
-def wait_for_space_to_continue() -> None:
-    print("Fluxo pausado após a pesquisa. Analise a tela e pressione BARRA DE ESPAÇO para continuar.")
-    while True:
-        key = input("[pausado] Pressione espaço e ENTER para continuar: ")
-        if key == " ":
-            log_message("Execução retomada após confirmação com barra de espaço.")
-            return
-        print("Entrada inválida. Use apenas a barra de espaço.")
 
 
 @dataclass(frozen=True)
@@ -754,6 +746,32 @@ def download_processo_pdf(detail_page) -> Path:
     return target_file
 
 
+def retry_search_on_second_instance(page, numero_processo: str) -> Path | None:
+    log_message(
+        f"Sem retorno de resultado em 1º grau para {numero_processo}. "
+        f"Alternando para 2º grau: {CONSULTA_URL_2G}"
+    )
+
+    detail_page = None
+    try:
+        navigate_to_consulta_page(page, consulta_url=CONSULTA_URL_2G)
+        fill_numero_processo_fields(page, numero_processo)
+        trigger_search_and_capture_ajax(page, numero_processo)
+        detail_page = open_process_result(page, numero_processo)
+        download_file = download_processo_pdf(detail_page)
+        log_message(f"Download concluído em 2º grau para {numero_processo}: {download_file}")
+        return download_file
+    except (PlaywrightTimeoutError, PlaywrightError, ValueError) as exc:
+        log_message(f"Falha na tentativa via 2º grau para {numero_processo}: {exc}")
+        return None
+    finally:
+        if detail_page:
+            try:
+                detail_page.close()
+            except PlaywrightError:
+                pass
+
+
 def main() -> int:
     LOG_FILE.write_text("", encoding="utf-8")
     install_print_logger()
@@ -807,10 +825,16 @@ def main() -> int:
                         ensure_consulta_page_ready(page)
                         fill_numero_processo_fields(page, numero_processo)
                         trigger_search_and_capture_ajax(page, numero_processo)
-                        wait_for_space_to_continue()
 
-                        detail_page = open_process_result(page, numero_processo)
-                        download_file = download_processo_pdf(detail_page)
+                        try:
+                            detail_page = open_process_result(page, numero_processo)
+                            download_file = download_processo_pdf(detail_page)
+                        except ValueError as exc:
+                            if "Nenhum resultado visível" not in str(exc):
+                                raise
+                            download_file = retry_search_on_second_instance(page, numero_processo)
+                            if not download_file:
+                                raise
                         downloaded_files.append(download_file)
                         log_message(
                             f"[{index}/{len(processos)}] Download concluído na tentativa {process_attempt}: {download_file}"
