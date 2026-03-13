@@ -94,13 +94,17 @@ def navigate_to_consulta_page(page, attempts: int = 3) -> None:
         try:
             page.goto(CONSULTA_URL, wait_until="domcontentloaded", timeout=60000)
         except PlaywrightError as exc:
-            if "NS_ERROR_NET_INTERRUPT" in str(exc) and attempt < attempts:
-                log_message(
-                    "Falha transitória de rede (NS_ERROR_NET_INTERRUPT) ao abrir consulta; "
-                    f"tentando novamente. URL atual: {page.url}"
-                )
-                page.wait_for_timeout(1200)
-                continue
+            if "NS_ERROR_NET_INTERRUPT" in str(exc):
+                if is_consulta_form_visible(page):
+                    log_message("Consulta ficou visível após interrupção de rede; seguindo fluxo.")
+                    return
+                if attempt < attempts:
+                    log_message(
+                        "Falha transitória de rede (NS_ERROR_NET_INTERRUPT) ao abrir consulta; "
+                        f"tentando novamente. URL atual: {page.url}"
+                    )
+                    page.wait_for_timeout(1200)
+                    continue
             raise
 
         try:
@@ -650,6 +654,8 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
                         "Tente novamente; se persistir, reinicie a sessão de debug e autentique de novo."
                     )
 
+                # Mesmo sem capturar resposta AJAX (NS_ERROR_NET_INTERRUPT),
+                # a tabela pode ter sido atualizada no DOM.
                 body_text = page.content()
                 status_info = "fallback-dom"
             else:
@@ -663,9 +669,12 @@ def trigger_search_and_capture_ajax(page, numero: str) -> None:
 
 
 def open_process_result(page, numero_processo: str):
-    # A pesquisa retorna um único item, então sempre usamos o primeiro link da tabela.
-    # Evitamos sufixo fixo de ID para reduzir fragilidade entre versões do portal.
-    result_link = page.locator("a[id^='fPP:processosTable:'][title]").first
+    # A pesquisa retorna um único item, então usamos sempre o primeiro link de resultado.
+    result_link = page.locator(
+        "a[id^='fPP:processosTable:'][id$=':j_id509'], "
+        "a[id^='fPP:processosTable:'][onclick*='abrir'], "
+        "a[id^='fPP:processosTable:']"
+    ).first
 
     try:
         result_link.wait_for(state="visible", timeout=60000)
@@ -674,7 +683,7 @@ def open_process_result(page, numero_processo: str):
             f"Nenhum resultado visível encontrado para o processo {numero_processo}."
         ) from exc
 
-    titulo = result_link.get_attribute("title") or "(sem título)"
+    titulo = result_link.get_attribute("title") or result_link.inner_text().strip() or "(sem título)"
     print(f"Abrindo primeiro processo encontrado na tabela: {titulo}")
 
     try:
